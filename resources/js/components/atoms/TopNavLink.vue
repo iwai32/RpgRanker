@@ -1,6 +1,6 @@
 <template>
   <li class="top-nav__link">
-    <a class="link" href="/character-selection">
+    <a class="link" href="/game/character-selection">
       <slot></slot>
     </a>
   </li>

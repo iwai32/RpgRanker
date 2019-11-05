@@ -19,6 +19,7 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
+Vue.component('top-container', require('./components/organisms/TopContainer.vue').default);
 Vue.component('title-logo', require('./components/atoms/TitleLogo.vue').default);
 Vue.component('top-nav', require('./components/molecules/TopNav.vue').default);
 Vue.component('top-nav-link', require('./components/atoms/TopNavLink.vue').default);

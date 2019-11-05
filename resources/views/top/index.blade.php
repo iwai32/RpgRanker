@@ -12,11 +12,7 @@
 </head>
 <body>
   <div id="app">
-    <div class="top-container">
-      <title-logo></title-logo>
-      <top-nav>
-      </top-nav>
-    </div><!--.top-container-->
+  <top-container></top-container>
   </div>
 </body>
 <script src="{{ mix('/js/app.js') }}"></script>

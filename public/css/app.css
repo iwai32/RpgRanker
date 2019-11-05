@@ -11292,16 +11292,3 @@ body {
   background: #000000;
 }
 
-/*トップページ*/
-
-.top-container {
-  background: url(/images/top-bg.jpg?7cc71d6ac13d73ea6eb2c98a57bceb49) no-repeat center center/cover;
-  display: -webkit-box;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-          flex-direction: column;
-  justify-content: space-around;
-  height: 100vh;
-}
-
