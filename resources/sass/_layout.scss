@@ -1,0 +1,12 @@
+body {
+  background: #000000;
+}
+
+/*トップページ*/
+.top-container {
+  background: url('../images/top-bg.jpg') no-repeat center center/cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100vh;
+}
