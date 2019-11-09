@@ -11284,11 +11284,12 @@ html {
   font-size: 62.5%;
 }
 
-img {
-  max-width: 100%;
+body {
+  background: #222222;
+  font-family: "Play", sans-serif;
 }
 
-body {
-  background: #000000;
+img {
+  max-width: 100%;
 }
 
