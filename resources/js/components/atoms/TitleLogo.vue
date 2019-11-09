@@ -4,9 +4,6 @@
   </h1>
 </template>
 
-<script>
-</script>
-
 <style lang="scss" scoped>
 .top-title {
   text-align: center;

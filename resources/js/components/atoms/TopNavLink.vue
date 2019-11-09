@@ -1,12 +1,20 @@
 <template>
   <li class="top-nav__link">
-    <a class="link" href="/game/character-selection">
-      <slot></slot>
-    </a>
+    <!-- character-select -->
+    <router-link class="link" :to="link">
+    {{ name }}
+    </router-link>
   </li>
 </template>
 
 <script>
+export default {
+  name: 'TopNavLink',
+  props: {
+     name: String,
+    link: String
+  }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -19,7 +27,7 @@
   text-align: center;
   .link {
     display: block;
-    padding: 10px;
+    padding: 5 10px;
   }
 }
 

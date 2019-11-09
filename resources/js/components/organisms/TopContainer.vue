@@ -6,6 +6,15 @@
 </template>
 
 <script>
+import TitleLogo from '../atoms/TitleLogo.vue'
+import TopNav from '../molecules/TopNav.vue'
+export default {
+  name: 'TopContainer',
+  components: {
+    TitleLogo,
+    TopNav
+  }
+}
 </script>
 
 <style lang="scss" scoped>
