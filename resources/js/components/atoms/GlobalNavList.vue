@@ -8,7 +8,6 @@
 
 <script>
 export default {
-  name: 'globalNavList',
   props: {
     name: String,
     link: String

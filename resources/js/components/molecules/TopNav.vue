@@ -1,17 +1,15 @@
 <template>
   <ul class="top-nav">
     <top-nav-list v-for="listData in topNavListItems"
-      v-bind:key="listData.id"
-      v-bind:name="listData.name"
-      v-bind:link="listData.link"></top-nav-list>
-    <!-- /game/character-selection -->
+      :key="listData.id"
+      :name="listData.name"
+      :link="listData.link"></top-nav-list>
   </ul>
 </template>
 
 <script>
 import TopNavList from '../atoms/TopNavList.vue'
 export default {
-  name: 'TopNav',
   components: {
     TopNavList
   },

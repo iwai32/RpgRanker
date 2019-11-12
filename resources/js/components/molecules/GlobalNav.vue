@@ -13,7 +13,6 @@
 <script>
 import GlobalNavList from '../atoms/GlobalNavList.vue'
 export default {
-  name: 'GlobalNav',
   components: {
     GlobalNavList
   },
