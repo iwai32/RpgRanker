@@ -28,13 +28,14 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .character-panel {
   box-shadow: 0 0 1px 1px #b79532;
   border-radius: 2px;
   width: 30%;
-  &__active {
-    box-shadow: 0 0 2px 2px darken(#b79532, 10%);
-  }
+}
+
+.active {
+  box-shadow: 0 0 2px 2px darken(#b79532, 10%);
 }
 </style>

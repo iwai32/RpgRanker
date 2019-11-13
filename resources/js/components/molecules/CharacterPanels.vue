@@ -4,12 +4,11 @@
       v-for="character in characterDisplayNumber"
       :key="character.id"
       :id-name="'character' + toPascalCase(character.pass)"
-      :class-name="{ 'character-panel__active': character.id === characterId }"
+      :class-name="{ 'active': character.id === characterId }"
       :img-pass="'../../../images/' + character.pass + '.png'"
       :alt-name="character.name"
       :character-id="character.id"
     ></character-panel>
-
   </ul>
 </template>
 
@@ -41,23 +40,14 @@ export default {
     characterId() {
       return this.$store.state.characterId
     },
-    startCharacterNum() {
-      return this.$store.state.startCharacterNum
-    },
-    endCount() {
-      return this.$store.state.endCount
-    },
-    characterList() {
-      return this.$store.state.characterList
-    },
     characterDisplayNumber() {
-      return this.characterList.slice(this.startCharacterNum, this.endCount)
+      return this.$store.getters.characterDisplayNumber
     }
   }
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .character-panels {
   display: flex;
   justify-content: space-between;
