@@ -3,10 +3,12 @@ import VueRouter from 'vue-router'
 import BodyClass from 'vue-body-class'
 
 //router-viewと切り替わるコンポーネントをインポートする
-import TopContainer from './components/organisms/TopContainer.vue'
-import CommonHeader from './components/organisms/CommonHeader.vue'
-import CommonContainer from './components/organisms/CommonContainer.vue'
-import CommonFooter from './components/organisms/CommonFooter.vue'
+import TopContainer from './components/organisms/top/TopContainer.vue'
+import CommonHeader from './components/organisms/common/CommonHeader.vue'
+import CommonContainer from './components/organisms/common/CommonContainer.vue'
+import CommonFooter from './components/organisms/common/CommonFooter.vue'
+import CharacterSelection from './components/organisms/character-select/CharacterSelection.vue'
+import BattleArea from './components/organisms/BattleArea.vue'
 
 Vue.use(VueRouter)
 
@@ -15,18 +17,39 @@ const routes = [
     //トップページ
     path: '/',
     components: {
-      contents : TopContainer
+      contents: TopContainer
     }
   },
   {
     //共通ページ
-    path: '/game',
+    path: '/game/',
     meta: { bodyClass: 'page-common' },
     components: {
-      header : CommonHeader,
+      header: CommonHeader,
       contents: CommonContainer,
-      footer : CommonFooter
-    }
+      footer: CommonFooter
+    },
+    children: [
+      {
+        path: 'character-selection',
+        components: {
+          section: CharacterSelection
+        }
+      },
+      {
+        path: 'battle/:characterIndex',
+        name: 'battle',
+        components: {
+          section: BattleArea
+        }
+      },
+      {
+        path: 'bbs',
+      },
+      {
+        path: 'ranking',
+      }
+    ]
   }
 ]
 

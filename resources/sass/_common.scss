@@ -1,0 +1,40 @@
+body {
+  background: #E0CB8E url('../images/top-bg.png') no-repeat center 40%;
+  font-family: 'Lato', sans-serif;
+}
+
+.page-common {
+  background: #E0CB8E;
+}
+
+img {
+  max-width: 100%;
+  vertical-align: bottom;
+}
+
+/**ボタンの初期スタイル解除**/
+button {
+  border-style: none;
+  &:focus {
+    border: none;
+    outline: none;
+  }
+}
+
+// .input-init {
+//   outline: none;
+//   border-style: none;
+//   resize: none;
+//   &:focus {
+//     box-shadow: 0 0 0 2px rgba(1, 191, 189, .1);
+//     border-color: rgba(59, 133, 133, .4);
+//   }
+// }
+
+// .btn-init {
+//   border-style: none;
+//   cursor: pointer;
+//   &:hover {
+//     opacity: .8;
+//   }
+// }
