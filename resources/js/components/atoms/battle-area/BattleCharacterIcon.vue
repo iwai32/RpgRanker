@@ -1,0 +1,39 @@
+<template>
+  <p class="battle-character-icon">
+    <img
+      :src="'../../../../images/'+ battleCharacterData.pass +'.png'"
+      :alt="battleCharacterData.name"
+    >
+  </p>
+</template>
+
+<script>
+export default {
+  computed: {
+    battleCharacterData() {
+      return this.$store.getters['battleArea/battleCharacterData']
+    }
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+.battle-character-icon {
+  background: #777;
+  border-radius: 50%;
+  border: 1px solid #dddccc;
+  box-shadow: 0 0 0 1px #222,
+   0 0 0 1px #222 inset;
+  overflow: hidden;
+  text-align: center;
+  position: absolute;
+  top: -10px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  z-index: 1;
+  width: calc(100% - 20px);
+  height: max-content;
+}
+</style>
