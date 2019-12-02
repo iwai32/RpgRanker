@@ -12,7 +12,6 @@
         :state="'no'"
         :action="closeConfirmationDisplay"
       ></confirmation-btn>
-          
     </div>
   </div>
 </template>
@@ -33,7 +32,7 @@ export default {
   methods: {
     toBattle() {
       this.$store.dispatch('commonModule/closeConfirmationDisplay')
-      this.$router.push({ name: 'battle', params: { characterIndex: this.characterIndex } })
+      this.$router.push({ path: `battle/${this.characterIndex }` })
     },
     closeConfirmationDisplay() {
       this.$store.dispatch('commonModule/closeConfirmationDisplay')

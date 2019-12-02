@@ -1,6 +1,6 @@
 <template>
   <li class="top-nav__link">
-    <router-link class="link" :to="link">
+    <router-link class="anchor" :to="link">
     {{ name }}
     </router-link>
   </li>
@@ -20,10 +20,10 @@ export default {
   background: #a66e3e;
   border: 2px solid #666666;
   border-radius: 4px;
-  font-size: 2.4rem;
+  font-size: 2rem;
   margin-bottom: 10px;
   text-align: center;
-  .link {
+  .anchor {
     color: #eeeeee;
     display: block;
     letter-spacing: .05em;
