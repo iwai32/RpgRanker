@@ -10,6 +10,9 @@ window.Vue = require('vue')
 import router from './router'
 import App from './App.vue'
 import store from './store/store.js'
+import { sync } from 'vuex-router-sync'
+
+sync(store, router)
 
 /**
  * The following block of code may be used to automatically register your

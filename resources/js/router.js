@@ -8,7 +8,8 @@ import CommonHeader from './components/organisms/common/CommonHeader.vue'
 import CommonContainer from './components/organisms/common/CommonContainer.vue'
 import CommonFooter from './components/organisms/common/CommonFooter.vue'
 import CharacterSelection from './components/organisms/character-select/CharacterSelection.vue'
-import BattleArea from './components/organisms/BattleArea.vue'
+import BattleArea from './components/organisms/battle-area/BattleArea.vue'
+import BattleResult from './components/organisms/battle-result/BattleResult.vue'
 
 Vue.use(VueRouter)
 
@@ -38,9 +39,14 @@ const routes = [
       },
       {
         path: 'battle/:characterIndex',
-        name: 'battle',
         components: {
           section: BattleArea
+        },
+      },
+      {
+        path: 'battle-result',
+        components: {
+          section: BattleResult
         }
       },
       {
