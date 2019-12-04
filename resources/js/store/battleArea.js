@@ -386,11 +386,12 @@ const battleArea = {
     toRedirect({ state, getters }) {
       router.push({ path: '/game/battle-result',
           query: {
-             characterIndex: state.characterIndex,
+            //URLとして渡すため文字列として扱う
+             characterIndex: String(state.characterIndex),
              userName: 'ユーザーネ',
-             monsterCount: state.totalMonsterCount,
-             totalTurn: state.totalTurn,
-             totalDamage: state.totalDamage
+             monsterCount: String(state.totalMonsterCount),
+             totalTurn: String(state.totalTurn),
+             totalDamage: String(state.totalDamage)
           }
       })
     },

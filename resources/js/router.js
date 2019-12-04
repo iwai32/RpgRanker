@@ -10,6 +10,7 @@ import CommonFooter from './components/organisms/common/CommonFooter.vue'
 import CharacterSelection from './components/organisms/character-select/CharacterSelection.vue'
 import BattleArea from './components/organisms/battle-area/BattleArea.vue'
 import BattleResult from './components/organisms/battle-result/BattleResult.vue'
+import RankingArea from './components/organisms/ranking-area/RankingArea.vue'
 
 Vue.use(VueRouter)
 
@@ -41,7 +42,7 @@ const routes = [
         path: 'battle/:characterIndex',
         components: {
           section: BattleArea
-        },
+        }
       },
       {
         path: 'battle-result',
@@ -54,6 +55,12 @@ const routes = [
       },
       {
         path: 'ranking',
+        components: {
+          section: RankingArea
+        }
+      },
+      {
+        path: 'login',
       }
     ]
   }
