@@ -11308,3 +11308,18 @@ button:focus {
   outline: none;
 }
 
+button:hover {
+  opacity: 0.8;
+}
+
+.input-init {
+  outline: none;
+  border-style: none;
+  resize: none;
+}
+
+.input-init:focus {
+  box-shadow: 0 0 0 2px rgba(1, 191, 189, 0.1);
+  border-color: rgba(59, 133, 133, 0.4);
+}
+

@@ -11,6 +11,7 @@ import CharacterSelection from './components/organisms/character-select/Characte
 import BattleArea from './components/organisms/battle-area/BattleArea.vue'
 import BattleResult from './components/organisms/battle-result/BattleResult.vue'
 import RankingArea from './components/organisms/ranking-area/RankingArea.vue'
+import LoginRegister from './components/organisms/login-register/LoginRegister.vue'
 
 Vue.use(VueRouter)
 
@@ -60,7 +61,10 @@ const routes = [
         }
       },
       {
-        path: 'login',
+        path: 'login-register',
+        components: {
+          section: LoginRegister
+        }
       }
     ]
   }
