@@ -63713,9 +63713,12 @@ var app = new Vue({
 /*!***********************************!*\
   !*** ./resources/js/bootstrap.js ***!
   \***********************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _util_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./util.js */ "./resources/js/util.js");
 window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -63736,8 +63739,14 @@ try {
  */
 
 
+
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+window.axios.interceptors.request.use(function (config) {
+  //クッキーからトークンを取り出し、ヘッダーに添付する
+  config.headers['X-XSRF-TOKEN'] = Object(_util_js__WEBPACK_IMPORTED_MODULE_0__["getCookie"])('XSRF-TOKEN');
+  return config;
+});
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting
@@ -68735,6 +68744,26 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_body_class__WEBPACK_IMPORTED_
 
 /***/ }),
 
+/***/ "./resources/js/store/auth.js":
+/*!************************************!*\
+  !*** ./resources/js/store/auth.js ***!
+  \************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var auth = {
+  namespaced: true,
+  state: {},
+  getters: {},
+  mutations: {},
+  actions: {}
+};
+/* harmony default export */ __webpack_exports__["default"] = (auth);
+
+/***/ }),
+
 /***/ "./resources/js/store/battleArea.js":
 /*!******************************************!*\
   !*** ./resources/js/store/battleArea.js ***!
@@ -69498,9 +69527,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _characterSelect_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./characterSelect.js */ "./resources/js/store/characterSelect.js");
-/* harmony import */ var _battleArea_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./battleArea.js */ "./resources/js/store/battleArea.js");
-/* harmony import */ var _commonModule_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./commonModule.js */ "./resources/js/store/commonModule.js");
+/* harmony import */ var _store_auth_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store/auth.js */ "./resources/js/store/auth.js");
+/* harmony import */ var _characterSelect_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./characterSelect.js */ "./resources/js/store/characterSelect.js");
+/* harmony import */ var _battleArea_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./battleArea.js */ "./resources/js/store/battleArea.js");
+/* harmony import */ var _commonModule_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./commonModule.js */ "./resources/js/store/commonModule.js");
+
 
 
 
@@ -69509,12 +69540,56 @@ __webpack_require__.r(__webpack_exports__);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__["default"]);
 var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   modules: {
-    characterSelect: _characterSelect_js__WEBPACK_IMPORTED_MODULE_2__["default"],
-    battleArea: _battleArea_js__WEBPACK_IMPORTED_MODULE_3__["default"],
-    commonModule: _commonModule_js__WEBPACK_IMPORTED_MODULE_4__["default"]
+    auth: _store_auth_js__WEBPACK_IMPORTED_MODULE_2__["default"],
+    characterSelect: _characterSelect_js__WEBPACK_IMPORTED_MODULE_3__["default"],
+    battleArea: _battleArea_js__WEBPACK_IMPORTED_MODULE_4__["default"],
+    commonModule: _commonModule_js__WEBPACK_IMPORTED_MODULE_5__["default"]
   }
 });
 /* harmony default export */ __webpack_exports__["default"] = (store);
+
+/***/ }),
+
+/***/ "./resources/js/util.js":
+/*!******************************!*\
+  !*** ./resources/js/util.js ***!
+  \******************************/
+/*! exports provided: getCookie */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getCookie", function() { return getCookie; });
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+/**
+ * クッキーの値を取得する、SPAでのCSRF対策をする
+ */
+function getCookie(searchKey) {
+  if (typeof searchKey === 'undefined') {
+    return '';
+  }
+
+  var val = '';
+  var cookieData = document.cookie.split(';');
+  cookieData.forEach(function (cookie) {
+    var _cookie$split = cookie.split('='),
+        _cookie$split2 = _slicedToArray(_cookie$split, 2),
+        key = _cookie$split2[0],
+        value = _cookie$split2[1];
+
+    if (key === searchKey) {
+      return val = value;
+    }
+  });
+  return val;
+}
 
 /***/ }),
 

@@ -19,9 +19,18 @@ try {
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
+import { getCookie } from './util.js'
+
 window.axios = require('axios');
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+
+window.axios.interceptors.request.use(config => {
+  //クッキーからトークンを取り出し、ヘッダーに添付する
+  config.headers['X-XSRF-TOKEN'] = getCookie('XSRF-TOKEN')
+
+  return config
+})
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
