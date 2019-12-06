@@ -236,11 +236,11 @@ const battleArea = {
     },
     executeEnemyAttack(state) {
       //モンスターが使用するスキルをランダムにする
-      var monsterSkill = this.getters['battleArea/battleMonsterData'].skills[
+      let monsterSkill = this.getters['battleArea/battleMonsterData'].skills[
          Math.floor(Math.random() * this.getters['battleArea/battleMonsterData'].skills.length)
         ]
       //モンスターが与えるダメージをランダムにする
-      var damageResult = monsterSkill.power + Math.floor(Math.random() * 10)
+      let damageResult = monsterSkill.power + Math.floor(Math.random() * 10)
 
       //自身のエフェクトウィンドウを閉じる
       this.dispatch('battleArea/makeSkillEffectOff')
@@ -293,7 +293,7 @@ const battleArea = {
   actions: {
     //キャラクターを決めるパラメータ
     setCharacterIndex({ commit, rootState }) {
-      var characterIndex = rootState.route.params.characterIndex
+      let characterIndex = rootState.route.params.characterIndex
       commit('makeParameterCharacterIndex', characterIndex)
     },
     //キャラクターのHpをセットする
@@ -327,7 +327,7 @@ const battleArea = {
     },
     //自分の攻撃
     myAttack({ state, getters, dispatch }, skillData) {
-      var damageData = { damage: skillData.damage, attribute: skillData.attribute }
+      let damageData = { damage: skillData.damage, attribute: skillData.attribute }
       dispatch('damageCalculation', damageData)
       dispatch('addBattleLog', skillData.skillName + '！<br>' + getters.battleMonsterData.name + 'に' + state.myAttackResult + 'のダメージ！')
       dispatch('getTotalData')
