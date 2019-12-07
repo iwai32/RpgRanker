@@ -11,6 +11,7 @@ import router from './router'
 import App from './App.vue'
 import store from './store/store.js'
 import { sync } from 'vuex-router-sync'
+import { async } from 'q';
 
 sync(store, router)
 
@@ -30,6 +31,11 @@ sync(store, router)
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+//ログインチェック
+const createApp = async() => {
+    await store.dispatch('auth/currentUser')
+}
+
 const app = new Vue({
     el: '#app',
     router,
@@ -37,3 +43,5 @@ const app = new Vue({
     components: { App },
     template: '<App />'
 });
+
+createApp()

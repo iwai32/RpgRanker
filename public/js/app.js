@@ -3097,6 +3097,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3120,6 +3122,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }]
     }; // { id: 4, name: 'Login/Register', link: '/game/login-register' },
     // { id: 5, name: 'Logout', link: '/game/logout' }
+  },
+  computed: {
+    isLogin: function isLogin() {
+      return this.$store.getters['auth/check'];
+    }
   },
   methods: {
     logout: function () {
@@ -47324,20 +47331,22 @@ var render = function() {
           })
         }),
         _vm._v(" "),
-        _c(
-          "li",
-          { staticClass: "g-nav__list" },
-          [
-            _c("router-link", { attrs: { to: "/game/login-register" } }, [
-              _vm._v("\n        Login/Register\n      ")
-            ])
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c("li", { staticClass: "g-nav__list", on: { click: _vm.logout } }, [
-          _vm._v("\n      Logout\n    ")
-        ])
+        _vm.isLogin
+          ? _c(
+              "li",
+              { staticClass: "g-nav__list", on: { click: _vm.logout } },
+              [_vm._v("\n      Logout\n    ")]
+            )
+          : _c(
+              "li",
+              { staticClass: "g-nav__list" },
+              [
+                _c("router-link", { attrs: { to: "/game/login-register" } }, [
+                  _vm._v("\n        Login/Register\n      ")
+                ])
+              ],
+              1
+            )
       ],
       2
     )
@@ -64529,11 +64538,21 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./router */ "./resources/js/router.js");
-/* harmony import */ var _App_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./App.vue */ "./resources/js/App.vue");
-/* harmony import */ var _store_store_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./store/store.js */ "./resources/js/store/store.js");
-/* harmony import */ var vuex_router_sync__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuex-router-sync */ "./node_modules/vuex-router-sync/index.js");
-/* harmony import */ var vuex_router_sync__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vuex_router_sync__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./router */ "./resources/js/router.js");
+/* harmony import */ var _App_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./App.vue */ "./resources/js/App.vue");
+/* harmony import */ var _store_store_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./store/store.js */ "./resources/js/store/store.js");
+/* harmony import */ var vuex_router_sync__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex-router-sync */ "./node_modules/vuex-router-sync/index.js");
+/* harmony import */ var vuex_router_sync__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(vuex_router_sync__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var q__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! q */ "./node_modules/q/q.js");
+/* harmony import */ var q__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(q__WEBPACK_IMPORTED_MODULE_5__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -64546,7 +64565,8 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 
 
 
-Object(vuex_router_sync__WEBPACK_IMPORTED_MODULE_3__["sync"])(_store_store_js__WEBPACK_IMPORTED_MODULE_2__["default"], _router__WEBPACK_IMPORTED_MODULE_0__["default"]);
+
+Object(vuex_router_sync__WEBPACK_IMPORTED_MODULE_4__["sync"])(_store_store_js__WEBPACK_IMPORTED_MODULE_3__["default"], _router__WEBPACK_IMPORTED_MODULE_1__["default"]);
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -64562,16 +64582,44 @@ Object(vuex_router_sync__WEBPACK_IMPORTED_MODULE_3__["sync"])(_store_store_js__W
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+//ログインチェック
+
+var createApp =
+/*#__PURE__*/
+function () {
+  var _ref = _asyncToGenerator(
+  /*#__PURE__*/
+  _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            _context.next = 2;
+            return _store_store_js__WEBPACK_IMPORTED_MODULE_3__["default"].dispatch('auth/currentUser');
+
+          case 2:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee);
+  }));
+
+  return function createApp() {
+    return _ref.apply(this, arguments);
+  };
+}();
 
 var app = new Vue({
   el: '#app',
-  router: _router__WEBPACK_IMPORTED_MODULE_0__["default"],
-  store: _store_store_js__WEBPACK_IMPORTED_MODULE_2__["default"],
+  router: _router__WEBPACK_IMPORTED_MODULE_1__["default"],
+  store: _store_store_js__WEBPACK_IMPORTED_MODULE_3__["default"],
   components: {
-    App: _App_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+    App: _App_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   template: '<App />'
 });
+createApp();
 
 /***/ }),
 
@@ -69635,7 +69683,18 @@ var auth = {
   state: {
     user: null
   },
-  getters: {},
+  getters: {
+    check: function check(state) {
+      return !!state.user;
+    },
+    userName: function userName(state) {
+      if (state.user === null) {
+        return 'Guest';
+      } else {
+        return state.user.name;
+      }
+    }
+  },
   mutations: {
     setUser: function setUser(state, user) {
       state.user = user;
@@ -69734,6 +69793,38 @@ var auth = {
       }
 
       return logout;
+    }(),
+    currentUser: function () {
+      var _currentUser = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4(_ref4) {
+        var commit, response, user;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                commit = _ref4.commit;
+                _context4.next = 3;
+                return axios.get('/api/user');
+
+              case 3:
+                response = _context4.sent;
+                user = response.data || null;
+                commit('setUser', user);
+
+              case 6:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4);
+      }));
+
+      function currentUser(_x6) {
+        return _currentUser.apply(this, arguments);
+      }
+
+      return currentUser;
     }()
   }
 };
@@ -69995,7 +70086,6 @@ var battleArea = {
       state.characterHp = this.getters['battleArea/battleCharacterData'].hp;
     },
     randomNormalMonsterIndex: function randomNormalMonsterIndex(state) {
-      //あとで修正するかも
       state.monsterIndex = 1 + Math.floor(Math.random() * (state.monsterList.length - 1));
     },
     setBattleLog: function setBattleLog(state, log) {

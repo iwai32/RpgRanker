@@ -32,6 +32,11 @@ const auth = {
     async logout({ commit }) {
       const response = await axios.post('/api/logout')
       commit('setUser', null)
+    },
+    async currentUser({ commit }) {
+      const response = await axios.get('/api/user')
+      const user = response.data || null
+      commit('setUser', user)
     }
   }
 }
