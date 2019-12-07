@@ -10,7 +10,7 @@
         >
           <div class="form-item">
             <label class="form-label" for="loginUserName">UserName</label>
-            <input type="text" class="input-init" id="loginUserName" v-model="loginData.userName">
+            <input type="text" class="input-init" id="loginUserName" v-model="loginData.name">
           </div>
 
           <div class="form-item">
@@ -19,7 +19,7 @@
           </div>
 
           <div class="form-item">
-            <label class="form-label" for="loginPassword">password</label>
+            <label class="form-label" for="loginPassword">Password</label>
             <input type="password" class="input-init" id="loginPassword" v-model="loginData.password">
           </div>
 
@@ -49,7 +49,7 @@
         >
           <div class="form-item">
             <label class="form-label" for="registerUserName">UserName</label>
-            <input type="text" class="input-init" id="registerUserName" v-model="registerData.userName">
+            <input type="text" class="input-init" id="registerUserName" v-model="registerData.name">
           </div>
 
           <div class="form-item">
@@ -58,13 +58,13 @@
           </div>
 
           <div class="form-item">
-            <label class="form-label" for="registerPassword">password</label>
+            <label class="form-label" for="registerPassword">Password</label>
             <input type="password" class="input-init" id="registerPassword" v-model="registerData.password">
           </div>
 
           <div class="form-item">
-            <label class="form-label" for="registerPasswordConfirmation">password (confirm)</label>
-            <input type="password" class="input-init" id="registerPasswordConfirmation" v-model="registerData.passwordConfirmation">
+            <label class="form-label" for="registerPasswordConfirmation">Password (confirm)</label>
+            <input type="password" class="input-init" id="registerPasswordConfirmation" v-model="registerData.password_confirmation">
           </div>
 
           <div class="btn-wrapper">
@@ -94,24 +94,27 @@ export default {
     return {
       formTab: 1,
       loginData: {
-        userName: '',
+        name: '',
         email: '',
         password: ''
       },
       registerData: {
-        userName: '',
+        name: '',
         email: '',
         password: '',
-        passwordConfirmation: ''
+        password_confirmation: ''
       }
     }
   },
   methods: {
-    login() {
-      console.log(this.loginData)
+    async login() {
+      await this.$store.dispatch('auth/login', this.loginData)
+      this.$router.push('/')
     },
-    register() {
-      console.log(this.registerData)
+    async register() {
+      await this.$store.dispatch('auth/register', this.registerData)
+
+      this.$router.push('/')
     }
   }
 }
