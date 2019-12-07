@@ -6,7 +6,14 @@ const auth = {
     user: null
   },
   getters: {
-
+    check: state => !! state.user,
+    userName(state) {
+      if(state.user === null) {
+        return 'Guest'
+      } else {
+        return state.user.name
+      }
+    }
   },
   mutations: {
     setUser(state, user) {
