@@ -1,12 +1,16 @@
-import Axios from "axios"
-
 const auth = {
   namespaced: true,
   state: {
     user: null
   },
   getters: {
-    check: state => !! state.user,
+    check(state) {
+      if (state.user === null) {
+        return false
+      } else {
+        return true
+      }
+    },
     userName(state) {
       if(state.user === null) {
         return 'Guest'

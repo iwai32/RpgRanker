@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import auth from '../store/auth.js'
+import auth from './auth.js'
 import characterSelect from './characterSelect.js'
 import battleArea from './battleArea.js'
 import commonModule from './commonModule.js'

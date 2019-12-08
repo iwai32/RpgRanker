@@ -13,6 +13,8 @@ import BattleResult from './components/organisms/battle-result/BattleResult.vue'
 import RankingArea from './components/organisms/ranking-area/RankingArea.vue'
 import LoginRegister from './components/organisms/login-register/LoginRegister.vue'
 
+import store from './store/store.js'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -64,6 +66,13 @@ const routes = [
         path: 'login-register',
         components: {
           section: LoginRegister
+        },
+        beforeEnter(to, from, next) {
+          if(store.getters['auth/check']) {
+            next('/')
+          } else {
+            next()
+          }
         }
       }
     ]

@@ -7,11 +7,10 @@
 require('./bootstrap');
 
 window.Vue = require('vue')
-import router from './router'
+import router from './router.js'
 import App from './App.vue'
 import store from './store/store.js'
 import { sync } from 'vuex-router-sync'
-import { async } from 'q';
 
 sync(store, router)
 
