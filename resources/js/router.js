@@ -66,13 +66,6 @@ const routes = [
         path: 'login-register',
         components: {
           section: LoginRegister
-        },
-        beforeEnter(to, from, next) {
-          if(store.getters['auth/check']) {
-            next('/')
-          } else {
-            next()
-          }
         }
       }
     ]

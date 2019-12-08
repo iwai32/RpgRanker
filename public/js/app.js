@@ -3772,6 +3772,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
     };
   },
+  watch: {
+    //ナビゲーションガード
+    isLogin: function isLogin() {
+      if (this.isLogin === true) {
+        this.$router.push('/');
+      }
+    }
+  },
+  computed: {
+    isLogin: function isLogin() {
+      return this.$store.getters['auth/check'];
+    }
+  },
   methods: {
     login: function () {
       var _login = _asyncToGenerator(
@@ -69645,13 +69658,6 @@ var routes = [{
     path: 'login-register',
     components: {
       section: _components_organisms_login_register_LoginRegister_vue__WEBPACK_IMPORTED_MODULE_11__["default"]
-    },
-    beforeEnter: function beforeEnter(to, from, next) {
-      if (_store_store_js__WEBPACK_IMPORTED_MODULE_12__["default"].getters['auth/check']) {
-        next('/');
-      } else {
-        next();
-      }
     }
   }]
 }];

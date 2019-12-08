@@ -106,6 +106,19 @@ export default {
       }
     }
   },
+  watch: {
+    //ナビゲーションガード
+    isLogin() {
+      if(this.isLogin === true) {
+        this.$router.push('/')
+      }
+    }
+  },
+  computed: {
+    isLogin() {
+      return this.$store.getters['auth/check']
+    }
+  },
   methods: {
     async login() {
       await this.$store.dispatch('auth/login', this.loginData)
