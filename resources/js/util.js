@@ -1,7 +1,6 @@
 /**
  * クッキーの値を取得する、SPAでのCSRF対策をする
  */
-
  export function getCookie (searchKey) {
    if (typeof searchKey === 'undefined') {
      return ''
@@ -19,3 +18,10 @@
 
    return val
  }
+
+ /**
+  * ステータスコードを定義
+  */
+ export const OK = 200
+ export const CREATED = 201
+ export const INTERNAL_SERVER_ERROR = 500

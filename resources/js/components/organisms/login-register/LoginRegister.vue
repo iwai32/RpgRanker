@@ -107,7 +107,6 @@ export default {
     }
   },
   watch: {
-    //ナビゲーションガード
     isLogin() {
       if(this.isLogin === true) {
         this.$router.push('/')
@@ -117,12 +116,18 @@ export default {
   computed: {
     isLogin() {
       return this.$store.getters['auth/check']
+    },
+    apiStatus() {
+      return this.$store.state.auth.apiStatus
     }
   },
   methods: {
     async login() {
       await this.$store.dispatch('auth/login', this.loginData)
-      this.$router.push('/')
+
+      if(this.apiStatus) {
+        this.$router.push('/')
+      }
     },
     async register() {
       await this.$store.dispatch('auth/register', this.registerData)

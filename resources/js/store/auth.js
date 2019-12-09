@@ -1,7 +1,9 @@
+import { OK } from '../util.js'
 const auth = {
   namespaced: true,
   state: {
-    user: null
+    user: null,
+    apiStatus: null
   },
   getters: {
     check(state) {
@@ -22,6 +24,9 @@ const auth = {
   mutations: {
     setUser(state, user) {
       state.user = user
+    },
+    setApiStatus(state, status) {
+      state.apiStatus = status
     }
   },
   actions: {
@@ -30,8 +35,17 @@ const auth = {
       commit('setUser', response.data)
     },
     async login({ commit }, data) {
-      const response = await axios.post('/api/login', data)
-      commit('setUser', response.data)
+      commit('setApiStatus', null)
+      const response = await axios.post('/api/login', data).catch(err => err.response || err)
+
+      if(response.status === OK) {
+        commit('setApiStatus', true)
+        commit('setUser', response.data)
+        return false
+      }
+
+      commit('setApiStatus', false)
+      commit('error/setCode', response.status, { root: true })
     },
     async logout({ commit }) {
       const response = await axios.post('/api/logout')

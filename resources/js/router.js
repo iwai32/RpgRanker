@@ -12,8 +12,7 @@ import BattleArea from './components/organisms/battle-area/BattleArea.vue'
 import BattleResult from './components/organisms/battle-result/BattleResult.vue'
 import RankingArea from './components/organisms/ranking-area/RankingArea.vue'
 import LoginRegister from './components/organisms/login-register/LoginRegister.vue'
-
-import store from './store/store.js'
+import SystemError from './components/organisms/system/System.vue'
 
 Vue.use(VueRouter)
 
@@ -35,6 +34,13 @@ const routes = [
       footer: CommonFooter
     },
     children: [
+      {
+        //システムエラー
+        path: '/game/500',
+        components: {
+          section: SystemError
+        }
+      },
       {
         path: 'character-selection',
         components: {
