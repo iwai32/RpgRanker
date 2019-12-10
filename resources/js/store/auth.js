@@ -3,6 +3,7 @@ const auth = {
   namespaced: true,
   state: {
     user: null,
+    formTab: 1,
     apiStatus: null,
     loginErrorMessages: null,
     registerErrorMessages: null
@@ -35,6 +36,9 @@ const auth = {
     },
     setRegisterErrorMessages (state, messages) {
       state.registerErrorMessages = messages
+    },
+    tabChange(state, number) {
+      state.formTab = number
     }
   },
   actions: {
