@@ -1,16 +1,21 @@
 <template>
   <div class="top-container">
     <title-logo></title-logo>
-    <top-nav></top-nav>
+    <div class="bottom-wrapp">
+      <welcome-message></welcome-message>
+      <top-nav></top-nav>
+    </div>
   </div><!--.top-container-->
 </template>
 
 <script>
 import TitleLogo from '../../atoms/top/TitleLogo.vue'
+import WelcomeMessage from '../../atoms/top/WelcomeMessage.vue'
 import TopNav from '../../molecules/top/TopNav.vue'
 export default {
   components: {
     TitleLogo,
+    WelcomeMessage,
     TopNav
   }
 }
