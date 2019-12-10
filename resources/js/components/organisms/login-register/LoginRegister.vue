@@ -23,6 +23,29 @@
             <input type="password" class="input-init" id="loginPassword" v-model="loginData.password">
           </div>
 
+          <div v-if="loginErrors" class="errors">
+            <ul v-if="loginErrors.name">
+              <li v-for="msg in loginErrors.name"
+                :key="msg"
+              >{{ msg }}
+              </li>
+            </ul>
+
+            <ul v-if="loginErrors.email">
+              <li v-for="msg in loginErrors.email"
+                :key="msg"
+              >{{ msg }}
+              </li>
+            </ul>
+
+            <ul v-if="loginErrors.password">
+              <li v-for="msg in loginErrors.password"
+                :key="msg"
+              >{{ msg }}
+              </li>
+            </ul>
+          </div>
+
           <div class="btn-wrapper">
             <button type="submit" class="submit-btn"
               :class="{ active: formTab === 1 }"
@@ -67,6 +90,29 @@
             <input type="password" class="input-init" id="registerPasswordConfirmation" v-model="registerData.password_confirmation">
           </div>
 
+          <div v-if="registerErrors" class="errors">
+            <ul v-if="registerErrors.name">
+              <li v-for="msg in registerErrors.name"
+                :key="msg"
+              >{{ msg }}
+              </li>
+            </ul>
+
+            <ul v-if="registerErrors.email">
+              <li v-for="msg in registerErrors.email"
+                :key="msg"
+              >{{ msg }}
+              </li>
+            </ul>
+
+            <ul v-if="registerErrors.password">
+              <li v-for="msg in registerErrors.password"
+                :key="msg"
+              >{{ msg }}
+              </li>
+            </ul>
+          </div>
+
           <div class="btn-wrapper">
             <button type="submit" class="submit-btn"
               :class="{ active: formTab === 2 }"
@@ -106,6 +152,9 @@ export default {
       }
     }
   },
+  created() {
+    this.clearError()
+  },
   watch: {
     isLogin() {
       if(this.isLogin === true) {
@@ -119,6 +168,12 @@ export default {
     },
     apiStatus() {
       return this.$store.state.auth.apiStatus
+    },
+    loginErrors() {
+      return this.$store.state.auth.loginErrorMessages
+    },
+    registerErrors() {
+      return this.$store.state.auth.registerErrorMessages
     }
   },
   methods: {
@@ -132,7 +187,13 @@ export default {
     async register() {
       await this.$store.dispatch('auth/register', this.registerData)
 
-      this.$router.push('/')
+      if(this.apiStatus) {
+        this.$router.push('/')
+      }
+    },
+    clearError() {
+      this.$store.commit('auth/setLoginErrorMessages', null)
+      this.$store.commit('auth/setRegisterErrorMessages', null)
     }
   }
 }
@@ -152,6 +213,11 @@ export default {
       letter-spacing: .08em;
     }
   }
+
+  .errors {
+    color: #ff0000;
+  }
+
   .btn-wrapper {
     display: flex;
     align-items: center;

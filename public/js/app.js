@@ -3164,12 +3164,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         name: 'Ranking',
         link: '/game/ranking'
       }]
-    }; // { id: 4, name: 'Login/Register', link: '/game/login-register' },
-    // { id: 5, name: 'Logout', link: '/game/logout' }
+    };
   },
   computed: {
     isLogin: function isLogin() {
       return this.$store.getters['auth/check'];
+    },
+    apiStatus: function apiStatus() {
+      return this.$store.state.auth.apiStatus;
     }
   },
   methods: {
@@ -3185,7 +3187,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return this.$store.dispatch('auth/logout');
 
               case 2:
-                this.$router.push('/game/login-register');
+                if (this.apiStatus) {
+                  this.$router.push('/game/login-register');
+                }
 
               case 3:
               case "end":
@@ -3795,6 +3799,52 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -3816,6 +3866,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
     };
   },
+  created: function created() {
+    this.clearError();
+  },
   watch: {
     isLogin: function isLogin() {
       if (this.isLogin === true) {
@@ -3829,6 +3882,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     apiStatus: function apiStatus() {
       return this.$store.state.auth.apiStatus;
+    },
+    loginErrors: function loginErrors() {
+      return this.$store.state.auth.loginErrorMessages;
+    },
+    registerErrors: function registerErrors() {
+      return this.$store.state.auth.registerErrorMessages;
     }
   },
   methods: {
@@ -3874,7 +3933,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return this.$store.dispatch('auth/register', this.registerData);
 
               case 2:
-                this.$router.push('/');
+                if (this.apiStatus) {
+                  this.$router.push('/');
+                }
 
               case 3:
               case "end":
@@ -3889,7 +3950,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
 
       return register;
-    }()
+    }(),
+    clearError: function clearError() {
+      this.$store.commit('auth/setLoginErrorMessages', null);
+      this.$store.commit('auth/setRegisterErrorMessages', null);
+    }
   }
 });
 
@@ -9452,7 +9517,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, ".form-panel[data-v-63649bfd] {\n  padding: 5px 10px;\n}\n.form-panel .form-item[data-v-63649bfd] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  margin-bottom: 20px;\n}\n.form-panel .form-item .form-label[data-v-63649bfd] {\n  color: #444;\n  font-size: 1.4rem;\n  line-height: 1.5;\n  letter-spacing: 0.08em;\n}\n.form-panel .btn-wrapper[data-v-63649bfd] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  padding: 20px 10px 10px;\n  position: relative;\n}\n.form-panel .btn-wrapper .submit-btn[data-v-63649bfd] {\n  background: #5C3D22;\n  border-radius: 4px;\n  color: #eeeeee;\n  display: block;\n  font-size: 1.2rem;\n  text-align: center;\n  letter-spacing: 0.08em;\n  padding: 5px;\n  position: absolute;\n  right: 0;\n  width: 28%;\n}\n.form-panel .btn-wrapper .submit-btn.active[data-v-63649bfd] {\n  background: #a66e3e;\n  width: 40%;\n  font-size: 1.4rem;\n  left: 0;\n  right: 0;\n  margin: auto;\n}", ""]);
+exports.push([module.i, ".form-panel[data-v-63649bfd] {\n  padding: 5px 10px;\n}\n.form-panel .form-item[data-v-63649bfd] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  margin-bottom: 20px;\n}\n.form-panel .form-item .form-label[data-v-63649bfd] {\n  color: #444;\n  font-size: 1.4rem;\n  line-height: 1.5;\n  letter-spacing: 0.08em;\n}\n.form-panel .errors[data-v-63649bfd] {\n  color: #ff0000;\n}\n.form-panel .btn-wrapper[data-v-63649bfd] {\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n  padding: 20px 10px 10px;\n  position: relative;\n}\n.form-panel .btn-wrapper .submit-btn[data-v-63649bfd] {\n  background: #5C3D22;\n  border-radius: 4px;\n  color: #eeeeee;\n  display: block;\n  font-size: 1.2rem;\n  text-align: center;\n  letter-spacing: 0.08em;\n  padding: 5px;\n  position: absolute;\n  right: 0;\n  width: 28%;\n}\n.form-panel .btn-wrapper .submit-btn.active[data-v-63649bfd] {\n  background: #a66e3e;\n  width: 40%;\n  font-size: 1.4rem;\n  left: 0;\n  right: 0;\n  margin: auto;\n}", ""]);
 
 // exports
 
@@ -48047,6 +48112,46 @@ var render = function() {
                 })
               ]),
               _vm._v(" "),
+              _vm.loginErrors
+                ? _c("div", { staticClass: "errors" }, [
+                    _vm.loginErrors.name
+                      ? _c(
+                          "ul",
+                          _vm._l(_vm.loginErrors.name, function(msg) {
+                            return _c("li", { key: msg }, [
+                              _vm._v(_vm._s(msg) + "\n            ")
+                            ])
+                          }),
+                          0
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.loginErrors.email
+                      ? _c(
+                          "ul",
+                          _vm._l(_vm.loginErrors.email, function(msg) {
+                            return _c("li", { key: msg }, [
+                              _vm._v(_vm._s(msg) + "\n            ")
+                            ])
+                          }),
+                          0
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.loginErrors.password
+                      ? _c(
+                          "ul",
+                          _vm._l(_vm.loginErrors.password, function(msg) {
+                            return _c("li", { key: msg }, [
+                              _vm._v(_vm._s(msg) + "\n            ")
+                            ])
+                          }),
+                          0
+                        )
+                      : _vm._e()
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
               _c("div", { staticClass: "btn-wrapper" }, [
                 _c(
                   "button",
@@ -48250,6 +48355,46 @@ var render = function() {
                   }
                 })
               ]),
+              _vm._v(" "),
+              _vm.registerErrors
+                ? _c("div", { staticClass: "errors" }, [
+                    _vm.registerErrors.name
+                      ? _c(
+                          "ul",
+                          _vm._l(_vm.registerErrors.name, function(msg) {
+                            return _c("li", { key: msg }, [
+                              _vm._v(_vm._s(msg) + "\n            ")
+                            ])
+                          }),
+                          0
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.registerErrors.email
+                      ? _c(
+                          "ul",
+                          _vm._l(_vm.registerErrors.email, function(msg) {
+                            return _c("li", { key: msg }, [
+                              _vm._v(_vm._s(msg) + "\n            ")
+                            ])
+                          }),
+                          0
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.registerErrors.password
+                      ? _c(
+                          "ul",
+                          _vm._l(_vm.registerErrors.password, function(msg) {
+                            return _c("li", { key: msg }, [
+                              _vm._v(_vm._s(msg) + "\n            ")
+                            ])
+                          }),
+                          0
+                        )
+                      : _vm._e()
+                  ])
+                : _vm._e(),
               _vm._v(" "),
               _c("div", { staticClass: "btn-wrapper" }, [
                 _c(
@@ -64760,6 +64905,11 @@ window.axios.interceptors.request.use(function (config) {
   config.headers['X-XSRF-TOKEN'] = Object(_util_js__WEBPACK_IMPORTED_MODULE_0__["getCookie"])('XSRF-TOKEN');
   return config;
 });
+window.axios.interceptors.response.use(function (response) {
+  return response;
+}, function (error) {
+  return error.response || error;
+});
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting
@@ -69841,7 +69991,9 @@ var auth = {
   namespaced: true,
   state: {
     user: null,
-    apiStatus: null
+    apiStatus: null,
+    loginErrorMessages: null,
+    registerErrorMessages: null
   },
   getters: {
     check: function check(state) {
@@ -69865,9 +70017,16 @@ var auth = {
     },
     setApiStatus: function setApiStatus(state, status) {
       state.apiStatus = status;
+    },
+    setLoginErrorMessages: function setLoginErrorMessages(state, messages) {
+      state.loginErrorMessages = messages;
+    },
+    setRegisterErrorMessages: function setRegisterErrorMessages(state, messages) {
+      state.registerErrorMessages = messages;
     }
   },
   actions: {
+    //会員登録
     register: function () {
       var _register = _asyncToGenerator(
       /*#__PURE__*/
@@ -69878,14 +70037,34 @@ var auth = {
             switch (_context.prev = _context.next) {
               case 0:
                 commit = _ref.commit;
-                _context.next = 3;
+                commit('setApiStatus', null);
+                _context.next = 4;
                 return axios.post('/api/register', data);
 
-              case 3:
+              case 4:
                 response = _context.sent;
-                commit('setUser', response.data);
 
-              case 5:
+                if (!(response.status === _util_js__WEBPACK_IMPORTED_MODULE_1__["CREATED"])) {
+                  _context.next = 9;
+                  break;
+                }
+
+                commit('setApiStatus', true);
+                commit('setUser', response.data);
+                return _context.abrupt("return", false);
+
+              case 9:
+                commit('setApiStatus', false);
+
+                if (response.status === _util_js__WEBPACK_IMPORTED_MODULE_1__["UNPROCESSABLE_ENTITY"]) {
+                  commit('setRegisterErrorMessages', response.data.errors);
+                } else {
+                  commit('error/setCode', response.status, {
+                    root: true
+                  });
+                }
+
+              case 11:
               case "end":
                 return _context.stop();
             }
@@ -69899,6 +70078,7 @@ var auth = {
 
       return register;
     }(),
+    //ログイン
     login: function () {
       var _login = _asyncToGenerator(
       /*#__PURE__*/
@@ -69911,9 +70091,7 @@ var auth = {
                 commit = _ref2.commit;
                 commit('setApiStatus', null);
                 _context2.next = 4;
-                return axios.post('/api/login', data)["catch"](function (err) {
-                  return err.response || err;
-                });
+                return axios.post('/api/login', data);
 
               case 4:
                 response = _context2.sent;
@@ -69929,9 +70107,14 @@ var auth = {
 
               case 9:
                 commit('setApiStatus', false);
-                commit('error/setCode', response.status, {
-                  root: true
-                });
+
+                if (response.status === _util_js__WEBPACK_IMPORTED_MODULE_1__["UNPROCESSABLE_ENTITY"]) {
+                  commit('setLoginErrorMessages', response.data.errors);
+                } else {
+                  commit('error/setCode', response.status, {
+                    root: true
+                  });
+                }
 
               case 11:
               case "end":
@@ -69947,6 +70130,7 @@ var auth = {
 
       return login;
     }(),
+    //ログアウト
     logout: function () {
       var _logout = _asyncToGenerator(
       /*#__PURE__*/
@@ -69957,14 +70141,29 @@ var auth = {
             switch (_context3.prev = _context3.next) {
               case 0:
                 commit = _ref3.commit;
-                _context3.next = 3;
+                commit('setApiStatus', null);
+                _context3.next = 4;
                 return axios.post('/api/logout');
 
-              case 3:
+              case 4:
                 response = _context3.sent;
-                commit('setUser', null);
 
-              case 5:
+                if (!(response.status === _util_js__WEBPACK_IMPORTED_MODULE_1__["OK"])) {
+                  _context3.next = 9;
+                  break;
+                }
+
+                commit('setApiStatus', true);
+                commit('setUser', null);
+                return _context3.abrupt("return", false);
+
+              case 9:
+                commit('setApiStatus', false);
+                commit('error/setCode', response.status, {
+                  root: true
+                });
+
+              case 11:
               case "end":
                 return _context3.stop();
             }
@@ -69978,6 +70177,7 @@ var auth = {
 
       return logout;
     }(),
+    //ログインユーザーチェック
     currentUser: function () {
       var _currentUser = _asyncToGenerator(
       /*#__PURE__*/
@@ -69988,15 +70188,30 @@ var auth = {
             switch (_context4.prev = _context4.next) {
               case 0:
                 commit = _ref4.commit;
-                _context4.next = 3;
+                commit('setApiStatus', null);
+                _context4.next = 4;
                 return axios.get('/api/user');
 
-              case 3:
+              case 4:
                 response = _context4.sent;
                 user = response.data || null;
-                commit('setUser', user);
 
-              case 6:
+                if (!(response.status === _util_js__WEBPACK_IMPORTED_MODULE_1__["OK"])) {
+                  _context4.next = 10;
+                  break;
+                }
+
+                commit('setApiStatus', true);
+                commit('setUser', user);
+                return _context4.abrupt("return", false);
+
+              case 10:
+                commit('setApiStatus', false);
+                commit('error/setCode', response.status, {
+                  root: true
+                });
+
+              case 12:
               case "end":
                 return _context4.stop();
             }
@@ -70832,7 +71047,7 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
 /*!******************************!*\
   !*** ./resources/js/util.js ***!
   \******************************/
-/*! exports provided: getCookie, OK, CREATED, INTERNAL_SERVER_ERROR */
+/*! exports provided: getCookie, OK, CREATED, INTERNAL_SERVER_ERROR, UNPROCESSABLE_ENTITY */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -70841,6 +71056,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OK", function() { return OK; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CREATED", function() { return CREATED; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "INTERNAL_SERVER_ERROR", function() { return INTERNAL_SERVER_ERROR; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UNPROCESSABLE_ENTITY", function() { return UNPROCESSABLE_ENTITY; });
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
@@ -70878,6 +71094,7 @@ function getCookie(searchKey) {
 var OK = 200;
 var CREATED = 201;
 var INTERNAL_SERVER_ERROR = 500;
+var UNPROCESSABLE_ENTITY = 422;
 
 /***/ }),
 
