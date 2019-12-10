@@ -7,29 +7,27 @@
       :link="listData.link">
       </global-nav-list>
 
-      <li class="g-nav__list"
+      <global-nav-logout
         v-if="isLogin"
-        @click="logout"
-      >
-        Logout
-      </li>
-      <li class="g-nav__list"
+      ></global-nav-logout>
+
+      <global-nav-login-register
         v-else
-      >
-        <router-link :to="'/game/login-register'">
-          Login/Register
-        </router-link>
-      </li>
+      ></global-nav-login-register>
     </ul>
   </nav>
 </template>
 
 <script>
 import GlobalNavList from '../../atoms/common/GlobalNavList.vue'
+import GlobalNavLogout from '../../atoms/common/GlobalNavLogout.vue'
+import GlobalNavLoginRegister from '../../atoms/common/GlobalNavLoginRegister.vue'
 import { async } from 'q'
 export default {
   components: {
-    GlobalNavList
+    GlobalNavList,
+    GlobalNavLogout,
+    GlobalNavLoginRegister
   },
   data() {
     return {
@@ -43,18 +41,6 @@ export default {
   computed: {
     isLogin() {
       return this.$store.getters['auth/check']
-    },
-    apiStatus() {
-      return this.$store.state.auth.apiStatus
-    }
-  },
-  methods: {
-    async logout() {
-      await this.$store.dispatch('auth/logout')
-
-      if (this.apiStatus) {
-        this.$router.push('/game/login-register')
-      }
     }
   }
 }
