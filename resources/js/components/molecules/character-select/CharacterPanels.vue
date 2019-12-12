@@ -17,9 +17,6 @@ export default {
   components: {
     CharacterPanel
   },
-  mounted() {
-    console.log(this.characterDisplayNumber)
-  },
   computed: {
     characterId() {
       return this.$store.state.characterSelect.characterId

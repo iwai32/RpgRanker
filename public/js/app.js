@@ -3183,9 +3183,6 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     CharacterPanel: _atoms_character_select_CharacterPanel_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
-  mounted: function mounted() {
-    console.log(this.characterDisplayNumber);
-  },
   computed: {
     characterId: function characterId() {
       return this.$store.state.characterSelect.characterId;
