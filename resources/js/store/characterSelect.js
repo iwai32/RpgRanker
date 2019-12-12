@@ -4,7 +4,7 @@ const characterSelect = {
     characterList: null,
     characterId: 1,
     startCharacterNum: 0,
-    endCount: 3
+    endCount: 3//キャラクター画面の最大表示数
   },
   getters: {
     characterIndex(state) {
@@ -34,8 +34,7 @@ const characterSelect = {
   actions: {
     async getCharacterList({ commit }) {
       const response = await axios.get('/api/character-list')
-
-      console.log(response.data)
+      
       commit('setCharacterList', response.data)
     }
   }

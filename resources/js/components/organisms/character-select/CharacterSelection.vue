@@ -13,7 +13,7 @@
       </character-select-btn>
 
       <character-select-btn
-        :class-name="{ inactive: endCount === characterList.length }"
+        :class-name="{ inactive: characterList.length === endCount }"
         :character-select="nextCharacter"
       >
         <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
@@ -21,10 +21,6 @@
     </div>
       
     <character-description></character-description>
-
-    <attention-comment>
-      ※ランキング機能はログインユーザーのみ使用できます。
-    </attention-comment>
 
     <character-ok-btn></character-ok-btn>
       
@@ -39,7 +35,6 @@ import SectionTitle from '../../atoms/common/SectionTitle.vue'
 import CharacterPanels from '../../molecules/character-select/CharacterPanels.vue'
 import CharacterSelectBtn from '../../atoms/character-select/CharacterSelectBtn.vue'
 import CharacterDescription from '../../organisms/character-select/CharacterDescription.vue'
-import AttentionComment from '../../atoms/common/AttentionComment.vue'
 import CharacterOkBtn from '../../atoms/character-select/CharacterOkBtn.vue'
 import ConfirmationDisplay from '../../organisms/common/ConfirmationDisplay.vue'
 import CharacterConfirmation from '../../molecules/character-select/CharacterConfirmation.vue'
@@ -49,7 +44,6 @@ export default {
     CharacterPanels,
     CharacterSelectBtn,
     CharacterDescription,
-    AttentionComment,
     CharacterOkBtn,
     ConfirmationDisplay,
     CharacterConfirmation
@@ -77,7 +71,6 @@ export default {
         return
       } else {
         this.$store.commit('characterSelect/nextCharacter')
-        this.characterList.slice(this.startCharacterNum, this.endCount)
       }
     },
     prevCharacter() {
@@ -85,7 +78,6 @@ export default {
         return
       } else {
         this.$store.commit('characterSelect/prevCharacter')
-        this.characterList.slice(this.startCharacterNum, this.endCount)
       }
     }
   }
