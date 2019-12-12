@@ -27,3 +27,5 @@ Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('/user', function() {
   return Auth::user();
 })->name('user');
+//キャラクターセレクト
+Route::get('/character-list', 'Rpg\GameController@getCharacterList')->name('characterList');

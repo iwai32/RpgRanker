@@ -3825,6 +3825,9 @@ __webpack_require__.r(__webpack_exports__);
     ConfirmationDisplay: _organisms_common_ConfirmationDisplay_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
     CharacterConfirmation: _molecules_character_select_CharacterConfirmation_vue__WEBPACK_IMPORTED_MODULE_7__["default"]
   },
+  created: function created() {
+    this.getCharacterList();
+  },
   computed: {
     startCharacterNum: function startCharacterNum() {
       return this.$store.state.characterSelect.startCharacterNum;
@@ -3837,6 +3840,9 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
+    getCharacterList: function getCharacterList() {
+      this.$store.dispatch('characterSelect/getCharacterList');
+    },
     nextCharacter: function nextCharacter() {
       if (this.characterList.length === this.endCount) {
         return;
@@ -72444,11 +72450,8 @@ var battleArea = {
         }, 1000); //討伐数を一増やす,次のモンスターを表示する五体倒してるならリダイレクト
 
         state.totalMonsterCount++;
-        console.log('モンスター討伐数' + state.totalMonsterCount);
 
         if (state.totalMonsterCount === 5) {
-          console.log('サタンを倒した!!!!'); //リダイレクト
-
           this.dispatch('battleArea/dataSaveAndRedirect');
         }
       }
@@ -72503,7 +72506,6 @@ var battleArea = {
     setTotalData: function setTotalData(state) {
       state.totalTurn++;
       state.totalDamage += state.myAttackResult;
-      console.log(state.totalTurn, state.totalDamage, state.totalMonsterCount);
     },
     initializeData: function initializeData(state) {
       state.totalTurn = 0;
@@ -72638,13 +72640,15 @@ var battleArea = {
     //リザルト画面へ遷移する。リザルト画面にはバトル画面から取得したデータをパラメータとして渡す
     toRedirect: function toRedirect(_ref21) {
       var state = _ref21.state,
-          getters = _ref21.getters;
+          getters = _ref21.getters,
+          rootGetters = _ref21.rootGetters;
+      var userName = rootGetters['auth/userName'];
       _router__WEBPACK_IMPORTED_MODULE_0__["default"].push({
         path: '/game/battle-result',
         query: {
           //URLとして渡すため文字列として扱う
           characterIndex: String(state.characterIndex),
-          userName: 'ユーザーネ',
+          userName: userName,
           monsterCount: String(state.totalMonsterCount),
           totalTurn: String(state.totalTurn),
           totalDamage: String(state.totalDamage)
@@ -72671,134 +72675,18 @@ var battleArea = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 var characterSelect = {
   namespaced: true,
   state: {
-    characterList: [{
-      id: 1,
-      name: '剣士',
-      pass: 'swords-man',
-      profile: '剣術に長け、数多の剣技で敵を切り裂く。冷静沈着に相手の行動を見極め、常に上手を行く立ち回りをする。',
-      hp: 460,
-      skills: [{
-        id: 1,
-        name: '渾身の一刀',
-        power: 140,
-        attribute: 'slash',
-        type: 'special'
-      }, {
-        id: 2,
-        name: '剣舞',
-        power: 100,
-        attribute: 'slash',
-        type: 'normal'
-      }, {
-        id: 3,
-        name: '雷鳴斬',
-        power: 100,
-        attribute: 'thunder',
-        type: 'normal'
-      }, {
-        id: 4,
-        name: '地砕き',
-        power: 70,
-        attribute: 'blow',
-        type: 'normal'
-      }]
-    }, {
-      id: 2,
-      name: '武闘家',
-      pass: 'worrior',
-      profile: '肉体を武器とし、素早い身のこなしと体術で相手を翻弄する。自分より強い相手と戦うことを求めている。',
-      hp: 440,
-      skills: [{
-        id: 1,
-        name: '百裂拳',
-        power: 160,
-        attribute: 'blow',
-        type: 'special'
-      }, {
-        id: 2,
-        name: '正拳突き',
-        power: 100,
-        attribute: 'blow',
-        type: 'normal'
-      }, {
-        id: 3,
-        name: '爆炎脚',
-        power: 100,
-        attribute: 'flame',
-        type: 'normal'
-      }, {
-        id: 4,
-        name: '真空波',
-        power: 70,
-        attribute: 'slash',
-        type: 'normal'
-      }]
-    }, {
-      id: 3,
-      name: '魔法使い',
-      pass: 'witch',
-      profile: '魔力を駆使して敵を倒す氷呪文が得意な魔法使い。不死の呪いにかかっており、呪いを解く方法を探している。',
-      hp: 400,
-      skills: [{
-        id: 1,
-        name: '凍える吹雪',
-        power: 160,
-        attribute: 'ice',
-        type: 'special'
-      }, {
-        id: 2,
-        name: '氷撃',
-        power: 100,
-        attribute: 'ice',
-        type: 'normal'
-      }, {
-        id: 3,
-        name: '乱風刃',
-        power: 100,
-        attribute: 'slash',
-        type: 'normal'
-      }, {
-        id: 4,
-        name: '石の弾丸',
-        power: 100,
-        attribute: 'blow',
-        type: 'normal'
-      }]
-    }, {
-      id: 4,
-      name: '勇者',
-      pass: 'brave',
-      profile: '生まれ持った才能と、勇敢さをもって敵と戦う。自身の出生の秘密と故郷を滅ぼした魔王を倒すため旅をしている。',
-      hp: 420,
-      skills: [{
-        id: 1,
-        name: '聖一閃',
-        power: 160,
-        attribute: 'holy',
-        type: 'special'
-      }, {
-        id: 2,
-        name: '滅魔斬',
-        power: 80,
-        attribute: 'holy',
-        type: 'normal'
-      }, {
-        id: 3,
-        name: '紫電',
-        power: 80,
-        attribute: 'thunder',
-        type: 'normal'
-      }, {
-        id: 4,
-        name: '炎槍',
-        power: 70,
-        attribute: 'flame',
-        type: 'normal'
-      }]
-    }],
+    characterList: null,
     characterId: 1,
     startCharacterNum: 0,
     endCount: 3
@@ -72812,8 +72700,11 @@ var characterSelect = {
     }
   },
   mutations: {
-    setCharacterId: function setCharacterId(state, payload) {
-      state.characterId = payload.characterId;
+    setCharacterList: function setCharacterList(state, data) {
+      state.characterList = data;
+    },
+    setCharacterId: function setCharacterId(state, id) {
+      state.characterId = id.characterId;
     },
     nextCharacterNumber: function nextCharacterNumber(state) {
       state.startCharacterNum++;
@@ -72825,18 +72716,50 @@ var characterSelect = {
     }
   },
   actions: {
-    selectedCharacter: function selectedCharacter(_ref, characterId) {
-      var commit = _ref.commit;
+    getCharacterList: function () {
+      var _getCharacterList = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(_ref) {
+        var commit, response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                commit = _ref.commit;
+                _context.next = 3;
+                return axios.get('/api/character-list');
+
+              case 3:
+                response = _context.sent;
+                console.log(response.data);
+                commit('setCharacterList', response.data);
+
+              case 6:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }));
+
+      function getCharacterList(_x) {
+        return _getCharacterList.apply(this, arguments);
+      }
+
+      return getCharacterList;
+    }(),
+    selectedCharacter: function selectedCharacter(_ref2, characterId) {
+      var commit = _ref2.commit;
       commit('setCharacterId', {
         characterId: characterId
       });
     },
-    nextCharacter: function nextCharacter(_ref2) {
-      var commit = _ref2.commit;
+    nextCharacter: function nextCharacter(_ref3) {
+      var commit = _ref3.commit;
       commit('nextCharacterNumber');
     },
-    prevCharacter: function prevCharacter(_ref3) {
-      var commit = _ref3.commit;
+    prevCharacter: function prevCharacter(_ref4) {
+      var commit = _ref4.commit;
       commit('prevCharacterNumber');
     }
   }
