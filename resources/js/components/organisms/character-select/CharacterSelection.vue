@@ -76,7 +76,7 @@ export default {
       if (this.characterList.length === this.endCount) {
         return
       } else {
-        this.$store.dispatch('characterSelect/nextCharacter')
+        this.$store.commit('characterSelect/nextCharacter')
         this.characterList.slice(this.startCharacterNum, this.endCount)
       }
     },
@@ -84,7 +84,7 @@ export default {
       if (this.startCharacterNum === 0) {
         return
       } else {
-        this.$store.dispatch('characterSelect/prevCharacter')
+        this.$store.commit('characterSelect/prevCharacter')
         this.characterList.slice(this.startCharacterNum, this.endCount)
       }
     }

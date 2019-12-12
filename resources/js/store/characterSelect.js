@@ -19,14 +19,14 @@ const characterSelect = {
     setCharacterList(state, data) {
       state.characterList = data
     },
-    setCharacterId(state, id) {
-      state.characterId = id.characterId
+    selectedCharacter(state, characterId) {
+      state.characterId = characterId
     },
-    nextCharacterNumber(state) {
+    nextCharacter(state) {
       state.startCharacterNum++
       state.endCount++
     },
-    prevCharacterNumber(state) {
+    prevCharacter(state) {
       state.startCharacterNum--
       state.endCount--
     }
@@ -37,15 +37,6 @@ const characterSelect = {
 
       console.log(response.data)
       commit('setCharacterList', response.data)
-    },
-    selectedCharacter({ commit }, characterId) {
-      commit('setCharacterId', { characterId })
-    },
-    nextCharacter({ commit }) {
-      commit('nextCharacterNumber')
-    },
-    prevCharacter({ commit }) {
-      commit('prevCharacterNumber')
     }
   }
 }

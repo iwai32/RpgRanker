@@ -2465,7 +2465,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     selectedCharacter: function selectedCharacter(characterId) {
-      this.$store.dispatch('characterSelect/selectedCharacter', characterId);
+      this.$store.commit('characterSelect/selectedCharacter', characterId);
     }
   }
 });
@@ -3847,7 +3847,7 @@ __webpack_require__.r(__webpack_exports__);
       if (this.characterList.length === this.endCount) {
         return;
       } else {
-        this.$store.dispatch('characterSelect/nextCharacter');
+        this.$store.commit('characterSelect/nextCharacter');
         this.characterList.slice(this.startCharacterNum, this.endCount);
       }
     },
@@ -3855,7 +3855,7 @@ __webpack_require__.r(__webpack_exports__);
       if (this.startCharacterNum === 0) {
         return;
       } else {
-        this.$store.dispatch('characterSelect/prevCharacter');
+        this.$store.commit('characterSelect/prevCharacter');
         this.characterList.slice(this.startCharacterNum, this.endCount);
       }
     }
@@ -72703,14 +72703,14 @@ var characterSelect = {
     setCharacterList: function setCharacterList(state, data) {
       state.characterList = data;
     },
-    setCharacterId: function setCharacterId(state, id) {
-      state.characterId = id.characterId;
+    selectedCharacter: function selectedCharacter(state, characterId) {
+      state.characterId = characterId;
     },
-    nextCharacterNumber: function nextCharacterNumber(state) {
+    nextCharacter: function nextCharacter(state) {
       state.startCharacterNum++;
       state.endCount++;
     },
-    prevCharacterNumber: function prevCharacterNumber(state) {
+    prevCharacter: function prevCharacter(state) {
       state.startCharacterNum--;
       state.endCount--;
     }
@@ -72747,21 +72747,7 @@ var characterSelect = {
       }
 
       return getCharacterList;
-    }(),
-    selectedCharacter: function selectedCharacter(_ref2, characterId) {
-      var commit = _ref2.commit;
-      commit('setCharacterId', {
-        characterId: characterId
-      });
-    },
-    nextCharacter: function nextCharacter(_ref3) {
-      var commit = _ref3.commit;
-      commit('nextCharacterNumber');
-    },
-    prevCharacter: function prevCharacter(_ref4) {
-      var commit = _ref4.commit;
-      commit('prevCharacterNumber');
-    }
+    }()
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = (characterSelect);

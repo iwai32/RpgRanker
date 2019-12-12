@@ -22,7 +22,7 @@ export default {
   },
   methods: {
     selectedCharacter(characterId) {
-      this.$store.dispatch('characterSelect/selectedCharacter', characterId)
+      this.$store.commit('characterSelect/selectedCharacter', characterId)
     }
   }
 }
