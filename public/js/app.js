@@ -3178,32 +3178,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     CharacterPanel: _atoms_character_select_CharacterPanel_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
+  mounted: function mounted() {
+    console.log(this.characterDisplayNumber);
+  },
   computed: {
-    toPascalCase: function toPascalCase() {
-      return function (string) {
-        var upperCase = string.charAt().toUpperCase();
-        var otherString = string.substring(1);
-        var mergedString = '';
-
-        if (string.includes('-')) {
-          var divided_strings = string.split('-');
-
-          for (var i = 0; i < divided_strings.length; i++) {
-            mergedString += divided_strings[i].charAt().toUpperCase() + divided_strings[i].substring(1);
-          }
-        } else {
-          mergedString = upperCase + otherString;
-        }
-
-        return mergedString;
-      };
-    },
     characterId: function characterId() {
       return this.$store.state.characterSelect.characterId;
     },
@@ -48271,7 +48254,6 @@ var render = function() {
       return _c("character-panel", {
         key: character.id,
         attrs: {
-          "id-name": "character" + _vm.toPascalCase(character.pass),
           "class-name": { active: character.id === _vm.characterId },
           "img-pass": "../../../images/" + character.pass + ".png",
           "alt-name": character.name,
@@ -72529,7 +72511,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 var characterSelect = {
   namespaced: true,
   state: {
-    characterList: null,
+    characterList: [{}],
     characterId: 1,
     startCharacterNum: 0,
     endCount: 3 //キャラクター画面の最大表示数
@@ -72545,6 +72527,7 @@ var characterSelect = {
   },
   mutations: {
     setCharacterList: function setCharacterList(state, data) {
+      console.log(data);
       state.characterList = data;
     },
     selectedCharacter: function selectedCharacter(state, characterId) {

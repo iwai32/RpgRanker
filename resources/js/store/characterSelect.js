@@ -1,7 +1,7 @@
 const characterSelect = {
   namespaced: true,
   state: {
-    characterList: null,
+    characterList: [{}],
     characterId: 1,
     startCharacterNum: 0,
     endCount: 3//キャラクター画面の最大表示数
@@ -17,6 +17,7 @@ const characterSelect = {
   },
   mutations: {
     setCharacterList(state, data) {
+      console.log(data)
       state.characterList = data
     },
     selectedCharacter(state, characterId) {
@@ -34,7 +35,7 @@ const characterSelect = {
   actions: {
     async getCharacterList({ commit }) {
       const response = await axios.get('/api/character-list')
-      
+
       commit('setCharacterList', response.data)
     }
   }
