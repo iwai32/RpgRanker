@@ -31,11 +31,11 @@ export default {
   },
   methods: {
     toBattle() {
-      this.$store.dispatch('commonModule/closeConfirmationDisplay')
+      this.$store.commit('commonModule/closeConfirmationDisplay')
       this.$router.push({ path: `battle/${this.characterIndex }` })
     },
     closeConfirmationDisplay() {
-      this.$store.dispatch('commonModule/closeConfirmationDisplay')
+      this.$store.commit('commonModule/closeConfirmationDisplay')
     }
   }
 }

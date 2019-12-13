@@ -154,124 +154,75 @@ const battleArea = {
     makeParameterCharacterIndex(state, characterIndex) {
       state.characterIndex = characterIndex
     },
-    battleCharacterHp(state) {
+    setCharacterHp(state) {
       state.characterHp = this.getters['battleArea/battleCharacterData'].hp
     },
-    randomNormalMonsterIndex(state) {//あとで修正するかも
+    setIndexRandomMonster(state) {
       state.monsterIndex = 1 + Math.floor(Math.random() * (state.monsterList.length-1))
     },
-    setBattleLog(state, log) {
+    addBattleLog(state, log) {
       state.battleLog += log + '<br>'
     },
     setSpGauge(state) {
-      this.dispatch('battleArea/characterGaugeFilter')
-      if (state.spSkillGaugeCircle >= state.maxSpSkillGaugeCircle) {
-        state.spSkillGaugeCircle = state.maxSpSkillGaugeCircle
-        state.hasSpSkill = true
-      }
+      state.spSkillGaugeCircle = state.maxSpSkillGaugeCircle
+      state.hasSpSkill = true
     },
-    setGaugePerCharacter(state) {
-      if (this.getters['battleArea/battleCharacterData'].name === '勇者') {
-        state.spSkillGaugeCircle += state.maxSpSkillGaugeCircle / 8
-      } else {
-        state.spSkillGaugeCircle += state.maxSpSkillGaugeCircle / 5
-      }
+    setHeroGauge(state) {
+      state.spSkillGaugeCircle += state.maxSpSkillGaugeCircle / 8
     },
-    setSkillEffectToTrue(state) {
+    setCharacterGauge(state) {
+      state.spSkillGaugeCircle += state.maxSpSkillGaugeCircle / 5
+    },
+    makeSkillEffectOn(state) {
       state.isSkillEffect = true
     },
-    setSkillEffectToFalse(state) {
+    makeSkillEffectOff(state) {
       state.isSkillEffect = false
     },
-    setSpSkillToFalse(state) {
+    beginMonsterMotion(state) {
+      state.monsterMotion = true
+    },
+    endMonsterMotion(state) {
+      state.monsterMotion = false
+    },
+    detachSpSkill(state) {
       state.spSkillGaugeCircle = 0
       state.hasSpSkill = false
     },
-    popSkillEffect(state, attribute) {
-      this.dispatch('battleArea/makeSkillEffectOn')
-      state.skillEffectAttribute = attribute
-      setTimeout(() => {
-        //gif画像のループ処理をリセットする
-        state.skillEffectAttribute = ""
-      }, 1000)
-
-      setTimeout(() => {
-        this.dispatch('battleArea/enemyAttack')
-      }, 1000)
-    },
-    battleMonsterHp(state) {
+    setMonsterHp(state) {
       state.monsterHp = this.getters['battleArea/battleMonsterData'].hp
     },
     reduceBattleMonsterHp(state) {
       state.monsterHp -= state.myAttackResult
-
-      if (state.monsterHp <= 0) {
-        this.dispatch('battleArea/addBattleLog', this.getters['battleArea/battleMonsterData'].name + 'を倒した！')
-        setTimeout(() => {
-          this.dispatch('battleArea/nextMonster')
-        }, 1000)
-
-        //討伐数を一増やす,次のモンスターを表示する五体倒してるならリダイレクト
-        state.totalMonsterCount++
-        console.log('モンスター討伐数' + state.totalMonsterCount)
-
-        if (state.totalMonsterCount === 5) {
-          console.log('サタンを倒した!!!!')//リダイレクト
-          this.dispatch('battleArea/dataSaveAndRedirect')
-        }
-      }
     },
-    damageCalculatingResult(state, damageData) {
-      //モンスターの弱点を計算
-      if (this.getters['battleArea/battleMonsterData'].weak.includes(damageData.attribute)) {
-        state.myAttackResult = damageData.damage * 2
-      } else {
-        state.myAttackResult = damageData.damage
-      }
-      //攻撃にランダム性を与える
+    weakDamageToMonsters(state, damageData) {
+      state.myAttackResult = damageData.damage * 2
+    },
+    damageToMonsters(state, damageData) {
+      state.myAttackResult = damageData.damage
+    },
+    addRandomDamage(state) {
       state.myAttackResult += Math.floor(Math.random() * 10)
     },
-    demonDescentCeremony(state) {
+    incrementMonsterCount(state) {
+      state.totalMonsterCount++
+    },
+    setSkillEffectAttribute(state, attribute) {
+      state.skillEffectAttribute = attribute
+    },
+    resetSkillEffectAttribute(state) {
+      state.skillEffectAttribute = ""
+    },
+    descendSatan(state) {
       state.monsterIndex = 0
     },
-    executeEnemyAttack(state) {
-      //モンスターが使用するスキルをランダムにする
-      let monsterSkill = this.getters['battleArea/battleMonsterData'].skills[
-         Math.floor(Math.random() * this.getters['battleArea/battleMonsterData'].skills.length)
-        ]
-      //モンスターが与えるダメージをランダムにする
-      let damageResult = monsterSkill.power + Math.floor(Math.random() * 10)
-
-      //自身のエフェクトウィンドウを閉じる
-      this.dispatch('battleArea/makeSkillEffectOff')
-
-      //登場時は攻撃しない
-      if (state.monsterHp === this.getters['battleArea/battleMonsterData'].hp) {
-        return
-      } else {
-        state.monsterMotion = true
-        setTimeout(() => {
-          state.monsterMotion = false
-        },300)
-        
-        this.dispatch('battleArea/addBattleLog',
-         `${this.getters['battleArea/battleMonsterData'].name}の${monsterSkill.name}！
-         <br>${this.getters['battleArea/battleCharacterData'].name}は${damageResult}のダメージをうけた！`
-        )
-        //自身のhpを引く、0以下になったら,負けてしまったと表示し、result画面へ遷移する
-        state.characterHp -= damageResult
-      }
-
-      if (state.characterHp <= 0) {
-        state.characterHp = 0
-        this.dispatch('battleArea/dataSaveAndRedirect')
-      }
+    reduceBattleCharacterHp(state, damageResult) {
+      state.characterHp -= damageResult
+    },
+    lostCharacterHp(state) {
+      state.characterHp = 0
     },
     recoverCharacter(state) {
-      this.dispatch('commonModule/closeConfirmationDisplay')
-      this.dispatch('battleArea/increaseGauge')
-      this.dispatch('battleArea/addBattleLog',`${this.getters['battleArea/battleCharacterData'].name}はHPを回復した！`)
-
       state.recoveryUseTimes--
       state.characterHp = this.getters['battleArea/battleCharacterData'].hp
       state.totalTurn++
@@ -279,9 +230,9 @@ const battleArea = {
     setTotalData(state) {
       state.totalTurn++
       state.totalDamage += state.myAttackResult
-      console.log(state.totalTurn, state.totalDamage, state.totalMonsterCount)
     },
-    initializeData(state) {
+    //遷移時一度データをリセットする
+    resetData(state) {
       state.totalTurn = 0
       state.totalDamage = 0
       state.totalMonsterCount = 0
@@ -296,108 +247,144 @@ const battleArea = {
       let characterIndex = rootState.route.params.characterIndex
       commit('makeParameterCharacterIndex', characterIndex)
     },
-    //キャラクターのHpをセットする
-    setCharacterHp({ commit }) {
-      commit('battleCharacterHp')
-    },
-    setIndexRandomMonster({ commit }) {
-      commit('randomNormalMonsterIndex')
-    },
-    //バトルログ
-    addBattleLog({ commit }, log) {
-      commit('setBattleLog', log)
-    },
     //ゲージ増加
-    increaseGauge({ commit }) {
-      commit('setSpGauge')
+    increaseGauge({ state, commit, dispatch }) {
+      dispatch('characterGaugeFilter')
+      if (state.spSkillGaugeCircle >= state.maxSpSkillGaugeCircle) {
+        commit('setSpGauge')
+      }
     },
-    characterGaugeFilter({ commit }) {
-      commit('setGaugePerCharacter')
-    },
-    //スキルエフェクト
-    makeSkillEffectOn({ commit }) {
-      commit('setSkillEffectToTrue')
-    },
-    makeSkillEffectOff({commit}) {
-      commit('setSkillEffectToFalse')
-    },
-    //spスキル
-    detachSpSkill({ commit }) {
-      commit('setSpSkillToFalse')
+    //ゲージの設定
+    characterGaugeFilter({ getters, commit }) {
+      if (getters.battleCharacterData.name === '勇者') {
+        commit('setHeroGauge')
+      } else {
+        commit('setCharacterGauge')
+      }
     },
     //自分の攻撃
-    myAttack({ state, getters, dispatch }, skillData) {
+    myAttack({ state, getters, commit, dispatch }, skillData) {
       let damageData = { damage: skillData.damage, attribute: skillData.attribute }
       dispatch('damageCalculation', damageData)
-      dispatch('addBattleLog', skillData.skillName + '！<br>' + getters.battleMonsterData.name + 'に' + state.myAttackResult + 'のダメージ！')
-      dispatch('getTotalData')
+      commit('addBattleLog', skillData.skillName + '！<br>' + getters.battleMonsterData.name + 'に' + state.myAttackResult + 'のダメージ！')
+      commit('setTotalData')
       dispatch('reduceMonsterHp')
     },
     //スキルのエフェクト
-    showSkillEffect({ commit }, attribute) {
-      commit('popSkillEffect', attribute)
-    },
-    //モンスターのHPをセットする
-    setMonsterHp({ commit }) {
-      commit('battleMonsterHp')
+    showSkillEffect({ commit, dispatch }, attribute) {
+      // commit('popSkillEffect', attribute)
+      commit('makeSkillEffectOn')
+      commit('setSkillEffectAttribute', attribute)
+      
+      setTimeout(() => {
+        //gif画像のループ処理をリセットする
+        commit('resetSkillEffectAttribute')
+      }, 1000)
+
+      setTimeout(() => {
+        dispatch('enemyAttack')
+        commit('makeSkillEffectOff')
+      }, 1000)
     },
     //モンスターのHPを減らす
-    reduceMonsterHp({ commit }) {
+    reduceMonsterHp({ state, getters, commit, dispatch }) {
       commit('reduceBattleMonsterHp')
+
+      if (state.monsterHp <= 0) {
+        commit('addBattleLog', getters.battleMonsterData.name + 'を倒した！')
+        setTimeout(() => {
+          dispatch('nextMonster')
+        }, 1000)
+
+        //討伐数を一増やす,次のモンスターを表示する五体倒してるならリダイレクト
+        commit('incrementMonsterCount')
+
+        if (state.totalMonsterCount === 5) {
+          dispatch('dataSaveAndRedirect')
+        }
+      }
     },
-    // //ダメージ計算
-    damageCalculation({ commit }, damageData) {
-      commit('damageCalculatingResult', damageData)
+    //ダメージ計算
+    damageCalculation({ getters, commit }, damageData) {
+      //モンスターの弱点を計算
+      if (getters.battleMonsterData.weak.includes(damageData.attribute)) {
+        commit('weakDamageToMonsters', damageData)
+      } else {
+        commit('damageToMonsters', damageData)
+      }
+      //攻撃にランダム性を与える
+      commit('addRandomDamage')
     },
     //次のモンスターを出現させる
-    nextMonster( { state, getters, dispatch } ) {
+    nextMonster( { state, getters, commit } ) {
       //4体をランダムで出現させ、討伐数が4体なら魔王を出現させる。
       if (state.totalMonsterCount === 4) {
-        dispatch('descendSatan')
+        commit('descendSatan')
       } else {
-        dispatch('setIndexRandomMonster')
+        commit('setIndexRandomMonster')
       }
-      dispatch('addBattleLog', getters.battleMonsterData.name + 'があらわれた！')
-      dispatch('setMonsterHp')
-    },
-    //サタン降臨
-    descendSatan({ commit }) {
-      commit('demonDescentCeremony')
+
+      commit('addBattleLog', getters.battleMonsterData.name + 'があらわれた！')
+      commit('setMonsterHp')
     },
     //敵の攻撃
-    enemyAttack( { commit }) {
-      commit('executeEnemyAttack')
+    enemyAttack( { state, getters, commit, dispatch }) {
+      //モンスターが使用するスキルをランダムにする
+      let monsterSkill = getters.battleMonsterData.skills[
+        Math.floor(Math.random() * getters.battleMonsterData.skills.length)
+      ]
+      //モンスターが与えるダメージをランダムにする
+      let damageResult = monsterSkill.power + Math.floor(Math.random() * 10)
+
+      //登場時は攻撃しない
+     if (state.monsterHp === getters.battleMonsterData.hp) {
+       return
+     } else {
+       commit('beginMonsterMotion')
+
+       setTimeout(() => {
+        commit('endMonsterMotion')
+       },300)
+
+       commit('addBattleLog',
+        `${getters.battleMonsterData.name}の${monsterSkill.name}！
+        <br>${getters.battleCharacterData.name}は${damageResult}のダメージをうけた！`
+       )
+       //自身のhpを引く、0以下になったら,負けてしまったと表示し、result画面へ遷移する
+       commit('reduceBattleCharacterHp', damageResult)
+     }
+
+     if (state.characterHp <= 0) {
+       commit('lostCharacterHp')
+       dispatch('dataSaveAndRedirect')
+     }
     },
     //キャラクターのhpの回復
-    toRecover( { commit } ) {
+    toRecover( { commit, getters, dispatch } ) {
+      commit('commonModule/closeConfirmationDisplay', null, { root: true })
+      dispatch('increaseGauge')
+      commit('addBattleLog',`${getters.battleCharacterData.name}はHPを回復した！`)
       commit('recoverCharacter')
-    },
-    //合計データを取得する
-    getTotalData( { commit }) {
-      commit('setTotalData')
     },
     //DBへデータを保存し、リザルト画面へ遷移する
     dataSaveAndRedirect({ dispatch }) {
       //DBへ討伐数,合計ターン,合計ダメージ,使用キャラクター,ユーザーネームを保存
-
       dispatch('toRedirect')
     },
     //リザルト画面へ遷移する。リザルト画面にはバトル画面から取得したデータをパラメータとして渡す
-    toRedirect({ state, getters }) {
+    toRedirect({ state, getters, rootGetters }) {
+      const userName = rootGetters['auth/userName']
+      
       router.push({ path: '/game/battle-result',
           query: {
             //URLとして渡すため文字列として扱う
              characterIndex: String(state.characterIndex),
-             userName: 'ユーザーネ',
+             userName: userName,
              monsterCount: String(state.totalMonsterCount),
              totalTurn: String(state.totalTurn),
              totalDamage: String(state.totalDamage)
           }
       })
-    },
-    //データをリセットする
-    resetData( { commit }) {
-      commit('initializeData')
     }
   }
 }

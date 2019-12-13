@@ -29,7 +29,7 @@ export default {
       this.$store.dispatch('battleArea/toRecover')
     },
     closeConfirmationDisplay() {
-      this.$store.dispatch('commonModule/closeConfirmationDisplay')
+      this.$store.commit('commonModule/closeConfirmationDisplay')
     }
   }
 }

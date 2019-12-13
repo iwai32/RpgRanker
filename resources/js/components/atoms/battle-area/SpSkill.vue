@@ -38,7 +38,7 @@ export default {
       this.$store.dispatch('battleArea/showSkillEffect', attribute)
     },
     detachSpSkill() {
-      this.$store.dispatch('battleArea/detachSpSkill')
+      this.$store.commit('battleArea/detachSpSkill')
     },
   }
 }

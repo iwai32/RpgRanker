@@ -4,19 +4,11 @@ const commonModule = {
     confirmationDisplay: false
   },
   mutations: {
-    setConfirmationTrue(state) {
+    openConfirmationDisplay(state) {
       state.confirmationDisplay = true
     },
-    setConfirmationFalse(state) {
+    closeConfirmationDisplay(state) {
       state.confirmationDisplay = false
-    }
-  },
-  actions: {
-    openConfirmationDisplay({ commit }) {
-      commit('setConfirmationTrue')
-    },
-    closeConfirmationDisplay({ commit }) {
-      commit('setConfirmationFalse')
     }
   }
 }

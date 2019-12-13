@@ -59,17 +59,16 @@ export default {
       this.$store.dispatch('battleArea/setCharacterIndex')
     },
     setCharacterHp() {
-      this.$store.dispatch('battleArea/setCharacterHp')
+      this.$store.commit('battleArea/setCharacterHp')
     },
     setIndexRandomMonster() {
-      this.$store.dispatch('battleArea/setIndexRandomMonster')
+      this.$store.commit('battleArea/setIndexRandomMonster')
     },
     setMonsterHp() {
-      this.$store.dispatch('battleArea/setMonsterHp')
+      this.$store.commit('battleArea/setMonsterHp')
     },
-    //遷移時一度データをリセットする
     resetData() {
-      this.$store.dispatch('battleArea/resetData')
+      this.$store.commit('battleArea/resetData')
     }
   }
 }

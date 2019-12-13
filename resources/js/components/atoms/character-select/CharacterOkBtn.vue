@@ -9,7 +9,7 @@
 export default {
   methods: {
     openConfirmationDisplay() {
-      this.$store.dispatch('commonModule/openConfirmationDisplay')
+      this.$store.commit('commonModule/openConfirmationDisplay')
     }
   }
 }

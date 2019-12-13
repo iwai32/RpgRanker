@@ -1863,11 +1863,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  computed: {
-    errorCode: function errorCode() {
-      return this.$store.state.error.code;
-    }
-  },
   watch: {
     errorCode: {
       handler: function handler(val) {
@@ -1879,6 +1874,11 @@ __webpack_require__.r(__webpack_exports__);
     },
     $route: function $route() {
       this.$store.commit('error/setCode', null);
+    }
+  },
+  computed: {
+    errorCode: function errorCode() {
+      return this.$store.state.error.code;
     }
   }
 });
@@ -2041,7 +2041,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     openConfirmationDisplay: function openConfirmationDisplay() {
-      this.$store.dispatch('commonModule/openConfirmationDisplay');
+      this.$store.commit('commonModule/openConfirmationDisplay');
     }
   }
 });
@@ -2200,7 +2200,7 @@ __webpack_require__.r(__webpack_exports__);
       this.$store.dispatch('battleArea/showSkillEffect', attribute);
     },
     detachSpSkill: function detachSpSkill() {
-      this.$store.dispatch('battleArea/detachSpSkill');
+      this.$store.commit('battleArea/detachSpSkill');
     }
   }
 });
@@ -2426,7 +2426,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   methods: {
     openConfirmationDisplay: function openConfirmationDisplay() {
-      this.$store.dispatch('commonModule/openConfirmationDisplay');
+      this.$store.commit('commonModule/openConfirmationDisplay');
     }
   }
 });
@@ -2896,7 +2896,7 @@ __webpack_require__.r(__webpack_exports__);
       this.$store.dispatch('battleArea/toRecover');
     },
     closeConfirmationDisplay: function closeConfirmationDisplay() {
-      this.$store.dispatch('commonModule/closeConfirmationDisplay');
+      this.$store.commit('commonModule/closeConfirmationDisplay');
     }
   }
 });
@@ -3114,13 +3114,13 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     toBattle: function toBattle() {
-      this.$store.dispatch('commonModule/closeConfirmationDisplay');
+      this.$store.commit('commonModule/closeConfirmationDisplay');
       this.$router.push({
         path: "battle/".concat(this.characterIndex)
       });
     },
     closeConfirmationDisplay: function closeConfirmationDisplay() {
-      this.$store.dispatch('commonModule/closeConfirmationDisplay');
+      this.$store.commit('commonModule/closeConfirmationDisplay');
     }
   }
 });
@@ -3527,17 +3527,16 @@ __webpack_require__.r(__webpack_exports__);
       this.$store.dispatch('battleArea/setCharacterIndex');
     },
     setCharacterHp: function setCharacterHp() {
-      this.$store.dispatch('battleArea/setCharacterHp');
+      this.$store.commit('battleArea/setCharacterHp');
     },
     setIndexRandomMonster: function setIndexRandomMonster() {
-      this.$store.dispatch('battleArea/setIndexRandomMonster');
+      this.$store.commit('battleArea/setIndexRandomMonster');
     },
     setMonsterHp: function setMonsterHp() {
-      this.$store.dispatch('battleArea/setMonsterHp');
+      this.$store.commit('battleArea/setMonsterHp');
     },
-    //遷移時一度データをリセットする
     resetData: function resetData() {
-      this.$store.dispatch('battleArea/resetData');
+      this.$store.commit('battleArea/resetData');
     }
   }
 });
@@ -3798,9 +3797,6 @@ __webpack_require__.r(__webpack_exports__);
     ConfirmationDisplay: _organisms_common_ConfirmationDisplay_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
     CharacterConfirmation: _molecules_character_select_CharacterConfirmation_vue__WEBPACK_IMPORTED_MODULE_6__["default"]
   },
-  created: function created() {
-    this.getCharacterList();
-  },
   computed: {
     startCharacterNum: function startCharacterNum() {
       return this.$store.state.characterSelect.startCharacterNum;
@@ -3813,9 +3809,6 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
-    getCharacterList: function getCharacterList() {
-      this.$store.dispatch('characterSelect/getCharacterList');
-    },
     nextCharacter: function nextCharacter() {
       if (this.characterList.length === this.endCount) {
         return;
@@ -65679,6 +65672,10 @@ function () {
             return _store_store_js__WEBPACK_IMPORTED_MODULE_3__["default"].dispatch('auth/currentUser');
 
           case 2:
+            _context.next = 4;
+            return _store_store_js__WEBPACK_IMPORTED_MODULE_3__["default"].dispatch('characterSelect/getCharacterList');
+
+          case 4:
           case "end":
             return _context.stop();
         }
@@ -72210,117 +72207,75 @@ var battleArea = {
     makeParameterCharacterIndex: function makeParameterCharacterIndex(state, characterIndex) {
       state.characterIndex = characterIndex;
     },
-    battleCharacterHp: function battleCharacterHp(state) {
+    setCharacterHp: function setCharacterHp(state) {
       state.characterHp = this.getters['battleArea/battleCharacterData'].hp;
     },
-    randomNormalMonsterIndex: function randomNormalMonsterIndex(state) {
+    setIndexRandomMonster: function setIndexRandomMonster(state) {
       state.monsterIndex = 1 + Math.floor(Math.random() * (state.monsterList.length - 1));
     },
-    setBattleLog: function setBattleLog(state, log) {
+    addBattleLog: function addBattleLog(state, log) {
       state.battleLog += log + '<br>';
     },
     setSpGauge: function setSpGauge(state) {
-      this.dispatch('battleArea/characterGaugeFilter');
-
-      if (state.spSkillGaugeCircle >= state.maxSpSkillGaugeCircle) {
-        state.spSkillGaugeCircle = state.maxSpSkillGaugeCircle;
-        state.hasSpSkill = true;
-      }
+      state.spSkillGaugeCircle = state.maxSpSkillGaugeCircle;
+      state.hasSpSkill = true;
     },
-    setGaugePerCharacter: function setGaugePerCharacter(state) {
-      if (this.getters['battleArea/battleCharacterData'].name === '勇者') {
-        state.spSkillGaugeCircle += state.maxSpSkillGaugeCircle / 8;
-      } else {
-        state.spSkillGaugeCircle += state.maxSpSkillGaugeCircle / 5;
-      }
+    setHeroGauge: function setHeroGauge(state) {
+      state.spSkillGaugeCircle += state.maxSpSkillGaugeCircle / 8;
     },
-    setSkillEffectToTrue: function setSkillEffectToTrue(state) {
+    setCharacterGauge: function setCharacterGauge(state) {
+      state.spSkillGaugeCircle += state.maxSpSkillGaugeCircle / 5;
+    },
+    makeSkillEffectOn: function makeSkillEffectOn(state) {
       state.isSkillEffect = true;
     },
-    setSkillEffectToFalse: function setSkillEffectToFalse(state) {
+    makeSkillEffectOff: function makeSkillEffectOff(state) {
       state.isSkillEffect = false;
     },
-    setSpSkillToFalse: function setSpSkillToFalse(state) {
+    beginMonsterMotion: function beginMonsterMotion(state) {
+      state.monsterMotion = true;
+    },
+    endMonsterMotion: function endMonsterMotion(state) {
+      state.monsterMotion = false;
+    },
+    detachSpSkill: function detachSpSkill(state) {
       state.spSkillGaugeCircle = 0;
       state.hasSpSkill = false;
     },
-    popSkillEffect: function popSkillEffect(state, attribute) {
-      var _this = this;
-
-      this.dispatch('battleArea/makeSkillEffectOn');
-      state.skillEffectAttribute = attribute;
-      setTimeout(function () {
-        //gif画像のループ処理をリセットする
-        state.skillEffectAttribute = "";
-      }, 1000);
-      setTimeout(function () {
-        _this.dispatch('battleArea/enemyAttack');
-      }, 1000);
-    },
-    battleMonsterHp: function battleMonsterHp(state) {
+    setMonsterHp: function setMonsterHp(state) {
       state.monsterHp = this.getters['battleArea/battleMonsterData'].hp;
     },
     reduceBattleMonsterHp: function reduceBattleMonsterHp(state) {
-      var _this2 = this;
-
       state.monsterHp -= state.myAttackResult;
-
-      if (state.monsterHp <= 0) {
-        this.dispatch('battleArea/addBattleLog', this.getters['battleArea/battleMonsterData'].name + 'を倒した！');
-        setTimeout(function () {
-          _this2.dispatch('battleArea/nextMonster');
-        }, 1000); //討伐数を一増やす,次のモンスターを表示する五体倒してるならリダイレクト
-
-        state.totalMonsterCount++;
-
-        if (state.totalMonsterCount === 5) {
-          this.dispatch('battleArea/dataSaveAndRedirect');
-        }
-      }
     },
-    damageCalculatingResult: function damageCalculatingResult(state, damageData) {
-      //モンスターの弱点を計算
-      if (this.getters['battleArea/battleMonsterData'].weak.includes(damageData.attribute)) {
-        state.myAttackResult = damageData.damage * 2;
-      } else {
-        state.myAttackResult = damageData.damage;
-      } //攻撃にランダム性を与える
-
-
+    weakDamageToMonsters: function weakDamageToMonsters(state, damageData) {
+      state.myAttackResult = damageData.damage * 2;
+    },
+    damageToMonsters: function damageToMonsters(state, damageData) {
+      state.myAttackResult = damageData.damage;
+    },
+    addRandomDamage: function addRandomDamage(state) {
       state.myAttackResult += Math.floor(Math.random() * 10);
     },
-    demonDescentCeremony: function demonDescentCeremony(state) {
+    incrementMonsterCount: function incrementMonsterCount(state) {
+      state.totalMonsterCount++;
+    },
+    setSkillEffectAttribute: function setSkillEffectAttribute(state, attribute) {
+      state.skillEffectAttribute = attribute;
+    },
+    resetSkillEffectAttribute: function resetSkillEffectAttribute(state) {
+      state.skillEffectAttribute = "";
+    },
+    descendSatan: function descendSatan(state) {
       state.monsterIndex = 0;
     },
-    executeEnemyAttack: function executeEnemyAttack(state) {
-      //モンスターが使用するスキルをランダムにする
-      var monsterSkill = this.getters['battleArea/battleMonsterData'].skills[Math.floor(Math.random() * this.getters['battleArea/battleMonsterData'].skills.length)]; //モンスターが与えるダメージをランダムにする
-
-      var damageResult = monsterSkill.power + Math.floor(Math.random() * 10); //自身のエフェクトウィンドウを閉じる
-
-      this.dispatch('battleArea/makeSkillEffectOff'); //登場時は攻撃しない
-
-      if (state.monsterHp === this.getters['battleArea/battleMonsterData'].hp) {
-        return;
-      } else {
-        state.monsterMotion = true;
-        setTimeout(function () {
-          state.monsterMotion = false;
-        }, 300);
-        this.dispatch('battleArea/addBattleLog', "".concat(this.getters['battleArea/battleMonsterData'].name, "\u306E").concat(monsterSkill.name, "\uFF01\n         <br>").concat(this.getters['battleArea/battleCharacterData'].name, "\u306F").concat(damageResult, "\u306E\u30C0\u30E1\u30FC\u30B8\u3092\u3046\u3051\u305F\uFF01")); //自身のhpを引く、0以下になったら,負けてしまったと表示し、result画面へ遷移する
-
-        state.characterHp -= damageResult;
-      }
-
-      if (state.characterHp <= 0) {
-        state.characterHp = 0;
-        this.dispatch('battleArea/dataSaveAndRedirect');
-      }
+    reduceBattleCharacterHp: function reduceBattleCharacterHp(state, damageResult) {
+      state.characterHp -= damageResult;
+    },
+    lostCharacterHp: function lostCharacterHp(state) {
+      state.characterHp = 0;
     },
     recoverCharacter: function recoverCharacter(state) {
-      this.dispatch('commonModule/closeConfirmationDisplay');
-      this.dispatch('battleArea/increaseGauge');
-      this.dispatch('battleArea/addBattleLog', "".concat(this.getters['battleArea/battleCharacterData'].name, "\u306FHP\u3092\u56DE\u5FA9\u3057\u305F\uFF01"));
       state.recoveryUseTimes--;
       state.characterHp = this.getters['battleArea/battleCharacterData'].hp;
       state.totalTurn++;
@@ -72329,7 +72284,8 @@ var battleArea = {
       state.totalTurn++;
       state.totalDamage += state.myAttackResult;
     },
-    initializeData: function initializeData(state) {
+    //遷移時一度データをリセットする
+    resetData: function resetData(state) {
       state.totalTurn = 0;
       state.totalDamage = 0;
       state.totalMonsterCount = 0;
@@ -72346,124 +72302,162 @@ var battleArea = {
       var characterIndex = rootState.route.params.characterIndex;
       commit('makeParameterCharacterIndex', characterIndex);
     },
-    //キャラクターのHpをセットする
-    setCharacterHp: function setCharacterHp(_ref2) {
-      var commit = _ref2.commit;
-      commit('battleCharacterHp');
-    },
-    setIndexRandomMonster: function setIndexRandomMonster(_ref3) {
-      var commit = _ref3.commit;
-      commit('randomNormalMonsterIndex');
-    },
-    //バトルログ
-    addBattleLog: function addBattleLog(_ref4, log) {
-      var commit = _ref4.commit;
-      commit('setBattleLog', log);
-    },
     //ゲージ増加
-    increaseGauge: function increaseGauge(_ref5) {
-      var commit = _ref5.commit;
-      commit('setSpGauge');
+    increaseGauge: function increaseGauge(_ref2) {
+      var state = _ref2.state,
+          commit = _ref2.commit,
+          dispatch = _ref2.dispatch;
+      dispatch('characterGaugeFilter');
+
+      if (state.spSkillGaugeCircle >= state.maxSpSkillGaugeCircle) {
+        commit('setSpGauge');
+      }
     },
-    characterGaugeFilter: function characterGaugeFilter(_ref6) {
-      var commit = _ref6.commit;
-      commit('setGaugePerCharacter');
-    },
-    //スキルエフェクト
-    makeSkillEffectOn: function makeSkillEffectOn(_ref7) {
-      var commit = _ref7.commit;
-      commit('setSkillEffectToTrue');
-    },
-    makeSkillEffectOff: function makeSkillEffectOff(_ref8) {
-      var commit = _ref8.commit;
-      commit('setSkillEffectToFalse');
-    },
-    //spスキル
-    detachSpSkill: function detachSpSkill(_ref9) {
-      var commit = _ref9.commit;
-      commit('setSpSkillToFalse');
+    //ゲージの設定
+    characterGaugeFilter: function characterGaugeFilter(_ref3) {
+      var getters = _ref3.getters,
+          commit = _ref3.commit;
+
+      if (getters.battleCharacterData.name === '勇者') {
+        commit('setHeroGauge');
+      } else {
+        commit('setCharacterGauge');
+      }
     },
     //自分の攻撃
-    myAttack: function myAttack(_ref10, skillData) {
-      var state = _ref10.state,
-          getters = _ref10.getters,
-          dispatch = _ref10.dispatch;
+    myAttack: function myAttack(_ref4, skillData) {
+      var state = _ref4.state,
+          getters = _ref4.getters,
+          commit = _ref4.commit,
+          dispatch = _ref4.dispatch;
       var damageData = {
         damage: skillData.damage,
         attribute: skillData.attribute
       };
       dispatch('damageCalculation', damageData);
-      dispatch('addBattleLog', skillData.skillName + '！<br>' + getters.battleMonsterData.name + 'に' + state.myAttackResult + 'のダメージ！');
-      dispatch('getTotalData');
+      commit('addBattleLog', skillData.skillName + '！<br>' + getters.battleMonsterData.name + 'に' + state.myAttackResult + 'のダメージ！');
+      commit('setTotalData');
       dispatch('reduceMonsterHp');
     },
     //スキルのエフェクト
-    showSkillEffect: function showSkillEffect(_ref11, attribute) {
-      var commit = _ref11.commit;
-      commit('popSkillEffect', attribute);
-    },
-    //モンスターのHPをセットする
-    setMonsterHp: function setMonsterHp(_ref12) {
-      var commit = _ref12.commit;
-      commit('battleMonsterHp');
+    showSkillEffect: function showSkillEffect(_ref5, attribute) {
+      var commit = _ref5.commit,
+          dispatch = _ref5.dispatch;
+      // commit('popSkillEffect', attribute)
+      commit('makeSkillEffectOn');
+      commit('setSkillEffectAttribute', attribute);
+      setTimeout(function () {
+        //gif画像のループ処理をリセットする
+        commit('resetSkillEffectAttribute');
+      }, 1000);
+      setTimeout(function () {
+        dispatch('enemyAttack');
+        commit('makeSkillEffectOff');
+      }, 1000);
     },
     //モンスターのHPを減らす
-    reduceMonsterHp: function reduceMonsterHp(_ref13) {
-      var commit = _ref13.commit;
+    reduceMonsterHp: function reduceMonsterHp(_ref6) {
+      var state = _ref6.state,
+          getters = _ref6.getters,
+          commit = _ref6.commit,
+          dispatch = _ref6.dispatch;
       commit('reduceBattleMonsterHp');
+
+      if (state.monsterHp <= 0) {
+        commit('addBattleLog', getters.battleMonsterData.name + 'を倒した！');
+        setTimeout(function () {
+          dispatch('nextMonster');
+        }, 1000); //討伐数を一増やす,次のモンスターを表示する五体倒してるならリダイレクト
+
+        commit('incrementMonsterCount');
+
+        if (state.totalMonsterCount === 5) {
+          dispatch('dataSaveAndRedirect');
+        }
+      }
     },
-    // //ダメージ計算
-    damageCalculation: function damageCalculation(_ref14, damageData) {
-      var commit = _ref14.commit;
-      commit('damageCalculatingResult', damageData);
+    //ダメージ計算
+    damageCalculation: function damageCalculation(_ref7, damageData) {
+      var getters = _ref7.getters,
+          commit = _ref7.commit;
+
+      //モンスターの弱点を計算
+      if (getters.battleMonsterData.weak.includes(damageData.attribute)) {
+        commit('weakDamageToMonsters', damageData);
+      } else {
+        commit('damageToMonsters', damageData);
+      } //攻撃にランダム性を与える
+
+
+      commit('addRandomDamage');
     },
     //次のモンスターを出現させる
-    nextMonster: function nextMonster(_ref15) {
-      var state = _ref15.state,
-          getters = _ref15.getters,
-          dispatch = _ref15.dispatch;
+    nextMonster: function nextMonster(_ref8) {
+      var state = _ref8.state,
+          getters = _ref8.getters,
+          commit = _ref8.commit;
 
       //4体をランダムで出現させ、討伐数が4体なら魔王を出現させる。
       if (state.totalMonsterCount === 4) {
-        dispatch('descendSatan');
+        commit('descendSatan');
       } else {
-        dispatch('setIndexRandomMonster');
+        commit('setIndexRandomMonster');
       }
 
-      dispatch('addBattleLog', getters.battleMonsterData.name + 'があらわれた！');
-      dispatch('setMonsterHp');
-    },
-    //サタン降臨
-    descendSatan: function descendSatan(_ref16) {
-      var commit = _ref16.commit;
-      commit('demonDescentCeremony');
+      commit('addBattleLog', getters.battleMonsterData.name + 'があらわれた！');
+      commit('setMonsterHp');
     },
     //敵の攻撃
-    enemyAttack: function enemyAttack(_ref17) {
-      var commit = _ref17.commit;
-      commit('executeEnemyAttack');
+    enemyAttack: function enemyAttack(_ref9) {
+      var state = _ref9.state,
+          getters = _ref9.getters,
+          commit = _ref9.commit,
+          dispatch = _ref9.dispatch;
+      //モンスターが使用するスキルをランダムにする
+      var monsterSkill = getters.battleMonsterData.skills[Math.floor(Math.random() * getters.battleMonsterData.skills.length)]; //モンスターが与えるダメージをランダムにする
+
+      var damageResult = monsterSkill.power + Math.floor(Math.random() * 10); //登場時は攻撃しない
+
+      if (state.monsterHp === getters.battleMonsterData.hp) {
+        return;
+      } else {
+        commit('beginMonsterMotion');
+        setTimeout(function () {
+          commit('endMonsterMotion');
+        }, 300);
+        commit('addBattleLog', "".concat(getters.battleMonsterData.name, "\u306E").concat(monsterSkill.name, "\uFF01\n        <br>").concat(getters.battleCharacterData.name, "\u306F").concat(damageResult, "\u306E\u30C0\u30E1\u30FC\u30B8\u3092\u3046\u3051\u305F\uFF01")); //自身のhpを引く、0以下になったら,負けてしまったと表示し、result画面へ遷移する
+
+        commit('reduceBattleCharacterHp', damageResult);
+      }
+
+      if (state.characterHp <= 0) {
+        commit('lostCharacterHp');
+        dispatch('dataSaveAndRedirect');
+      }
     },
     //キャラクターのhpの回復
-    toRecover: function toRecover(_ref18) {
-      var commit = _ref18.commit;
+    toRecover: function toRecover(_ref10) {
+      var commit = _ref10.commit,
+          getters = _ref10.getters,
+          dispatch = _ref10.dispatch;
+      commit('commonModule/closeConfirmationDisplay', null, {
+        root: true
+      });
+      dispatch('increaseGauge');
+      commit('addBattleLog', "".concat(getters.battleCharacterData.name, "\u306FHP\u3092\u56DE\u5FA9\u3057\u305F\uFF01"));
       commit('recoverCharacter');
     },
-    //合計データを取得する
-    getTotalData: function getTotalData(_ref19) {
-      var commit = _ref19.commit;
-      commit('setTotalData');
-    },
     //DBへデータを保存し、リザルト画面へ遷移する
-    dataSaveAndRedirect: function dataSaveAndRedirect(_ref20) {
-      var dispatch = _ref20.dispatch;
+    dataSaveAndRedirect: function dataSaveAndRedirect(_ref11) {
+      var dispatch = _ref11.dispatch;
       //DBへ討伐数,合計ターン,合計ダメージ,使用キャラクター,ユーザーネームを保存
       dispatch('toRedirect');
     },
     //リザルト画面へ遷移する。リザルト画面にはバトル画面から取得したデータをパラメータとして渡す
-    toRedirect: function toRedirect(_ref21) {
-      var state = _ref21.state,
-          getters = _ref21.getters,
-          rootGetters = _ref21.rootGetters;
+    toRedirect: function toRedirect(_ref12) {
+      var state = _ref12.state,
+          getters = _ref12.getters,
+          rootGetters = _ref12.rootGetters;
       var userName = rootGetters['auth/userName'];
       _router__WEBPACK_IMPORTED_MODULE_0__["default"].push({
         path: '/game/battle-result',
@@ -72476,11 +72470,6 @@ var battleArea = {
           totalDamage: String(state.totalDamage)
         }
       });
-    },
-    //データをリセットする
-    resetData: function resetData(_ref22) {
-      var commit = _ref22.commit;
-      commit('initializeData');
     }
   }
 };
@@ -72524,7 +72513,6 @@ var characterSelect = {
   },
   mutations: {
     setCharacterList: function setCharacterList(state, data) {
-      console.log(data);
       state.characterList = data;
     },
     selectedCharacter: function selectedCharacter(state, characterId) {
@@ -72592,21 +72580,11 @@ var commonModule = {
     confirmationDisplay: false
   },
   mutations: {
-    setConfirmationTrue: function setConfirmationTrue(state) {
+    openConfirmationDisplay: function openConfirmationDisplay(state) {
       state.confirmationDisplay = true;
     },
-    setConfirmationFalse: function setConfirmationFalse(state) {
+    closeConfirmationDisplay: function closeConfirmationDisplay(state) {
       state.confirmationDisplay = false;
-    }
-  },
-  actions: {
-    openConfirmationDisplay: function openConfirmationDisplay(_ref) {
-      var commit = _ref.commit;
-      commit('setConfirmationTrue');
-    },
-    closeConfirmationDisplay: function closeConfirmationDisplay(_ref2) {
-      var commit = _ref2.commit;
-      commit('setConfirmationFalse');
     }
   }
 };
