@@ -2841,12 +2841,29 @@ __webpack_require__.r(__webpack_exports__);
     NormalSkill: _atoms_battle_area_NormalSkill_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
     HealSkill: _atoms_battle_area_HealSkill_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
+  data: function data() {
+    return {
+      skills: []
+    };
+  },
+  created: function created() {
+    if (this.battleCharacterData) {
+      this.fetchNormalSkills();
+    }
+  },
+  watch: {
+    battleCharacterData: function battleCharacterData() {
+      this.fetchNormalSkills();
+    }
+  },
   computed: {
     battleCharacterData: function battleCharacterData() {
       return this.$store.getters['battleArea/battleCharacterData'];
-    },
-    characterNormalSkill: function characterNormalSkill() {
-      return this.battleCharacterData.skills.filter(function (skill) {
+    }
+  },
+  methods: {
+    fetchNormalSkills: function fetchNormalSkills() {
+      this.skills = this.battleCharacterData.skills.filter(function (skill) {
         return skill.type === 'normal';
       });
     }
@@ -47934,7 +47951,7 @@ var render = function() {
     "ul",
     { staticClass: "battle-character__skills" },
     [
-      _vm._l(_vm.characterNormalSkill, function(skill, key) {
+      _vm._l(_vm.skills, function(skill, key) {
         return _c("normal-skill", {
           key: key,
           attrs: {

@@ -2,7 +2,7 @@
   <!-- ノーマルスキル -->
   <ul class="battle-character__skills">
     <normal-skill
-      v-for="(skill, key) in characterNormalSkill"
+      v-for="(skill, key) in skills"
       :key="key"
       :name="skill.name"
       :power="skill.power"
@@ -22,15 +22,31 @@ export default {
     NormalSkill,
     HealSkill
   },
+  data() {
+    return {
+      skills: []
+    }
+  },
+  created() {
+    if(this.battleCharacterData){
+      this.fetchNormalSkills()
+    }
+  },
+  watch: {
+    battleCharacterData() {
+      this.fetchNormalSkills()
+    }
+  },
   computed: {
     battleCharacterData() {
       return this.$store.getters['battleArea/battleCharacterData']
-    },
-    characterNormalSkill() {
-      return this.battleCharacterData.skills
-        .filter( function(skill) {
+    }
+  },
+  methods: {
+    fetchNormalSkills() {
+      this.skills = this.battleCharacterData.skills.filter( function(skill) {
           return skill.type === 'normal'
-        })
+      })
     }
   }
 }

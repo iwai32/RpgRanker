@@ -11,11 +11,6 @@
 <script>
 import { INTERNAL_SERVER_ERROR } from './util.js'
 export default {
-  computed: {
-    errorCode() {
-      return this.$store.state.error.code
-    }
-  },
   watch: {
     errorCode: {
       handler(val) {
@@ -27,6 +22,11 @@ export default {
     },
     $route() {
       this.$store.commit('error/setCode', null)
+    }
+  },
+  computed: {
+    errorCode() {
+      return this.$store.state.error.code
     }
   }
 }
