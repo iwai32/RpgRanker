@@ -1,9 +1,4 @@
 //メディアクエリ、モバイルファースト
-@mixin sp {
-  @media (min-width: ($sp)) {
-    @content;
-  }
-}
 @mixin tab {
   @media (min-width: ($tab)) {
     @content;
@@ -14,3 +9,18 @@
     @content;
   }
 }
+
+/**
+@import "../../../../sass/app.scss";
+@include tab {
+  max-width: 640px;
+}
+
+$main-color: #a66e3e;//茶色
+$base-color: #E0CB8E;
+$accent-color: #5C3D22;//濃い茶色
+
+//メディアクエリ用、モバイルファーストで作成
+$tab: 768px;
+$pc: 1025px;
+**/

@@ -26,8 +26,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../../../../sass/app.scss";
 .top-nav {
   margin: 0 auto;
-  width: 60%;
+  width: 220px;
+  @include tab {
+    width: 440px;
+  }
+  @include pc {
+    width: 660px;
+  }
 }
 </style>

@@ -1,10 +1,10 @@
 body {
-  background: #E0CB8E url('../images/top-bg.png') no-repeat center 40%;
+  background: $base-color;
   // font-family: 'Lato', sans-serif;
 }
 
 .page-common {
-  background: #E0CB8E;
+  background: $base-color;
 }
 
 img {
