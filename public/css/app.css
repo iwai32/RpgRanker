@@ -1773,16 +1773,16 @@ pre code {
 .table td {
   padding: 0.75rem;
   vertical-align: top;
-  border-top: 1px solid #666;
+  border-top: 1px solid #8f7427;
 }
 
 .table thead th {
   vertical-align: bottom;
-  border-bottom: 2px solid #666;
+  border-bottom: 2px solid #8f7427;
 }
 
 .table tbody + tbody {
-  border-top: 2px solid #666;
+  border-top: 2px solid #8f7427;
 }
 
 .table-sm th,
@@ -1791,12 +1791,12 @@ pre code {
 }
 
 .table-bordered {
-  border: 1px solid #666;
+  border: 1px solid #8f7427;
 }
 
 .table-bordered th,
 .table-bordered td {
-  border: 1px solid #666;
+  border: 1px solid #8f7427;
 }
 
 .table-bordered thead th,
@@ -2020,7 +2020,7 @@ pre code {
 .table .thead-light th {
   color: #495057;
   background-color: #e9ecef;
-  border-color: #666;
+  border-color: #8f7427;
 }
 
 .table-dark {
@@ -6363,7 +6363,7 @@ a.close.disabled {
   -webkit-box-pack: justify;
           justify-content: space-between;
   padding: 1rem 1rem;
-  border-bottom: 1px solid #666;
+  border-bottom: 1px solid #8f7427;
   border-top-left-radius: 0.3rem;
   border-top-right-radius: 0.3rem;
 }
@@ -6393,7 +6393,7 @@ a.close.disabled {
   -webkit-box-pack: end;
           justify-content: flex-end;
   padding: 1rem;
-  border-top: 1px solid #666;
+  border-top: 1px solid #8f7427;
   border-bottom-right-radius: 0.3rem;
   border-bottom-left-radius: 0.3rem;
 }
@@ -7158,23 +7158,23 @@ button.bg-dark:focus {
 }
 
 .border {
-  border: 1px solid #666 !important;
+  border: 1px solid #8f7427 !important;
 }
 
 .border-top {
-  border-top: 1px solid #666 !important;
+  border-top: 1px solid #8f7427 !important;
 }
 
 .border-right {
-  border-right: 1px solid #666 !important;
+  border-right: 1px solid #8f7427 !important;
 }
 
 .border-bottom {
-  border-bottom: 1px solid #666 !important;
+  border-bottom: 1px solid #8f7427 !important;
 }
 
 .border-left {
-  border-left: 1px solid #666 !important;
+  border-left: 1px solid #8f7427 !important;
 }
 
 .border-0 {
@@ -11091,12 +11091,12 @@ a.text-dark:focus {
   .table-dark td,
   .table-dark thead th,
   .table-dark tbody + tbody {
-    border-color: #666;
+    border-color: #8f7427;
   }
 
   .table .thead-dark th {
     color: inherit;
-    border-color: #666;
+    border-color: #8f7427;
   }
 }
 
@@ -11304,7 +11304,11 @@ img {
 /**ボタンの初期スタイル解除**/
 
 button {
+  background: transparent;
   border-style: none;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
 }
 
 button:focus {
@@ -11330,7 +11334,6 @@ button:hover {
 /**
 @import "../../../../sass/app.scss";
 @include tab {
-  max-width: 640px;
 }
 
 $main-color: #a66e3e;//茶色

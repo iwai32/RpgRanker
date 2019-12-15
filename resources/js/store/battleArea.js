@@ -167,7 +167,7 @@ const battleArea = {
       state.spSkillGaugeCircle = state.maxSpSkillGaugeCircle
       state.hasSpSkill = true
     },
-    setHeroGauge(state) {
+    setBraveGauge(state) {
       state.spSkillGaugeCircle += state.maxSpSkillGaugeCircle / 8
     },
     setCharacterGauge(state) {
@@ -257,7 +257,7 @@ const battleArea = {
     //ゲージの設定
     characterGaugeFilter({ getters, commit }) {
       if (getters.battleCharacterData.name === '勇者') {
-        commit('setHeroGauge')
+        commit('setBraveGauge')
       } else {
         commit('setCharacterGauge')
       }

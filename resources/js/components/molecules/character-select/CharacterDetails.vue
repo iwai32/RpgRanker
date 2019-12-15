@@ -18,14 +18,24 @@ export default {
 
 
 <style lang="scss" scoped>
+@import "../../../../sass/app.scss";
 .character-details {
-  box-shadow: 0 0 1px 1px #b79532;
+  box-shadow: 0 0 1px 1px $box-color;
   border-radius: 1px;
   margin-bottom: 30px;
   padding-top: 5px;
   position: relative;
   & + & {
     margin-bottom: 0;
+  }
+  @include tab {
+    padding-top: 10px;
+    margin-bottom: 0;
+    width: 300px;
+  }
+  @include pc {
+    margin-bottom: 30px;
+    width: 100%;
   }
 }
 </style>

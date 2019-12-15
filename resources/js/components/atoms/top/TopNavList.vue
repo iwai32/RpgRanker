@@ -43,8 +43,8 @@ export default {
     margin-bottom: 14px;
     .anchor {
       padding: 5px;
+      letter-spacing: .44em;
       &:hover {
-        padding: 3px;
         font-size: 2rem;
       }
     }

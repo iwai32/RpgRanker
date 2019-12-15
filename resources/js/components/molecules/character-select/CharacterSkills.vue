@@ -27,9 +27,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../../../../sass/app.scss";
 .character-skills {
-  color: #444444;
+  color: $text-color;
   font-size: 1.4rem;
   padding: 10px 5px 5px;
+  @include tab {
+    padding: 10px;
+  }
 }
 </style>

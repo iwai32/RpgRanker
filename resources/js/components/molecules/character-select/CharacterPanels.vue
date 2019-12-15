@@ -29,9 +29,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../../../../sass/app.scss";
 .character-panels {
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
+  @include tab {
+    margin-bottom: 20px;
+  }
 }
 </style>

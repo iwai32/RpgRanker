@@ -14,7 +14,9 @@ img {
 
 /**ボタンの初期スタイル解除**/
 button {
+  background: transparent;
   border-style: none;
+  appearance: none;
   &:focus {
     border: none;
     outline: none;

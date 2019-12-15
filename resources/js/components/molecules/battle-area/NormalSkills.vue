@@ -27,7 +27,7 @@ export default {
       skills: []
     }
   },
-  created() {
+  mounted() {
     if(this.battleCharacterData){
       this.fetchNormalSkills()
     }
@@ -44,9 +44,12 @@ export default {
   },
   methods: {
     fetchNormalSkills() {
-      this.skills = this.battleCharacterData.skills.filter( function(skill) {
-          return skill.type === 'normal'
-      })
+      if(this.battleCharacterData.skills) {
+        this.skills = this.battleCharacterData.skills
+            .filter( function(skill) {
+                return skill.type === 'normal'
+            })
+      }
     }
   }
 }

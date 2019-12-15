@@ -1,5 +1,5 @@
 <template>
-  <li class="g-nav__list">
+  <li class="login-register">
     <router-link 
       :to="'/game/login-register'"
     >Login/Register
@@ -8,11 +8,32 @@
 </template>
 
 <style lang="scss" scoped>
-.g-nav__list {
+@import "../../../../sass/app.scss";
+.login-register {
   font-size: 1.8rem;
-  letter-spacing: .05em;
+  letter-spacing: .08em;
+  padding: 10px;
   a {
-    color: #dddddd;
+    color: $white;
+  }
+  @include tab {
+    font-size: 2.2rem;
+    letter-spacing: .1em;
+  }
+  @include pc {
+    font-size: 2rem;
+    text-align: center;
+    padding: 0;
+    width: 25%;
+    a {
+      display: block;
+      padding: 10px;
+      &:hover {
+        border: 1px solid $border-color;
+        font-size: 2.2rem;
+        padding: 8px;
+      }
+    }
   }
 }
 </style>

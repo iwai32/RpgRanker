@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
     <router-view name="header" />
-    <main>
+    <main class="main">
       <router-view name="contents"/>
     </main>
     <router-view name="footer" />
@@ -33,10 +33,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../sass/app.scss";
 .wrapper {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   min-height: 100vh;
+  .main {
+    @include tab {
+      width: 680px;
+      margin: 0 auto;
+    }
+    @include pc {
+      width: 960px;
+    }
+  }
 }
 </style>

@@ -5,14 +5,21 @@
 </template>
 
 <style lang="scss" scoped>
+@import "../../../../sass/app.scss";
 .character-name {
-  background: lighten(#5C3D22, 10%);
+  background: lighten($accent-color, 10%);
   border-radius: 2px;
-  color: #eeeeee;
+  color: $white;
   font-size: 2rem;
   font-weight: bold;
   text-align: center;
   margin-bottom: 30px;
   padding: 5px;
+  @include tab {
+    letter-spacing: .5em;
+    font-size: 2.2rem;
+    margin-bottom: 45px;
+    width: 100%;
+  }
 }
 </style>

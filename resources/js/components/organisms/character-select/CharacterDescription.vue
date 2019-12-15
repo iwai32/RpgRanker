@@ -42,12 +42,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../../../../sass/app.scss";
 .character-description {
-  margin-bottom: 30px;
   border-radius: 5px;
   font-size: 1.2rem;
   letter-spacing: .08em;
   line-height: 1.5;
   padding: 10px;
+  @include tab {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    padding: 0;
+  }
 }
 </style>

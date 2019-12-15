@@ -47,8 +47,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.g-nav ul{
+@import "../../../../sass/app.scss";
+.g-nav>ul {
   display: flex;
   justify-content: space-between;
+  @include tab {
+    width: 640px;
+    margin: 0 auto;
+  }
+  @include pc {
+    width: 960px;
+  }
 }
 </style>

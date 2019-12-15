@@ -42,9 +42,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+@import "../../../../sass/app.scss";
 .character-confirmation {
-  background: #a66e3e;
+  background: $main-color;
   border-radius: 10px;
   padding: 10px;
   position: absolute;
@@ -54,12 +54,15 @@ export default {
   left: 0;
   margin: auto;
   letter-spacing: .1em;
-  width: 70%;
-  height: 120px;
+  width: 260px;
+  height: fit-content;
   &__btns {
     display: flex;
     justify-content: space-around;
     padding: 10px;
+  }
+  @include tab {
+    width: 520px;
   }
 }
 </style>

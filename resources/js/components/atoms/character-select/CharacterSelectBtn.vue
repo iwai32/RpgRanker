@@ -17,8 +17,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../../../../sass/app.scss";
 .character-select-btn {
   font-size: 2.4rem;
+  @include tab {
+    font-size: 3.4rem;
+  }
 }
 
 .inactive {

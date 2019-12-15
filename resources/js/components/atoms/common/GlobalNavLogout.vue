@@ -1,5 +1,5 @@
 <template>
-  <li class="g-nav__list-logout"
+  <li class="logout"
     @click="logout"
   >Logout
   </li>
@@ -25,9 +25,25 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.g-nav__list-logout {
-  color: #dddddd;
+@import "../../../../sass/app.scss";
+.logout {
+  color: $white;
   font-size: 1.8rem;
-  letter-spacing: .05em;
+  letter-spacing: .08em;
+  padding: 10px;
+  @include tab {
+    font-size: 2.2rem;
+    letter-spacing: .1em;
+  }
+  @include pc {
+    font-size: 2rem;
+    text-align: center;
+    width: 25%;
+    padding: 8px;
+      &:hover {
+        border: 1px solid $border-color;
+        font-size: 2.2rem;
+      }
+  }
 }
 </style>

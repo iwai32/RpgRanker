@@ -17,20 +17,25 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../../../../sass/app.scss";
 .confirmation-btn {
   border-radius: 2px;
   font-size: 1.8rem;
   font-weight: bold;
   letter-spacing: .1em;
   padding: 4px 20px;
-}
-.yes {
-  background: #b79532;
-  color: #815630;
-}
-
-.no {
-  background: #815630;
-  color: #eeeeee;
+  &.yes {
+    background: $box-color;
+    color: $accent-color;
+  }
+  &.no {
+    background: $accent-color;
+    color: $white;
+  }
+  @include tab {
+    border-radius: 4px;
+    font-size: 2.4rem;
+    padding: 8px 40px;
+  }
 }
 </style>

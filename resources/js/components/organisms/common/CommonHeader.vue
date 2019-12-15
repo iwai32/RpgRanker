@@ -14,9 +14,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../../../../sass/app.scss";
 .header {
-  padding: 10px;
-  background: linear-gradient(#5C3D22, lighten(#5C3D22, 20%));
+  background: linear-gradient($accent-color, lighten($accent-color, 20%));
   margin-bottom: 30px;
 }
 </style>
