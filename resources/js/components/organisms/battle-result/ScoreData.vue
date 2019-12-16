@@ -32,13 +32,23 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../../../../sass/app.scss";
 .score {
-  box-shadow: 0 0 1px 1px #b79532;
-  border-radius: 1px;
+  box-shadow: 0 0 1px 1px $box-color;
+  border-radius: 4px;
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around;
   margin-bottom: 30px;
   padding: 10px;
+  @include tab {
+    margin-bottom: 45px;
+    padding: 20px;
+  }
+  @include pc {
+    margin: 0;
+    padding: 20px 40px;
+    width: 580px;
+  }
 }
 </style>

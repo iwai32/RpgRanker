@@ -30,7 +30,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../../../../sass/app.scss";
 .user-data {
   width: 26%;
+  @include tab {
+    min-height: 140px;
+    width: 140px;
+  }
+    @include pc {
+    min-height: 120px;
+    width: 120px;
+  }
 }
 </style>

@@ -30,9 +30,21 @@ export default {
       if (this.resultData.monsterCount === '5') {
         return 'おめでとう！サタンをやっつけた！'
       } else {
-        return 'オレたちの戦いはこれからだ！'
+        return '残念！オレたちの戦いはこれからだ！'
       }
     }
   }
 }
 </script>
+
+<style lang="scss" scoped>
+@import "../../../../sass/app.scss";
+.battle-result {
+  @include pc {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+  }
+}
+</style>

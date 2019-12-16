@@ -1,5 +1,5 @@
 <template>
-  <li class="list damage">Damage
+  <li class="total-damage">Damage
     <span>
       {{ totalDamage }}
     </span>
@@ -15,11 +15,21 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.list {
+@import "../../../../sass/app.scss";
+.total-damage {
+  color: $text-color;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.5rem;
   line-height: 1.5;
+  @include tab {
+    font-size: 2.4rem;
+  }
+  @include pc {
+    align-items: flex-end;
+    font-size: 2.2rem;
+    line-height: normal;
+  }
 }
 </style>

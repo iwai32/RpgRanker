@@ -3,14 +3,23 @@
 </template>
 
 <style lang="scss" scoped>
+@import "../../../../sass/app.scss";
 .title {
-  color: #e0cb8e;
+  color: $base-color;
   font-size: 2.8rem;
   text-align: center;
   letter-spacing: .05em;
   margin-bottom: 10px;
-  -webkit-text-stroke: 1px #b9875d;
-  text-shadow: 1px 2px 2px #b9875d;
+  -webkit-text-stroke: 1px $box-color;
+  text-shadow: 1px 2px 2px $box-color;
   width: 100%;
+  @include tab {
+    font-size: 4rem;
+    margin-bottom: 20px;
+  }
+  @include pc {
+    font-size: 3.2rem;
+    margin-bottom: 10px;
+  }
 }
 </style>

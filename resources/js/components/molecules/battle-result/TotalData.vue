@@ -32,10 +32,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../../../../sass/app.scss";
   .total-data {
     display: flex;
     flex-flow: row wrap;
     justify-content: space-around;
     width: 60%;
+    @include tab {
+      width: 340px;
+    }
   }
 </style>

@@ -16,9 +16,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../../../../sass/app.scss";
 .link {
-  background: #a66e3e;
-  border: 2px solid #666666;
+  background: $main-color;
+  border: 2px solid $border-color;
   border-radius: 4px;
   font-size: 1.8rem;
   margin-bottom: 15px;
@@ -27,10 +28,21 @@ export default {
     margin-bottom: 0;
   }
   .anchor {
-    color: #eeeeee;
+    color: $white;
     display: block;
     letter-spacing: 0.1em;
     padding: 5px;
+  }
+  @include tab {
+    font-size: 1.8rem;
+    .anchor {
+      padding: 8px;
+    }
+  }
+  @include tab {
+    .anchor {
+      padding: 12px;
+    }
   }
 }
 </style>

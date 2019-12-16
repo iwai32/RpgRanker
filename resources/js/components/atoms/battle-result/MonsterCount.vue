@@ -24,6 +24,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../../../../sass/app.scss";
 .monster-count {
   color: #EAA400;
   display: flex;
@@ -40,8 +41,14 @@ export default {
   width: 100%;
   &.defeated-satan {
     color: #7b2cd6;
-    -webkit-text-stroke: 1px #444;
-    text-shadow: 1px 2px 2px #444;
+    -webkit-text-stroke: 1px $text-color;
+    text-shadow: 1px 2px 2px $text-color;
+  }
+  @include tab {
+    font-size: 6.4rem;
+  }
+  @include tab {
+    margin-bottom: 0;
   }
 }
 </style>

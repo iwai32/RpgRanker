@@ -17,10 +17,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../../../../sass/app.scss";
 .character-icon {
   border-radius: 50%;
-  box-shadow: 0 0 2px 2px #b79532;
-  overflow: hidden;
+  box-shadow: 0 0 2px 2px $box-color;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-bottom: 10px;
+  overflow: hidden;
+  @include tab {
+    box-shadow: 0 0 4px 4px $box-color;
+  }
 }
 </style>

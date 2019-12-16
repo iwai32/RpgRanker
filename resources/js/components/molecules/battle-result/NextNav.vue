@@ -31,8 +31,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../../../../sass/app.scss";
 .next-nav {
   width: 200px;
   margin: 0 auto;
+  @include tab {
+    width: 480px;
+  }
+  @include pc {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 220px;
+  }
 }
 </style>
