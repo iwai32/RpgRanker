@@ -39,9 +39,13 @@ export default {
       padding: 8px;
     }
   }
-  @include tab {
+  @include pc {
     .anchor {
       padding: 12px;
+      &:hover {
+        padding: 10px;
+        font-size: 2rem;
+      }
     }
   }
 }

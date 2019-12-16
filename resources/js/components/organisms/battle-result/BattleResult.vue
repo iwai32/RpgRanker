@@ -43,7 +43,7 @@ export default {
   @include pc {
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-between;
+    justify-content: space-around;
     flex-direction: row-reverse;
   }
 }
