@@ -82,14 +82,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../../../../sass/app.scss";
 .form-panel {
   padding: 5px 10px;
-  
   .btn-wrapper {
     display: flex;
     align-items: center;
     padding: 20px 10px 10px;
     position: relative;
+  }
+  @include pc {
+    width: 680px;
+    margin: 0 auto;
   }
 }
 </style>

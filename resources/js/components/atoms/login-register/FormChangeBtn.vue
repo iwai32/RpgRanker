@@ -15,10 +15,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../../../../sass/app.scss";
 .change-btn {
-  background: #5C3D22;
+  background: $accent-color;
   border-radius: 4px;
-  color: #eeeeee;
+  color: $white;
   display: block;
   font-size: 1.2rem;
   text-align: center;
@@ -27,5 +28,9 @@ export default {
   position: absolute;
   right: 0;
   width: 28%;
+  @include tab {
+    font-size: 1.6rem;
+    padding: 6px;
+  }
 }
 </style>

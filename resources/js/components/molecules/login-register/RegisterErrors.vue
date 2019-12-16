@@ -42,7 +42,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../../../../sass/app.scss";
 .errors {
-  color: #ff0000;
+  color: $error-color;
+  @include tab {
+    font-size: 1.6rem;
+  }
 }
 </style>

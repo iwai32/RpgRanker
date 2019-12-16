@@ -5,7 +5,7 @@
     >
       <slot></slot>
     </label>
-    <input class="input-init"
+    <input class="form-input input-init"
       :type="typeName"
       :id="idName"
       :value="value"
@@ -25,15 +25,35 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../../../../sass/app.scss";
 .form-item {
   display: flex;
   flex-direction: column;
   margin-bottom: 20px;
   .form-label {
-    color: #444;
+    color: $text-color;
     font-size: 1.4rem;
     line-height: 1.5;
     letter-spacing: .08em;
+  }
+  .form-input {
+    font-size: 1.2rem;
+  }
+  @include tab {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 30px;
+    .form-label {
+      font-size: 1.8rem;
+    }
+    .form-input {
+      font-size: 1.6rem;
+      width: 440px;
+    }
+  }
+  @include pc {
+    margin-bottom: 35px;
   }
 }
 </style>

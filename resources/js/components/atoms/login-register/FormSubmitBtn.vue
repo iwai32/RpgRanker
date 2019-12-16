@@ -5,10 +5,11 @@
 </template>
 
 <style lang="scss" scoped>
+@import "../../../../sass/app.scss";
 .submit-btn {
-  background: #a66e3e;
+  background: $main-color;
   border-radius: 4px;
-  color: #eeeeee;
+  color: $white;
   display: block;
   font-size: 1.4rem;
   text-align: center;
@@ -19,5 +20,9 @@
   left: 0;
   width: 40%;
   margin: auto;
+  @include tab {
+    font-size: 2rem;
+    padding: 8px;
+  }
 }
 </style>
