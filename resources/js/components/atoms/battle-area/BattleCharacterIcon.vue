@@ -28,21 +28,18 @@ export default {
   overflow: hidden;
   text-align: center;
   position: absolute;
-  top: -10px;
+  top: 0;
   right: 0;
   bottom: 0;
   left: 0;
   margin: auto;
   z-index: 1;
-  width: calc(100% - 20px);
+  width: calc(100% - 10px);
   height: max-content;
   @include tab {
     width: 100px;
-    top: -20px;
   }
   @include pc {
-    position: static;
-    margin: 0;
     width: 80px;
   }
 }

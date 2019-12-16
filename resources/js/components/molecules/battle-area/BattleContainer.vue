@@ -46,7 +46,7 @@ export default {
     padding: 40px 20px 10px;
   }
   @include pc {
-    padding: 40px 60px 10px;
+    width: 680px;
   }
 }
 

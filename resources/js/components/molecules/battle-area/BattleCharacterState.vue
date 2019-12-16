@@ -1,26 +1,18 @@
 <template>
   <div class="battle-character-state">
 
-    <sp-skill-guage></sp-skill-guage>
-
-    <battle-character-icon></battle-character-icon>
-
-    <sp-skill></sp-skill>
+    <battle-character-circle></battle-character-circle>
 
     <battle-character-life></battle-character-life>
   </div>
 </template>
 
 <script>
-import SpSkillGuage from '../../atoms/battle-area/SpSkillGuage.vue'
-import BattleCharacterIcon from '../../atoms/battle-area/BattleCharacterIcon.vue'
-import SpSkill from '../../atoms/battle-area/SpSkill.vue'
+import BattleCharacterCircle from '../../molecules/battle-area/BattleCharacterCircle.vue'
 import BattleCharacterLife from '../../atoms/battle-area/BattleCharacterLife.vue'
 export default {
   components: {
-    SpSkillGuage,
-    BattleCharacterIcon,
-    SpSkill,
+    BattleCharacterCircle,
     BattleCharacterLife
   }
 }
@@ -35,22 +27,16 @@ export default {
    0 0 0 1px $text-color inset;
   border-radius: 5px 5px 5px 20px;
   padding: 5px;
-  position: relative;
   max-width: 144px;
   width: 30%;
-  &:before {
-    content: '';
-    display: block;
-    padding-top: 100%;
-  }
   @include tab {
     max-width: initial;
     width: 150px;
   }
   @include pc {
     display: flex;
-    padding: 20px;
-    width: 280px;
+    padding: 10px;
+    width: 230px;
     &:before {
       padding-top: 0;
     }

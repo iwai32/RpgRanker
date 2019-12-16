@@ -23,7 +23,7 @@ export default {
   color: $white;
   font-size: 3vw;
   position: relative;
-  padding: 6px 0 0 16px;
+  padding: 4px 0 0 16px;
   text-shadow: 2px 1px 1px $text-color;
   letter-spacing: .08em;
   &:before {
@@ -31,7 +31,7 @@ export default {
     content: '';
     display: block;
     position: absolute;
-    top: 2px;
+    top: 1px;
     left: 0;
     bottom: 0;
     width: 18px;
@@ -49,13 +49,15 @@ export default {
     }
   }
   @include pc {
-    font-size: 2rem;
+    font-size: 1.6rem;
     display: flex;
-    margin-left: 10px;
+    padding-left: 28px;
     align-items: center;
     &:before {
       top: 0;
       margin: auto;
+      width: 28px;
+      height: 28px;
     }
   }
 }

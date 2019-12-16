@@ -32,25 +32,21 @@ export default {
   box-shadow: 0 0 0 1px $text-color,
    0 0 0 1px $text-color inset;
   position: absolute;
-  top: -10px;
+  top: 0;
   right: 0;
   bottom: 0;
   left: 0;
   margin: auto;
   z-index: 0;
-  width: calc(100% - 10px);
   &__circle {
     transition: .4s;
   }
   @include tab {
-    top: -20px;
     width: 120px;
   }
    @include pc {
-    top: 10px;
-    left: 10px;
-    margin: 0;
-    width: 100px;
+     position: static;
+     width: 90px;
   }
 }
 </style>

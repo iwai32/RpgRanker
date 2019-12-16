@@ -2,18 +2,18 @@
   <div class="battle-character">
     <battle-character-state></battle-character-state>
 
-    <normal-skills></normal-skills>
+    <battle-character-skills></battle-character-skills>
 
   </div>
 </template>
 
 <script>
 import BattleCharacterState from '../../molecules/battle-area/BattleCharacterState.vue'
-import NormalSkills from '../../molecules/battle-area/NormalSkills.vue'
+import BattleCharacterSkills from '../../molecules/battle-area/BattleCharacterSkills.vue'
 export default {
   components: {
     BattleCharacterState,
-    NormalSkills
+    BattleCharacterSkills
   }
 }
 </script>
