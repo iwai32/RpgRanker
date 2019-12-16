@@ -36,10 +36,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+@import "../../../../sass/app.scss";
 .recovery-confirmation {
-  background: #a66e3e;
+  background: linear-gradient($main-color 30%, $accent-color);
+  border: 1px solid $contents-color;
   border-radius: 10px;
+  box-shadow: 0 0 0 1px $text-color,
+   0 0 0 1px $text-color inset;
   padding: 10px;
   position: absolute;
   top: 0;
@@ -54,6 +57,9 @@ export default {
     display: flex;
     justify-content: space-around;
     padding: 10px;
+  }
+  @include tab {
+    width: 340px;
   }
 }
 </style>

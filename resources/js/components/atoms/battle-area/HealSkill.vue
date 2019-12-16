@@ -1,5 +1,5 @@
 <template>
-  <li class="battle-character__skill"
+  <li class="battle-character-skill"
     :class="{ inactive: recoveryUseTimes === 0 }"
     @click="openConfirmationDisplay()"
   >回復
@@ -22,13 +22,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.battle-character__skill {
-  background: linear-gradient(#b9875d 30%, #7b5535);
-  border: 1px solid #dddccc;
+@import "../../../../sass/app.scss";
+.battle-character-skill {
+  background: linear-gradient($main-color 30%, $accent-color);
+  border: 1px solid $contents-color;
   border-radius: 10px;
-  box-shadow: 0 0 0 1px #222,
-   0 0 0 1px #222 inset;
-  color: #ffffff;
+  box-shadow: 0 0 0 1px $text-color,
+   0 0 0 1px $text-color inset;
+  color: $white;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -36,14 +37,27 @@ export default {
   font-size: 3.4vw;
   margin-bottom: 10px;
   padding: 8px 5px;
-  text-shadow: 2px 1px 1px #222;
+  text-shadow: 2px 1px 1px $text-color;
   width: 46%;
   white-space: nowrap;
   &:hover {
     opacity: .8;
   }
   &.inactive {
-    background: linear-gradient(#babac4 30%, #444);
+    background: linear-gradient($contents-color 30%, $text-color);
+  }
+
+  @include tab {
+    font-size: 2rem;
+    padding: 16px 5px;
+    margin-bottom: 20px;
+  }
+
+  @include pc {
+    font-size: 1.6rem;
+    margin-bottom: 0;
+    padding: 12px 5px;
+    width: 210px;
   }
 }
 </style>

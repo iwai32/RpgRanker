@@ -44,8 +44,11 @@ export default {
 <style lang="scss" scoped>
 @import "../../../../sass/app.scss";
 .character-confirmation {
-  background: $main-color;
+  background: linear-gradient($main-color 30%, $accent-color);
+  border: 1px solid $contents-color;
   border-radius: 10px;
+  box-shadow: 0 0 0 1px $text-color,
+   0 0 0 1px $text-color inset;
   padding: 10px;
   position: absolute;
   top: 0;
@@ -62,7 +65,7 @@ export default {
     padding: 10px;
   }
   @include tab {
-    width: 520px;
+    width: 360px;
   }
 }
 </style>

@@ -18,6 +18,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../../../../sass/app.scss";
 .skill-effect {
   display: flex;
   align-items: center;
@@ -25,10 +26,13 @@ export default {
   width: 100%;
   height: 200px;
   position: absolute;
-  top: -200px;
+  top: -100px;
   right: 0;
   bottom: 0;
   left: 0;
   margin: auto;
+  @include tab {
+    top: -200px;
+  }
 }
 </style>

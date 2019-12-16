@@ -25,11 +25,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../../../../sass/app.scss";
 .sp-skill-guage {
   border-radius: 50%;
-  border: 1px solid #dddccc;
-  box-shadow: 0 0 0 1px #222,
-   0 0 0 1px #222 inset;
+  border: 1px solid $contents-color;
+  box-shadow: 0 0 0 1px $text-color,
+   0 0 0 1px $text-color inset;
   position: absolute;
   top: -10px;
   right: 0;
@@ -40,6 +41,16 @@ export default {
   width: calc(100% - 10px);
   &__circle {
     transition: .4s;
+  }
+  @include tab {
+    top: -20px;
+    width: 120px;
+  }
+   @include pc {
+    top: 10px;
+    left: 10px;
+    margin: 0;
+    width: 100px;
   }
 }
 </style>

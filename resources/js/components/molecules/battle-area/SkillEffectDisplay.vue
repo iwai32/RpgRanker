@@ -1,6 +1,6 @@
 <template>
   <div class="skill-effect-display"
-      v-if="isSkillEffect"
+    v-if="isSkillEffect"
   >
   <skill-effect></skill-effect>
   </div>

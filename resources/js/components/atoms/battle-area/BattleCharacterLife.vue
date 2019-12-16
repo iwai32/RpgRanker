@@ -18,12 +18,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../../../../sass/app.scss";
 .battle-character-life {
-  color: #ffffff;
-  font-size: 3.2vw;
+  color: $white;
+  font-size: 3vw;
   position: relative;
   padding: 6px 0 0 16px;
-  text-shadow: 2px 1px 1px #222;
+  text-shadow: 2px 1px 1px $text-color;
   letter-spacing: .08em;
   &:before {
     background: url('../../../../images/heart-icon.png') no-repeat center center/contain;
@@ -35,6 +36,27 @@ export default {
     bottom: 0;
     width: 18px;
     height: 18px;
+  }
+  @include tab {
+    font-size: 1.8rem;
+    letter-spacing: .2em;
+    padding: 0;
+    padding-left: 32px;
+    &:before {
+      top: -8px;
+      width: 32px;
+      height: 32px;
+    }
+  }
+  @include pc {
+    font-size: 2rem;
+    display: flex;
+    margin-left: 10px;
+    align-items: center;
+    &:before {
+      top: 0;
+      margin: auto;
+    }
   }
 }
 </style>

@@ -3,14 +3,8 @@
     <section-title>{{ battleMonsterData.name }}</section-title>
 
     <!-- モンスターエリア -->
-    <battle-monster-con></battle-monster-con>
+    <battle-container></battle-container>
     
-    <!-- ログ -->
-    <battle-log></battle-log>
-
-    <!-- キャラクター情報 -->
-    <battle-character></battle-character>
-
     <!-- 回復確認 -->
     <confirmation-display
       v-if="recoveryUseTimes > 0"
@@ -23,17 +17,13 @@
 
 <script>
 import SectionTitle from '../../atoms/common/SectionTitle.vue'
-import BattleMonsterCon from '../../molecules/battle-area/BattleMonsterCon.vue'
-import BattleLog from '../../atoms/battle-area/BattleLog.vue'
-import BattleCharacter from '../../organisms/battle-area/BattleCharacter.vue'
+import BattleContainer from '../../molecules/battle-area/BattleContainer.vue'
 import ConfirmationDisplay from '../../organisms/common/ConfirmationDisplay.vue'
 import RecoveryConfirmation from '../../molecules/battle-area/RecoveryConfirmation.vue'
 export default {
   components: {
     SectionTitle,
-    BattleMonsterCon,
-    BattleLog,
-    BattleCharacter,
+    BattleContainer,
     ConfirmationDisplay,
     RecoveryConfirmation
   },
@@ -73,3 +63,15 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+@import "../../../../sass/app.scss";
+.battle-area {
+  @include tab {
+    padding: 20px;
+  }
+    @include pc {
+    padding: 0;
+  }
+}
+</style>

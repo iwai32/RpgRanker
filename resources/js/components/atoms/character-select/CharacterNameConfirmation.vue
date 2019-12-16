@@ -25,6 +25,7 @@ export default {
   font-weight: bold;
   padding: 10px;
   text-align: center;
+  text-shadow: 2px 1px 1px $text-color;
   margin-bottom: 10px;
   @include tab {
     font-size: 2.2rem;

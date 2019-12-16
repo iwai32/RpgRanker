@@ -27,11 +27,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../../../../sass/app.scss";
 .battle-character-state {
-  background: linear-gradient(#b9875d 40%, #7b5535);
-  border: 1px solid #dddccc;
-  box-shadow: 0 0 0 1px #222,
-   0 0 0 1px #222 inset;
+  background: linear-gradient($main-color 40%, $accent-color);
+  border: 1px solid $contents-color;
+  box-shadow: 0 0 0 1px $text-color,
+   0 0 0 1px $text-color inset;
   border-radius: 5px 5px 5px 20px;
   padding: 5px;
   position: relative;
@@ -41,6 +42,18 @@ export default {
     content: '';
     display: block;
     padding-top: 100%;
+  }
+  @include tab {
+    max-width: initial;
+    width: 150px;
+  }
+  @include pc {
+    display: flex;
+    padding: 20px;
+    width: 280px;
+    &:before {
+      padding-top: 0;
+    }
   }
 }
 </style>

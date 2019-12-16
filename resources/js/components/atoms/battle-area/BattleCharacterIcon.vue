@@ -18,12 +18,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../../../../sass/app.scss";
 .battle-character-icon {
   background: #777;
   border-radius: 50%;
-  border: 1px solid #dddccc;
-  box-shadow: 0 0 0 1px #222,
-   0 0 0 1px #222 inset;
+  border: 1px solid $contents-color;
+  box-shadow: 0 0 0 1px $text-color,
+   0 0 0 1px $text-color inset;
   overflow: hidden;
   text-align: center;
   position: absolute;
@@ -35,5 +36,14 @@ export default {
   z-index: 1;
   width: calc(100% - 20px);
   height: max-content;
+  @include tab {
+    width: 100px;
+    top: -20px;
+  }
+  @include pc {
+    position: static;
+    margin: 0;
+    width: 80px;
+  }
 }
 </style>

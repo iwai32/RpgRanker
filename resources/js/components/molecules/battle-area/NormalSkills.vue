@@ -1,6 +1,6 @@
 <template>
   <!-- ノーマルスキル -->
-  <ul class="battle-character__skills">
+  <ul class="battle-character-skills">
     <normal-skill
       v-for="(skill, key) in skills"
       :key="key"
@@ -56,11 +56,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.battle-character__skills {
+@import "../../../../sass/app.scss";
+.battle-character-skills {
   display: flex;
   justify-content: space-between;
   flex-flow: row wrap;
   padding: 5px 0 5px 10px;
   width: 68%;
+  @include tab {
+    padding: 10px;
+    width: 350px;
+  }
+  @include pc {
+    padding: 0;
+    width: 440px;
+  }
 }
 </style>
