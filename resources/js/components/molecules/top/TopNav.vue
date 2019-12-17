@@ -34,7 +34,7 @@ export default {
     width: 440px;
   }
   @include pc {
-    width: 660px;
+    width: 500px;
   }
 }
 </style>

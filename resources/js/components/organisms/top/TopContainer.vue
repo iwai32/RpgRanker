@@ -23,6 +23,7 @@ export default {
 
 <style lang="scss" scoped>
 .top-container {
+  background: url('../../../../images/top-bg.png') no-repeat center center;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
