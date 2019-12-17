@@ -1,15 +1,18 @@
 <template>
   <div class="form-item">
-    <label class="form-label" 
+    <label class="form-label"
       :for="idName"
     >
       <slot></slot>
+      <span class="required">※</span>
     </label>
     <input class="form-input input-init"
       :type="typeName"
       :id="idName"
       :value="value"
+      :placeholder="initialValue"
       @input="$emit('input', $event.target.value)"
+      required
     >
   </div>
 </template>
@@ -19,7 +22,8 @@ export default {
   props: {
     typeName: String,
     idName: String,
-    value: String
+    value: String,
+    initialValue: String
   }
 }
 </script>
@@ -35,9 +39,16 @@ export default {
     font-size: 1.4rem;
     line-height: 1.5;
     letter-spacing: .08em;
+    .required {
+      color: $error-color;
+      font-size: 1rem;
+    }
   }
   .form-input {
     font-size: 1.2rem;
+    &::placeholder {
+      font-size: 1rem;
+    }
   }
   @include tab {
     flex-direction: row;
@@ -50,6 +61,9 @@ export default {
     .form-input {
       font-size: 1.6rem;
       width: 440px;
+      &::placeholder {
+        font-size: 1.2rem;
+      }
     }
   }
   @include pc {

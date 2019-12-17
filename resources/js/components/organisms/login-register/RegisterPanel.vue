@@ -6,6 +6,7 @@
       <form-item
         :typeName="'text'"
         :idName="'registerUserName'"
+        :initialValue="'最大８文字で入力してください'"
         v-model="registerData.name"
       >UserName
       </form-item>
@@ -13,6 +14,7 @@
       <form-item
         :typeName="'email'"
         :idName="'registerEmail'"
+        :initialValue="'メールアドレス'"
         v-model="registerData.email"
       >Email
       </form-item>
@@ -20,6 +22,7 @@
       <form-item
         :typeName="'password'"
         :idName="'registerPassword'"
+        :initialValue="'８文字以上で入力してください'"
         v-model="registerData.password"
       >Password
       </form-item>
@@ -27,6 +30,7 @@
       <form-item
         :typeName="'password'"
         :idName="'registerPasswordConfirmation'"
+        :initialValue="'パスワード(確認)'"
         v-model="registerData.password_confirmation"
       >Password (confirm)
       </form-item>

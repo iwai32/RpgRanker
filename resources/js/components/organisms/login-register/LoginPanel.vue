@@ -6,6 +6,7 @@
       <form-item
         :typeName="'text'"
         :idName="'loginUserName'"
+        :initialValue="'最大８文字で入力してください'"
         v-model="loginData.name"
       >UserName
       </form-item>
@@ -13,6 +14,7 @@
       <form-item
         :typeName="'email'"
         :idName="'loginEmail'"
+        :initialValue="'メールアドレス'"
         v-model="loginData.email"
       >Email
       </form-item>
@@ -20,6 +22,7 @@
       <form-item
         :typeName="'password'"
         :idName="'loginPassword'"
+        :initialValue="'８文字以上で入力してください'"
         v-model="loginData.password"
       >Password
       </form-item>
