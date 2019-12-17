@@ -28,7 +28,7 @@ export default {
 @import "../../../../sass/app.scss";
 .logout {
   color: $white;
-  font-size: 1.8rem;
+  font-size: 3.8vw;
   letter-spacing: .08em;
   padding: 10px;
   @include tab {

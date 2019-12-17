@@ -18,7 +18,7 @@ export default {
 <style lang="scss" scoped>
 @import "../../../../sass/app.scss";
 .g-nav__list {
-  font-size: 1.8rem;
+  font-size: 3.8vw;
   letter-spacing: .08em;
   padding: 10px;
   a {

@@ -8,7 +8,7 @@
 @import "../../../../sass/app.scss";
 .user-name {
   color: $text-color;
-  font-size: 1.2rem;
+  font-size: 2vw;
   text-align: center;
   @include tab {
     font-size: 2.2rem;
