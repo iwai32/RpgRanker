@@ -28,12 +28,11 @@ export default {
     RecoveryConfirmation
   },
   created() {
-    this.setCharacterIndex()
+    this.getBattleCharacterData()
     this.setIndexRandomMonster()
     this.resetData()
   },
   mounted() {
-    this.setCharacterHp()
     this.setMonsterHp()
   },
   computed: {
@@ -45,11 +44,8 @@ export default {
     }
   },
   methods: {
-    setCharacterIndex() {
-      this.$store.dispatch('battleArea/setCharacterIndex')
-    },
-    setCharacterHp() {
-      this.$store.commit('battleArea/setCharacterHp')
+    getBattleCharacterData() {
+      this.$store.dispatch('battleArea/getBattleCharacterData')
     },
     setIndexRandomMonster() {
       this.$store.commit('battleArea/setIndexRandomMonster')

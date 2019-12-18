@@ -14,7 +14,7 @@ export default {
       return this.$store.state.battleArea.hasSpSkill
     },
     battleCharacterData() {
-      return this.$store.getters['battleArea/battleCharacterData']
+      return this.$store.state.battleArea.battleCharacterData
     },
     characterSpSkill() {
       return this.battleCharacterData.skills

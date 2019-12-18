@@ -119,8 +119,8 @@ const battleArea = {
         ]
       }
     ],
-    characterHp: "",
-    characterIndex: 0,
+    characterHp: null,
+    battleCharacterData: [],
     spSkillGaugeCircle: 0,
     maxSpSkillGaugeCircle: 100,
     hasSpSkill: false,
@@ -140,9 +140,6 @@ const battleArea = {
     totalMonsterCount: 0
   },
   getters: {
-    battleCharacterData(state, getters, rootState) {
-      return rootState.characterSelect.characterList[state.characterIndex]
-    },
     firstMonsterAppearanceLog(state, getters) {
       return state.battleLog = getters.battleMonsterData.name + 'があらわれた！<br>'
     },
@@ -151,11 +148,11 @@ const battleArea = {
     }
   },
   mutations: {
-    makeParameterCharacterIndex(state, characterIndex) {
-      state.characterIndex = characterIndex
+    setBattleCharacterData(state, data) {
+      state.battleCharacterData = data
     },
-    setCharacterHp(state) {
-      state.characterHp = this.getters['battleArea/battleCharacterData'].hp
+    setCharacterHp(state, hpValue) {
+      state.characterHp = hpValue
     },
     setIndexRandomMonster(state) {
       state.monsterIndex = 1 + Math.floor(Math.random() * (state.monsterList.length-1))
@@ -224,7 +221,7 @@ const battleArea = {
     },
     recoverCharacter(state) {
       state.recoveryUseTimes--
-      state.characterHp = this.getters['battleArea/battleCharacterData'].hp
+      state.characterHp = state.battleCharacterData.hp
       state.totalTurn++
     },
     setTotalData(state) {
@@ -242,10 +239,12 @@ const battleArea = {
     }
   },
   actions: {
-    //キャラクターを決めるパラメータ
-    setCharacterIndex({ commit, rootState }) {
-      let characterIndex = rootState.route.params.characterIndex
-      commit('makeParameterCharacterIndex', characterIndex)
+    //バトルキャラクター
+    async getBattleCharacterData({ commit, rootState}) {
+      const characterId = { id: rootState.route.params.characterId }
+      const response = await axios.get('/api/battle-character', { params: characterId} )
+
+      commit('setBattleCharacterData', response.data)
     },
     //ゲージ増加
     increaseGauge({ state, commit, dispatch }) {
@@ -255,8 +254,8 @@ const battleArea = {
       }
     },
     //ゲージの設定
-    characterGaugeFilter({ getters, commit }) {
-      if (getters.battleCharacterData.name === '勇者') {
+    characterGaugeFilter({ state, commit }) {
+      if (state.battleCharacterData.name === '勇者') {
         commit('setBraveGauge')
       } else {
         commit('setCharacterGauge')
@@ -272,7 +271,6 @@ const battleArea = {
     },
     //スキルのエフェクト
     showSkillEffect({ commit, dispatch }, attribute) {
-      // commit('popSkillEffect', attribute)
       commit('makeSkillEffectOn')
       commit('setSkillEffectAttribute', attribute)
       
@@ -348,7 +346,7 @@ const battleArea = {
 
        commit('addBattleLog',
         `${getters.battleMonsterData.name}の${monsterSkill.name}！
-        <br>${getters.battleCharacterData.name}は${damageResult}のダメージをうけた！`
+        <br>${state.battleCharacterData.name}は${damageResult}のダメージをうけた！`
        )
        //自身のhpを引く、0以下になったら,負けてしまったと表示し、result画面へ遷移する
        commit('reduceBattleCharacterHp', damageResult)
@@ -360,10 +358,10 @@ const battleArea = {
      }
     },
     //キャラクターのhpの回復
-    toRecover( { commit, getters, dispatch } ) {
+    toRecover( { commit, state, dispatch } ) {
       commit('commonModule/closeConfirmationDisplay', null, { root: true })
       dispatch('increaseGauge')
-      commit('addBattleLog',`${getters.battleCharacterData.name}はHPを回復した！`)
+      commit('addBattleLog',`${state.battleCharacterData.name}はHPを回復した！`)
       commit('recoverCharacter')
     },
     //DBへデータを保存し、リザルト画面へ遷移する

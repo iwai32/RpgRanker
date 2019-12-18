@@ -48,7 +48,7 @@ const routes = [
         }
       },
       {
-        path: 'battle/:characterIndex',
+        path: 'battle/:characterId',
         components: {
           section: BattleArea
         }

@@ -33,7 +33,6 @@ sync(store, router)
 //ログインチェック
 const createApp = async() => {
     await store.dispatch('auth/currentUser')
-    await store.dispatch('characterSelect/getCharacterList')
 }
 
 const app = new Vue({

@@ -57,6 +57,9 @@ export default {
     ConfirmationDisplay,
     CharacterConfirmation
   },
+  created() {
+    this.getCharacterList()
+  },
   computed: {
     startCharacterNum() {
       return this.$store.state.characterSelect.startCharacterNum
@@ -69,6 +72,9 @@ export default {
     }
   },
   methods: {
+    getCharacterList() {
+      this.$store.dispatch('characterSelect/getCharacterList')
+    },
     nextCharacter() {
       if (this.characterList.length === this.endCount) {
         return

@@ -7,6 +7,7 @@ const characterSelect = {
     endCount: 3//キャラクター画面の最大表示数
   },
   getters: {
+    //キャラクターごとの配列インデックス
     characterIndex(state) {
       return state.characterId - 1
     },

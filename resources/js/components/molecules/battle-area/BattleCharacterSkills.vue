@@ -39,7 +39,7 @@ export default {
   },
   computed: {
     battleCharacterData() {
-      return this.$store.getters['battleArea/battleCharacterData']
+      return this.$store.state.battleArea.battleCharacterData
     }
   },
   methods: {

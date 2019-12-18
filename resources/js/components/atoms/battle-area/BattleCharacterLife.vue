@@ -1,17 +1,27 @@
 <template>
   <p class="battle-character-life">
-    {{ battleCharacterData.hp }}/{{ characterHp }}
+    {{ battleCharacterDataHp }}/{{ characterHp }}
   </p>
 </template>
 
 <script>
 export default {
+  watch: {
+    battleCharacterDataHp(hpValue) {
+      this.setCharacterHp(hpValue)
+    }
+  },
   computed: {
     characterHp() {
       return this.$store.state.battleArea.characterHp
     },
-    battleCharacterData() {
-      return this.$store.getters['battleArea/battleCharacterData']
+    battleCharacterDataHp() {
+      return this.$store.state.battleArea.battleCharacterData.hp
+    }
+  },
+  methods: {
+    setCharacterHp(hpValue) {
+      this.$store.commit('battleArea/setCharacterHp', hpValue)
     }
   }
 }

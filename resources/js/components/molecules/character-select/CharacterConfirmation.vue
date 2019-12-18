@@ -25,14 +25,14 @@ export default {
     ConfirmationBtn
   },
   computed: {
-    characterIndex() {
-      return this.$store.getters['characterSelect/characterIndex']
+    characterId() {
+      return this.$store.state.characterSelect.characterId
     }
   },
   methods: {
     toBattle() {
       this.$store.commit('commonModule/closeConfirmationDisplay')
-      this.$router.push({ path: `battle/${this.characterIndex }` })
+      this.$router.push({ path: `battle/${this.characterId }` })
     },
     closeConfirmationDisplay() {
       this.$store.commit('commonModule/closeConfirmationDisplay')
