@@ -20,4 +20,11 @@ class GameController extends Controller
     {
         return $this->characters->with(['skills'])->get();
     }
+
+    public function getBattleCharacter(Request $request)
+    {
+        $id = $request->input('id');
+        
+        return $this->characters->battleCharacterForId($id);
+    }
 }

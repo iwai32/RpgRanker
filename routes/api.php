@@ -29,3 +29,5 @@ Route::get('/user', function() {
 })->name('user');
 //キャラクターセレクト
 Route::get('/character-list', 'Rpg\GameController@getCharacterList')->name('characterList');
+//バトルエリア
+Route::get('/battle-character', 'Rpg\GameController@getBattleCharacter')->name('battleCharacter');
