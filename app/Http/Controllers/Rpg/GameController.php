@@ -4,16 +4,18 @@ namespace App\Http\Controllers\Rpg;
 
 use App\Http\Controllers\Controller;
 use App\Models\Character;
+use App\Models\Monster;
 use Illuminate\Http\Request;
 
 class GameController extends Controller
 {
     protected $characters;
-    protected $characterSkills;
+    protected $monsters;
 
-    public function __construct(Character $character)
+    public function __construct(Character $character, Monster $monster)
     {
         $this->characters = $character;
+        $this->monsters = $monster;
     }
 
     public function getCharacterList()
@@ -25,5 +27,10 @@ class GameController extends Controller
     {
         $id = $request->input('id');
         return $this->characters->battleCharacterForId($id);
+    }
+
+    public function getBattleMonsterList()
+    {
+        return $this->monsters->with(['skills', 'weak'])->get();
     }
 }

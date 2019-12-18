@@ -31,3 +31,5 @@ Route::get('/user', function() {
 Route::get('/character-list', 'Rpg\GameController@getCharacterList')->name('characterList');
 //バトルエリア
 Route::get('/battle-character', 'Rpg\GameController@getBattleCharacter')->name('battleCharacter');
+Route::get('/battle-monster', 'Rpg\GameController@getBattleMonsterList')->name('battleMonsterList');
+
