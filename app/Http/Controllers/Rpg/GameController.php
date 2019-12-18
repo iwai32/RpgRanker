@@ -24,7 +24,6 @@ class GameController extends Controller
     public function getBattleCharacter(Request $request)
     {
         $id = $request->input('id');
-        
         return $this->characters->battleCharacterForId($id);
     }
 }

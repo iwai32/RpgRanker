@@ -13,7 +13,9 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             CharactersTableSeeder::class,
-            CharacterSkillsTableSeeder::class
+            CharacterSkillsTableSeeder::class,
+            MonstersTableSeeder::class,
+            MonsterSkillsTableSeeder::class
         ]);
     }
 }
