@@ -15,7 +15,9 @@ class DatabaseSeeder extends Seeder
             CharactersTableSeeder::class,
             CharacterSkillsTableSeeder::class,
             MonstersTableSeeder::class,
-            MonsterSkillsTableSeeder::class
+            MonsterSkillsTableSeeder::class,
+            AttributesTableSeeder::class,
+            WeaknessesTable::class
         ]);
     }
 }
