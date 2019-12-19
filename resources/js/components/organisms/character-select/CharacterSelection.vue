@@ -23,6 +23,8 @@
 
       <character-description></character-description>
 
+      <attention-comment>ランキング機能はログインユーザーが表示されます。</attention-comment>
+
     </div>
 
     <character-big-icon></character-big-icon>
@@ -42,6 +44,7 @@ import SectionTitle from '../../atoms/common/SectionTitle.vue'
 import CharacterPanels from '../../molecules/character-select/CharacterPanels.vue'
 import CharacterSelectBtn from '../../atoms/character-select/CharacterSelectBtn.vue'
 import CharacterDescription from '../../organisms/character-select/CharacterDescription.vue'
+import AttentionComment from '../../atoms/common/AttentionComment.vue'
 import CharacterBigIcon from '../../molecules/character-select/CharacterBigIcon.vue'
 import CharacterOkBtn from '../../atoms/character-select/CharacterOkBtn.vue'
 import ConfirmationDisplay from '../../organisms/common/ConfirmationDisplay.vue'
@@ -52,6 +55,7 @@ export default {
     CharacterPanels,
     CharacterSelectBtn,
     CharacterDescription,
+    AttentionComment,
     CharacterBigIcon,
     CharacterOkBtn,
     ConfirmationDisplay,

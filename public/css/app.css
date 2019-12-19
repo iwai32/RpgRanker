@@ -11331,17 +11331,3 @@ button:hover {
   border-color: rgba(59, 133, 133, 0.4);
 }
 
-/**
-@import "../../../../sass/app.scss";
-@include tab {
-}
-
-$main-color: #a66e3e;//茶色
-$base-color: #E0CB8E;
-$accent-color: #5C3D22;//濃い茶色
-
-//メディアクエリ用、モバイルファーストで作成
-$tab: 768px;
-$pc: 1025px;
-**/
-

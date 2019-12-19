@@ -5,11 +5,16 @@
 </template>
 
 <style lang="scss" scoped>
+@import "../../../../sass/app.scss";
 .notes {
-  color: #444444;
+  color: $text-color;
   display: block;
   text-align: right;
   font-size: 1rem;
-  margin-bottom: 20px;
+  padding: 10px;
+  @include tab {
+    font-size: 1.4rem;
+    padding: 20px;
+  }
 }
 </style>

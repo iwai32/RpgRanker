@@ -188,7 +188,7 @@ const battleArea = {
         //討伐数を1増やす
         commit('incrementMonsterCount')
         if (state.totalMonsterCount === 5) {
-          dispatch('dataSaveAndRedirect')
+          dispatch('saveDataAndRedirect')
         }
       }
     },
@@ -250,7 +250,7 @@ const battleArea = {
 
      if (state.characterHp <= 0) {
        commit('lostCharacterHp')
-       dispatch('dataSaveAndRedirect')
+       dispatch('saveDataAndRedirect')
      }
     },
     //キャラクターのhpの回復
@@ -261,9 +261,21 @@ const battleArea = {
       commit('recoverCharacter')
     },
     //DBへデータを保存し、リザルト画面へ遷移する
-    dataSaveAndRedirect({ dispatch }) {
-      //DBへ討伐数,合計ターン,合計ダメージ,使用キャラクター,ユーザーネームを保存
+    saveDataAndRedirect({ dispatch }) {
+      dispatch('saveBattleData')
       dispatch('toRedirect')
+    },
+    //DBへ討伐数,合計ターン,合計ダメージ,キャラクターID,ユーザーIDを保存
+    async saveBattleData({ state, rootState }) {
+      const battleData = {
+        'user_id': rootState.auth.user.id,
+        'character_id': state.battleCharacterData.id,
+        'monster_count': state.totalMonsterCount,
+        'total_turn': state.totalTurn,
+        'total_damage': state.totalDamage
+      }
+      const response = await axios.post('/api/save-battle-data', battleData)
+      console.log(response)
     },
     //リザルト画面へ遷移する。リザルト画面にはバトル画面から取得したデータをパラメータとして渡す
     toRedirect({ state, rootGetters }) {
