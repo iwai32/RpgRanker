@@ -21,7 +21,7 @@ export default {
     },
     nextNavListItems() {
       return [
-        { id: 1, name: 'Retry', link: '/game/battle/' + this.resultData.characterIndex},
+        { id: 1, name: 'Retry', link: '/game/battle/' + this.resultData.characterId},
         { id: 2, name: 'CharacterSelect', link: '/game/character-selection' },
         { id: 3, name: 'Ranking', link: '/game/ranking' }
       ]

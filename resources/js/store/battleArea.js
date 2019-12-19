@@ -266,13 +266,15 @@ const battleArea = {
       dispatch('toRedirect')
     },
     //リザルト画面へ遷移する。リザルト画面にはバトル画面から取得したデータをパラメータとして渡す
-    toRedirect({ state, getters, rootGetters }) {
+    toRedirect({ state, rootGetters }) {
       const userName = rootGetters['auth/userName']
       
       router.push({ path: '/game/battle-result',
           query: {
             //URLとして渡すため文字列として扱う
-             characterIndex: String(state.characterIndex),
+             characterId: String(state.battleCharacterData.id),
+             characterName: String(state.battleCharacterData.name),
+             characterPass: String(state.battleCharacterData.pass),
              userName: userName,
              monsterCount: String(state.totalMonsterCount),
              totalTurn: String(state.totalTurn),

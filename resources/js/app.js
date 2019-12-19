@@ -30,7 +30,7 @@ sync(store, router)
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-//ログインチェック
+//ログインチェック、キャラクターデータの読み込み
 const createApp = async() => {
     await store.dispatch('auth/currentUser')
 }

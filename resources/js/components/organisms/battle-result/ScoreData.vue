@@ -3,7 +3,6 @@
     <score-title></score-title>
 
     <user-data
-      :characterIndex="resultData.characterIndex"
       :userName="resultData.userName"
     ></user-data>
 
