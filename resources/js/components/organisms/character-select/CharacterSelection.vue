@@ -23,7 +23,10 @@
 
       <character-description></character-description>
 
-      <attention-comment>ランキング機能はログインユーザーが表示されます。</attention-comment>
+      <attention-comment
+        v-show="isLogOut"
+      >ランキング機能はログインユーザーが表示されます。
+      </attention-comment>
 
     </div>
 
@@ -65,6 +68,9 @@ export default {
     this.getCharacterList()
   },
   computed: {
+    isLogOut() {
+      return this.$store.state.auth.user === null
+    },
     startCharacterNum() {
       return this.$store.state.characterSelect.startCharacterNum
     },
