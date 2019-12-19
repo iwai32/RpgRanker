@@ -12,7 +12,7 @@
 export default {
   computed: {
     battleMonsterData() {
-      return this.$store.getters['battleArea/battleMonsterData']
+      return this.$store.state.battleArea.battleMonsterData
     },
     monsterMotion() {
       return this.$store.state.battleArea.monsterMotion

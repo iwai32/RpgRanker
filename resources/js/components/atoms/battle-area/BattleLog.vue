@@ -10,23 +10,31 @@ export default {
   watch: {
     battleLog() {
       this.scrollNewBattleLog()
+    },
+    monsterHp() {
+      if (this.monsterHp === this.battleMonsterData.hp) {
+        this.monsterPopLog()
+      }
     }
-  },
-  mounted: function() {
-    this.firstMonsterAppearanceLog
   },
   computed: {
     battleLog() {
       return this.$store.state.battleArea.battleLog
     },
-    firstMonsterAppearanceLog() {
-      return this.$store.getters['battleArea/firstMonsterAppearanceLog']
+    battleMonsterData() {
+      return this.$store.state.battleArea.battleMonsterData
+    },
+    monsterHp() {
+      return this.$store.state.battleArea.monsterHp
     }
   },
   methods: {
     scrollNewBattleLog() {
       const battleLog = document.getElementById('battleLog')
       battleLog.scrollTop = battleLog.scrollHeight
+    },
+    monsterPopLog() {
+      this.$store.commit('battleArea/addBattleLog', this.battleMonsterData.name + 'があらわれた！')
     }
   }
 }

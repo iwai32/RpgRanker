@@ -29,15 +29,21 @@ export default {
   },
   created() {
     this.getBattleCharacterData()
-    this.setIndexRandomMonster()
+    this.getMonsterList()
     this.resetData()
   },
-  mounted() {
-    this.setMonsterHp()
+  watch: {
+    monsterList() {
+      this.setRandomBattleMonster()
+      this.setMonsterHp()
+    }
   },
   computed: {
+    monsterList() {
+      return this.$store.state.battleArea.monsterList
+    },
     battleMonsterData() {
-      return this.$store.getters['battleArea/battleMonsterData']
+      return this.$store.state.battleArea.battleMonsterData
     },
     recoveryUseTimes() {
       return this.$store.state.battleArea.recoveryUseTimes
@@ -47,8 +53,11 @@ export default {
     getBattleCharacterData() {
       this.$store.dispatch('battleArea/getBattleCharacterData')
     },
-    setIndexRandomMonster() {
-      this.$store.commit('battleArea/setIndexRandomMonster')
+    getMonsterList() {
+      this.$store.dispatch('battleArea/getMonsterList')
+    },
+    setRandomBattleMonster() {
+      this.$store.commit('battleArea/setRandomBattleMonster')
     },
     setMonsterHp() {
       this.$store.commit('battleArea/setMonsterHp')
