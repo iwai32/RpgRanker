@@ -32,4 +32,5 @@ Route::get('/character-list', 'Rpg\GameController@getCharacterList')->name('char
 //バトルエリア
 Route::get('/battle-character', 'Rpg\GameController@getBattleCharacter')->name('battleCharacter');
 Route::get('/battle-monster', 'Rpg\GameController@getBattleMonsterList')->name('battleMonsterList');
+Route::post('/save-battle-data', 'Rpg\GameController@saveBattleData')->name('saveBattleData');
 
