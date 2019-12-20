@@ -268,7 +268,6 @@ const battleArea = {
       }
       dispatch('toRedirect')
     },
-    //DBへ討伐数,合計ターン,合計ダメージ,キャラクターID,ユーザーIDを保存
     async saveBattleData({ state, rootState }) {
       const battleData = {
         'user_id': rootState.auth.user.id,
