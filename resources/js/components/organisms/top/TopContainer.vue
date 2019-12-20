@@ -22,11 +22,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../../../../sass/app.scss';
 .top-container {
   background: url('../../../../images/top-bg.png') no-repeat center center;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  height: 100vh;
+  height: 800px;
+  @include tab {
+    height: 1000px;
+  }
 }
 </style>
