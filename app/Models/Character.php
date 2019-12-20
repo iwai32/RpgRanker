@@ -15,6 +15,11 @@ class Character extends Model
         return $this->hasMany('App\Models\CharacterSkill', 'character_id', 'id');
     }
 
+    public function fetchSkills()
+    {
+        return $this->with(['skills']);
+    }
+
     public function battleCharacterForId($id)
     {
         return $this->with(['skills'])->find($id);

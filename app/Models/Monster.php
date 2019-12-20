@@ -19,4 +19,9 @@ class Monster extends Model
     {
         return $this->belongsToMany('App\Models\Attribute', 'weaknesses', 'monster_id', 'attribute_id');
     }
+
+    public function fetchSkillsAndWeak()
+    {
+        return $this->with(['skills', 'weak']);
+    }
 }
