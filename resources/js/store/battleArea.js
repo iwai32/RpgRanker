@@ -261,8 +261,11 @@ const battleArea = {
       commit('recoverCharacter')
     },
     //DBへデータを保存し、リザルト画面へ遷移する
-    saveDataAndRedirect({ dispatch }) {
-      dispatch('saveBattleData')
+    saveDataAndRedirect({ dispatch, rootState }) {
+      // 認証しているならデータを保存する
+      if (rootState.auth.user) {
+        dispatch('saveBattleData')
+      }
       dispatch('toRedirect')
     },
     //DBへ討伐数,合計ターン,合計ダメージ,キャラクターID,ユーザーIDを保存
@@ -275,7 +278,6 @@ const battleArea = {
         'total_damage': state.totalDamage
       }
       const response = await axios.post('/api/save-battle-data', battleData)
-      console.log(response)
     },
     //リザルト画面へ遷移する。リザルト画面にはバトル画面から取得したデータをパラメータとして渡す
     toRedirect({ state, rootGetters }) {
