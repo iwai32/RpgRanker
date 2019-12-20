@@ -1,5 +1,3 @@
-import Axios from "axios"
-
 const ranking = {
   namespaced: true,
   state: {
@@ -13,7 +11,7 @@ const ranking = {
   actions: {
     async getRankingData({ commit }) {
       const response = await axios.get('/api/ranking')
-
+      
       commit('setRankingData', response.data)
     }
   }

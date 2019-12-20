@@ -25,7 +25,7 @@
 
       <attention-comment
         v-show="isLogOut"
-      >ランキング機能はログインユーザーが表示されます。
+      >ランキングはログインユーザーが表示されます。
       </attention-comment>
 
     </div>

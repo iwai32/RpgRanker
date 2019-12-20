@@ -6,15 +6,21 @@
     </p>
 
     <p class="character-icon">
-      <img src="../../../../images/swords-man.png" alt="使用キャラクターのアイコン">
+      <img 
+        :src="'../../../../images/' + characterPass + '.png'" 
+        :alt="characterName + 'のアイコン'">
     </p>
 
     <div class="battle-data">
-      <p class="user-name">iwa</p>
-      <p class="monster-count">4体討伐</p>
+      <p class="user-name">{{ userName }}</p>
+      <p class="monster-count"
+        :class="{ 'defeated-satan': monsterCount === 5}"
+      >{{ monsterCountMessage }}
+      </p>
+      
       <ul class="total-data">
-        <li class="total-turn">Turn6</li>
-        <li class="total-damage">Damage728</li>
+        <li class="total-turn">{{ 'Turn' + turn }}</li>
+        <li class="total-damage">{{ 'Damage' + damage }}</li>
       </ul>
     </div>
   </li>
@@ -23,7 +29,22 @@
 <script>
 export default {
   props: {
-    rankNumber: String
+    characterPass: String,
+    characterName: String,
+    userName: String,
+    rankNumber: Number,
+    monsterCount: Number,
+    turn: Number,
+    damage: Number
+  },
+  computed: {
+    monsterCountMessage() {
+      if (this.monsterCount === 5) {
+        return '魔王討伐'
+      } else {
+        return this.monsterCount + '体討伐'
+      }
+    }
   }
 }
 </script>

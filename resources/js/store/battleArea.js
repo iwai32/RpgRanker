@@ -1,6 +1,4 @@
 import router from '../router'//リダイレクト用
-import { promised, reject } from 'q'
-import { resolve } from 'path'
 const battleArea = {
   namespaced: true,
   state: {
