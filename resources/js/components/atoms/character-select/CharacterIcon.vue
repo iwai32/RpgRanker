@@ -24,7 +24,7 @@ export default {
 @import "../../../../sass/app.scss";
 .character-icon {
   box-shadow: 0 0 1px 1px $box-color;
-  border-radius: 50%;
+  border-radius: 2px;
   overflow: hidden;
   text-align: center;
   width: 350px;

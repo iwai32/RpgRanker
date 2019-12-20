@@ -1,5 +1,7 @@
 <template>
-  <div class="character-big-icon pc-on">
+  <div class="character-big-icon pc-on"
+    @click="openConfirmationDisplay"
+  >
     <character-icon></character-icon>
     <character-ok-btn
       :mediaOn="'pc-on'"
@@ -14,6 +16,11 @@ export default {
   components: {
     CharacterIcon,
     CharacterOkBtn
+  },
+  methods: {
+    openConfirmationDisplay() {
+      this.$store.commit('commonModule/openConfirmationDisplay')
+    }
   }
 }
 </script>
@@ -31,6 +38,10 @@ export default {
     justify-content: space-around;
     align-items: center;
     width: 400px;
+    &:hover {
+      opacity: .8;
+      cursor: pointer;
+    }
   }
 }
 </style>

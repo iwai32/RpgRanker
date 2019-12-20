@@ -30,7 +30,7 @@ export default {
   justify-content: space-around;
   height: 800px;
   @include tab {
-    height: 1000px;
+    height: 100vh;
   }
 }
 </style>
