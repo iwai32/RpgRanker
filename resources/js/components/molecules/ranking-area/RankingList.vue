@@ -17,7 +17,7 @@
         :class="{ 'defeated-satan': monsterCount === 5}"
       >{{ monsterCountMessage }}
       </p>
-      
+
       <ul class="total-data">
         <li class="total-turn">{{ 'Turn' + turn }}</li>
         <li class="total-damage">{{ 'Damage' + damage }}</li>
@@ -62,6 +62,10 @@ export default {
   &:last-child {
     margin-bottom: 0;
   }
+  @include tab {
+    margin-bottom: 40px;
+    padding: 10px;
+  }
   .rank {
     color: $accent-color;
     font-weight: bold;
@@ -80,11 +84,18 @@ export default {
     &.rank3 {
       background: url('../../../../images/rank_bronze.png') no-repeat center center/cover;
     }
+    @include tab {
+      font-size: 1.8rem;
+      height: 60px;
+      width: 60px;
+    }
   }
   .character-icon {
     background: $white;
     border: 2px solid $accent-color;
     border-radius: 4px;
+    text-align: center;
+    max-width: 140px;
     width: 18%;
   }
   .battle-data {
@@ -101,21 +112,32 @@ export default {
       line-height: 1.5;
       margin-bottom: 5px;
       width: 100%;
+      @include tab {
+        font-size: 2.6rem;
+        margin-bottom: 10px;
+      }
     }
     .monster-count {
       color: #EAA400;
       font-weight: bold;
-      font-size: 2rem;
+      font-size: 5.3vw;
+      letter-spacing: .05em;
       text-shadow: 1px 2px 2px #888;
       width: 50%;
       &.defeated-satan {
         color: #7b2cd6;
       }
+      @include tab {
+        font-size: 3.6rem;
+      }
     }
     .total-data {
       color: $text-color;
-      font-size: 1.2rem;
+      font-size: 3.2vw;
       width: 50%;
+      @include tab {
+        font-size: 2rem;
+      }
     }
   }
 }
