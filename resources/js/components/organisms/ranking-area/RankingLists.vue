@@ -35,11 +35,8 @@ export default {
 <style lang="scss" scoped>
 @import "../../../../sass/app.scss";
 .ranking-lists {
-  max-height: 400px;
-  overflow-y: scroll;
   margin-bottom: 20px;
   @include tab {
-    max-height: 600px;
     margin-bottom: 40px;
   }
 }
