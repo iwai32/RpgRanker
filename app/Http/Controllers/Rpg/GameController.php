@@ -46,6 +46,6 @@ class GameController extends Controller
     public function getRankingData()
     {
         return $this->battleDataLists
-            ->fetchPassAndNameForId()->sortForRanking()->get();
+            ->fetchPassAndNameForId()->sortForRanking()->paginate(10);
     }
 }

@@ -33,5 +33,6 @@ export default {
 .ranking-lists {
   height: 400px;
   overflow-y: scroll;
+  margin-bottom: 20px;
 }
 </style>
