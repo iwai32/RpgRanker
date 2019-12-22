@@ -18,7 +18,8 @@ export default {
       topNavListItems: [
         { id: 1, name: 'START', link: '/game/character-selection' },
         { id: 2, name: 'BBS', link: '/game/bbs' },
-        { id: 3, name: 'RANKING', link: '/game/ranking' }
+        { id: 3, name: 'RANKING', link: '/game/ranking' },
+        { id: 4, name: 'THANKS', link: '/game/thanks' }
       ]
     }
   }

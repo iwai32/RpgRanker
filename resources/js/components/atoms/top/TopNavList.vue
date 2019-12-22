@@ -21,28 +21,28 @@ export default {
   background: $main-color;
   border: 2px solid $border-color;
   border-radius: 4px;
-  font-size: 2rem;
+  font-size: 1.6rem;
   margin-bottom: 10px;
   text-align: center;
   .anchor {
     color: $white;
     display: block;
     letter-spacing: .05em;
-    padding: 5px 10px;
+    padding: 2px 10px;
   }
   @include tab {
-    font-size: 2.4rem;
+    font-size: 2rem;
     margin-bottom: 15px;
     .anchor {
-      padding: 10px;
+      padding: 4px;
       letter-spacing: .1em;
     }
   }
-    @include pc {
+  @include pc {
     font-size: 1.8rem;
     margin-bottom: 14px;
     .anchor {
-      padding: 5px;
+      padding: 6px;
       letter-spacing: .44em;
       &:hover {
         font-size: 2rem;
