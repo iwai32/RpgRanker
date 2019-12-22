@@ -13,6 +13,7 @@ import BattleResult from './components/organisms/battle-result/BattleResult.vue'
 import BbsArea from './components/organisms/bbs-area/BbsArea.vue'
 import RankingArea from './components/organisms/ranking-area/RankingArea.vue'
 import LoginRegister from './components/organisms/login-register/LoginRegister.vue'
+import ThanksArea from './components/organisms/thanks-area/ThanksArea.vue'
 import SystemError from './components/organisms/system/System.vue'
 import NotFound from './components/organisms/errors/NotFound.vue'
 
@@ -84,6 +85,12 @@ const routes = [
         path: 'login-register',
         components: {
           section: LoginRegister
+        }
+      },
+      {
+        path: 'thanks',
+        components: {
+          section: ThanksArea
         }
       }
     ]
