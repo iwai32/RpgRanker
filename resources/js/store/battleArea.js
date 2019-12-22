@@ -1,4 +1,5 @@
 import router from '../router'//リダイレクト用
+import { OK } from '../util.js'
 const battleArea = {
   namespaced: true,
   state: {
@@ -127,11 +128,21 @@ const battleArea = {
       const characterId = { id: rootState.route.params.characterId }
       const response = await axios.get('/api/battle-character', { params: characterId} )
 
+      if (response.status !== OK) {
+        this.$store.commit('error/setCode', response.status)
+        return false
+      }
+
       commit('setBattleCharacterData', response.data)
     },
     //バトルモンスター
     async getMonsterList({ commit }) {
       const response = await axios.get('/api/battle-monster')
+
+      if (response.status !== OK) {
+        this.$store.commit('error/setCode', response.status)
+        return false
+      }
 
       commit('setMonsterList', response.data)
     },
@@ -275,6 +286,12 @@ const battleArea = {
         'total_damage': state.totalDamage
       }
       const response = await axios.post('/api/save-battle-data', battleData)
+
+      if (response.status !== OK) {
+        this.$store.commit('error/setCode', response.status)
+        return false
+      }
+      
     },
     //リザルト画面へ遷移する。リザルト画面にはバトル画面から取得したデータをパラメータとして渡す
     toRedirect({ state, rootGetters }) {

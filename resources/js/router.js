@@ -13,6 +13,7 @@ import BattleResult from './components/organisms/battle-result/BattleResult.vue'
 import RankingArea from './components/organisms/ranking-area/RankingArea.vue'
 import LoginRegister from './components/organisms/login-register/LoginRegister.vue'
 import SystemError from './components/organisms/system/System.vue'
+import NotFound from './components/organisms/errors/NotFound.vue'
 
 Vue.use(VueRouter)
 
@@ -25,6 +26,20 @@ const routes = [
     }
   },
   {
+    //システムエラー
+    path: '500',
+    components: {
+      contents: SystemError
+    }
+  },
+  {
+    //ページが存在しない時
+    path: '*',
+    components: {
+      contents: NotFound
+    }
+  },
+  {
     //共通ページ
     path: '/game/',
     meta: { bodyClass: 'page-common' },
@@ -34,13 +49,6 @@ const routes = [
       footer: CommonFooter
     },
     children: [
-      {
-        //システムエラー
-        path: '/game/500',
-        components: {
-          section: SystemError
-        }
-      },
       {
         path: 'character-selection',
         components: {

@@ -1,3 +1,4 @@
+import { OK } from '../util.js'
 const ranking = {
   namespaced: true,
   state: {
@@ -19,7 +20,12 @@ const ranking = {
   actions: {
     async getRankingData({ commit }, pageNum) {
       const response = await axios.get(`/api/ranking/?page=${pageNum}`)
-      
+
+      if (response.status !== OK) {
+        this.$store.commit('error/setCode', response.status)
+        return false
+      }
+
       commit('setRankingData', response.data.data)
       commit('setCurrentPage', response.data.current_page)
       commit('setLastPage', response.data.last_page)

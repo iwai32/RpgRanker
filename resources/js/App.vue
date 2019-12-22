@@ -9,13 +9,15 @@
 </template>
 
 <script>
-import { INTERNAL_SERVER_ERROR } from './util.js'
+import { NOT_FOUND,INTERNAL_SERVER_ERROR } from './util.js'
 export default {
   watch: {
     errorCode: {
       handler(val) {
-        if(val === INTERNAL_SERVER_ERROR) {
+        if (val === INTERNAL_SERVER_ERROR) {
           this.$router.push('/game/500')
+        } else if (val === NOT_FOUND) {
+          this.$router.push('/not-found')
         }
       },
       immediate: true

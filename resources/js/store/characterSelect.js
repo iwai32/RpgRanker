@@ -1,3 +1,4 @@
+import { OK } from '../util.js'
 const characterSelect = {
   namespaced: true,
   state: {
@@ -36,6 +37,11 @@ const characterSelect = {
     async getCharacterList({ commit }) {
       const response = await axios.get('/api/character-list')
 
+      if (response.status !== OK) {
+        this.$store.commit('error/setCode', response.status)
+        return false
+      }
+      
       commit('setCharacterList', response.data)
     }
   }
