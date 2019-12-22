@@ -10,6 +10,7 @@ import CommonFooter from './components/organisms/common/CommonFooter.vue'
 import CharacterSelection from './components/organisms/character-select/CharacterSelection.vue'
 import BattleArea from './components/organisms/battle-area/BattleArea.vue'
 import BattleResult from './components/organisms/battle-result/BattleResult.vue'
+import BbsArea from './components/organisms/bbs-area/BbsArea.vue'
 import RankingArea from './components/organisms/ranking-area/RankingArea.vue'
 import LoginRegister from './components/organisms/login-register/LoginRegister.vue'
 import SystemError from './components/organisms/system/System.vue'
@@ -27,7 +28,7 @@ const routes = [
   },
   {
     //システムエラー
-    path: '500',
+    path: '/500',
     components: {
       contents: SystemError
     }
@@ -69,6 +70,9 @@ const routes = [
       },
       {
         path: 'bbs',
+        components: {
+          section: BbsArea
+        }
       },
       {
         path: 'ranking',

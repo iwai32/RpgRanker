@@ -15,7 +15,7 @@ export default {
     errorCode: {
       handler(val) {
         if (val === INTERNAL_SERVER_ERROR) {
-          this.$router.push('/game/500')
+          this.$router.push('/500')
         } else if (val === NOT_FOUND) {
           this.$router.push('/not-found')
         }
