@@ -31,10 +31,10 @@ export default {
   margin: 0 auto;
   width: 220px;
   @include tab {
-    width: 440px;
+    width: 240px;
   }
   @include pc {
-    width: 500px;
+    width: 340px;
   }
 }
 </style>
