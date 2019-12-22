@@ -39,6 +39,8 @@ export default {
   color: $text-color;
   padding: 10px;
   line-height: 1.5;
+  max-width: 640px;
+  margin: 0 auto;
   .genre + .name {
     margin-bottom: 20px;
   }
