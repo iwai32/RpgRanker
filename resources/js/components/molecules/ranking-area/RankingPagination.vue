@@ -46,7 +46,6 @@ export default {
 @import '../../../../sass/app.scss';
 .pagination-wrapp {
   display: flex;
-  justify-content: space-between;
   margin: 0 auto;
   padding: 10px 0;
   width: 50%;
@@ -63,14 +62,17 @@ export default {
     }
     &.prev {
       background: $accent-color;
+      margin-right: auto;
     }
     &.next {
       background: $main-color;
+      margin-left: auto;
     }
   }
   @include tab {
     .pagination-button {
       font-size: 2rem;
+      width: 120px;
       &_link {
         padding: 8px;
       }
