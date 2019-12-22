@@ -2,7 +2,9 @@
   <section class="ranking-area">
     <section-title>RANKING</section-title>
 
-    <ranking-lists></ranking-lists>
+    <ranking-lists
+      :pageNum="convertPageQueryToNumber"
+    ></ranking-lists>
     
     <ranking-pagination></ranking-pagination>
   </section>
@@ -22,18 +24,21 @@ export default {
     this.getRankingData()
   },
   watch: {
-    pageNum() {
+    pageQuery() {
       this.getRankingData()
     }
   },
   computed: {
-    pageNum() {
+    pageQuery() {
       return this.$route.query.page
+    },
+    convertPageQueryToNumber() {
+      return Number(this.pageQuery)
     }
   },
   methods: {
     getRankingData() {
-      this.$store.dispatch('ranking/getRankingData', this.pageNum)
+      this.$store.dispatch('ranking/getRankingData', this.pageQuery)
     }
   }
 }

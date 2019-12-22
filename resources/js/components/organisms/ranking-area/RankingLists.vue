@@ -3,7 +3,8 @@
     <ranking-list
       v-for="(data, index) in rankingData"
       :key="index + 1"
-      :rankNumber="index + 1"
+      :rankNum="index + 1"
+      :pageNum="pageNum"
       :characterPass="data.character.pass"
       :characterName="data.character.name"
       :userName="data.user.name"
@@ -20,6 +21,9 @@ export default {
   components: {
     RankingList
   },
+  props: {
+    pageNum: Number
+  },
   computed: {
     rankingData() {
       return this.$store.state.ranking.rankingData
@@ -31,8 +35,12 @@ export default {
 <style lang="scss" scoped>
 @import "../../../../sass/app.scss";
 .ranking-lists {
-  height: 400px;
+  max-height: 400px;
   overflow-y: scroll;
   margin-bottom: 20px;
+  @include tab {
+    max-height: 600px;
+    margin-bottom: 40px;
+  }
 }
 </style>

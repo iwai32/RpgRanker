@@ -1,8 +1,8 @@
 <template>
   <li class="ranking-list">
     <p class="rank"
-      :class="'rank' + rankNumber"
-    >{{ rankNumber }}
+      :class="'rank' + totalRank"
+    >{{ totalRank }}
     </p>
 
     <p class="character-icon">
@@ -32,12 +32,21 @@ export default {
     characterPass: String,
     characterName: String,
     userName: String,
-    rankNumber: Number,
+    rankNum: Number,
+    pageNum: Number,
     monsterCount: Number,
     turn: Number,
     damage: Number
   },
   computed: {
+    totalRank() {
+      if (this.pageNum >= 2) {
+        const rankBaseInPage = this.pageNum * 10 - 10
+        return this.rankNum + rankBaseInPage
+      } else {
+        return this.rankNum
+      }
+    },
     monsterCountMessage() {
       if (this.monsterCount === 5) {
         return '魔王討伐'

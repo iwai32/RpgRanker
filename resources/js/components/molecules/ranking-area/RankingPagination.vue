@@ -68,5 +68,13 @@ export default {
       background: $main-color;
     }
   }
+  @include tab {
+    .pagination-button {
+      font-size: 2rem;
+      &_link {
+        padding: 8px;
+      }
+    }
+  }
 }
 </style>
