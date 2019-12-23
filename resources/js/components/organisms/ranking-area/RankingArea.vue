@@ -21,9 +21,9 @@ export default {
     RankingPagination
   },
   created() {
-    if (this.rankingData.length > 0) {
+    // if (this.rankingData.length > 0) {
       this.getRankingData()
-    }
+    // }
   },
   watch: {
     pageQuery() {
