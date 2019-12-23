@@ -90,7 +90,8 @@ const battleArea = {
       state.skillEffectAttribute = attribute
     },
     resetSkillEffectAttribute(state) {
-      state.skillEffectAttribute = ""
+      //透明な画像を呼び出す
+      state.skillEffectAttribute = "effect-off"
     },
     descendSatan(state) {
       state.battleMonsterData = state.monsterList[0]
