@@ -21,7 +21,9 @@ export default {
     RankingPagination
   },
   created() {
-    this.getRankingData()
+    if (this.rankingData.length > 0) {
+      this.getRankingData()
+    }
   },
   watch: {
     pageQuery() {
@@ -34,6 +36,9 @@ export default {
     },
     convertPageQueryToNumber() {
       return Number(this.pageQuery)
+    },
+    rankingData() {
+      return this.$store.state.ranking.rankingData
     }
   },
   methods: {

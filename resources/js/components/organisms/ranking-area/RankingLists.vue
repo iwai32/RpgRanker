@@ -12,6 +12,10 @@
       :turn ="data.total_turn"
       :damage ="data.total_damage"
     ></ranking-list>
+    <li
+      v-if="!rankingData"
+    >ランキングデータは現在登録されていません。
+    </li>
   </ul>
 </template>
 
