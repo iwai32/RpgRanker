@@ -234,6 +234,7 @@ const battleArea = {
     //敵の攻撃
     enemyAttack( { state, commit, dispatch }) {
       //モンスターが使用するスキルをランダムにする
+      console.log(state.battleMonsterData)
       let monsterSkill = state.battleMonsterData.skills[
         Math.floor(Math.random() * state.battleMonsterData.skills.length)
       ]
