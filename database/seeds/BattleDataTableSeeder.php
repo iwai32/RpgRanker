@@ -18,7 +18,7 @@ class BattleDataTableSeeder extends Seeder
             [
                 'user_id' => 1,
                 'character_id' => 1,
-                'monster_count' => 140,
+                'monster_count' => 1,
                 'total_turn' => 22,
                 'total_damage' => 22,
                 'created_at' => $now,
