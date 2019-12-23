@@ -13,7 +13,7 @@
       :damage ="data.total_damage"
     ></ranking-list>
     <li
-      v-if="!rankingData"
+      v-if="!isRankingData"
     >ランキングデータは現在登録されていません。
     </li>
   </ul>
@@ -31,6 +31,9 @@ export default {
   computed: {
     rankingData() {
       return this.$store.state.ranking.rankingData
+    },
+    isRankingData() {
+      return this.rankingData.length >= 1
     }
   }
 }
