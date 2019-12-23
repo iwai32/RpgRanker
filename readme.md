@@ -1,4 +1,4 @@
-## RpgRanker
+# RpgRanker
 好きなキャラクターを選択し、モンスターを倒すゲームです。弱点を突き、素早く倒すことがランキング上位のコツです。
 
 ## 主な機能
@@ -13,18 +13,17 @@
 ## 使用技術
 
 ### フロントエンド
-- Vue.js(Vuex, VueRouter)でのSPA
+  - Vue.js(Vuex, VueRouter)でのSPA
 
 ### バックエンド
+  - 使用言語
+    - Laravel6
+    
+  - データベース
+    - MySQL5.7
+    
+  - 開発環境
+    - Docker(laradockの使用)
 
-#### 使用言語
-- Laravel6
-
-#### データベース
-- MySQL5.7
-
-#### 開発環境
-- Docker(laradockの使用)
-
-#### 本番環境
-- heroku
+  - 本番環境
+    - heroku
