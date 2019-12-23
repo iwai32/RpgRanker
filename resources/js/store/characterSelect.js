@@ -19,7 +19,6 @@ const characterSelect = {
   },
   mutations: {
     setCharacterList(state, data) {
-      console.log(data)
       state.characterList = data
     },
     selectedCharacter(state, characterId) {
