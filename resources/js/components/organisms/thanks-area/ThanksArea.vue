@@ -6,18 +6,18 @@
     <dl class="providers">
       <dt class="genre">キャラクター</dt>
       <dd class="name">
-        <a href="https://blog.goo.ne.jp/akarise">ゆうひな様</a>
+        <a href="https://blog.goo.ne.jp/akarise" target="_blank">ゆうひな様</a>
       </dd>
 
       <dt class="genre">モンスター</dt>
       <dd class="name">
-        <a href="http://mwhidesp.konjiki.jp/">material world様</a>
-        <a href="http://makapri.web.fc2.com/">王国興亡記様</a>
+        <a href="http://mwhidesp.konjiki.jp/" target="_blank">material world様</a>
+        <a href="http://makapri.web.fc2.com/" target="_blank">王国興亡記様</a>
       </dd>
 
       <dt class="genre">エフェクト</dt>
       <dd class="name">
-        <a href="https://pipoya.net/">ぴぽや様</a>
+        <a href="https://pipoya.net/" target="_blank">ぴぽや様</a>
       </dd>
     </dl>
 
