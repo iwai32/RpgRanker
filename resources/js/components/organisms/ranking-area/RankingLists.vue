@@ -12,6 +12,10 @@
       :turn ="data.total_turn"
       :damage ="data.total_damage"
     ></ranking-list>
+    <li class="ranking-annotations"
+      v-if="!isRankingData"
+    >ランキングデータは現在登録されていません。
+    </li>
   </ul>
 </template>
 
@@ -27,6 +31,9 @@ export default {
   computed: {
     rankingData() {
       return this.$store.state.ranking.rankingData
+    },
+    isRankingData() {
+      return this.rankingData.length >= 1
     }
   }
 }
@@ -36,8 +43,14 @@ export default {
 @import "../../../../sass/app.scss";
 .ranking-lists {
   margin-bottom: 20px;
+  .ranking-annotations {
+    font-size: 1.4rem;
+  }
   @include tab {
     margin-bottom: 40px;
+    .ranking-annotations {
+      font-size: 1.6rem;
+    }
   }
 }
 </style>

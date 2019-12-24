@@ -14,7 +14,7 @@
   <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
   <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
   <!-- OGP -->
-  <meta property="og:url" content="ページのURL"/>
+  <meta property="og:url" content="http://rpg-ranker.herokuapp.com/game/ranking"/>
   <meta property="og:title" content="RpgRanker"/>
   <meta property="og:type" content="website">
   <meta property="og:description" content="RpgRankerは好きなキャラクターを選んでモンスターを倒し、倒したスコアでランキングを競うゲームです。敵の弱点を見つけ、効率よく倒すのが高スコアのコツ！"/>

@@ -56,7 +56,7 @@ export default {
     align-items: flex-start;
     margin-bottom: 30px;
     .form-label {
-      font-size: 1.8rem;
+      font-size: 1.6rem;
     }
     .form-input {
       font-size: 1.6rem;

@@ -34,6 +34,9 @@ export default {
     },
     convertPageQueryToNumber() {
       return Number(this.pageQuery)
+    },
+    rankingData() {
+      return this.$store.state.ranking.rankingData
     }
   },
   methods: {
