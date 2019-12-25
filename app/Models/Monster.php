@@ -24,4 +24,9 @@ class Monster extends Model
     {
         return $this->with(['skills', 'weak']);
     }
+
+    public function getBattleMonsterList()
+    {
+        return $this->fetchSkillsAndWeak()->get();
+    }
 }

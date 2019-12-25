@@ -20,6 +20,11 @@ class Character extends Model
         return $this->with(['skills']);
     }
 
+    public function getCharacterList()
+    {
+        return $this->fetchSkills()->get();
+    }
+
     public function battleCharacterForId($id)
     {
         return $this->with(['skills'])->find($id);

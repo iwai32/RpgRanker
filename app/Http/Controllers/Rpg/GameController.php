@@ -23,7 +23,7 @@ class GameController extends Controller
 
     public function getCharacterList()
     {
-        return $this->characters->fetchSkills()->get();
+        return $this->characters->getCharacterList();
     }
 
     public function getBattleCharacter(Request $request)
@@ -34,7 +34,7 @@ class GameController extends Controller
 
     public function getBattleMonsterList()
     {
-        return $this->monsters->fetchSkillsAndWeak()->get();
+        return $this->monsters->getBattleMonsterList();
     }
 
     public function saveBattleData(Request $request)
