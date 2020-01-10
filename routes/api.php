@@ -30,8 +30,8 @@ Route::get('/user', function() {
 //キャラクターセレクト
 Route::get('/character-list', 'Rpg\CharacterSelectController@getCharacterList')->name('characterList');
 //バトルエリア
-Route::get('/battle-character', 'Rpg\GameController@getBattleCharacter')->name('battleCharacter');
-Route::get('/battle-monster', 'Rpg\GameController@getBattleMonsterList')->name('battleMonsterList');
+Route::get('/battle-character', 'Rpg\BattleController@getBattleCharacter')->name('battleCharacter');
+Route::get('/battle-monster', 'Rpg\BattleController@getBattleMonsterList')->name('battleMonsterList');
 //ランキング
 Route::post('/save-battle-data', 'Rpg\RankingController@saveBattleData')->name('saveBattleData');
 Route::get('/ranking', 'Rpg\RankingController@getRankingData')->name('getRankingData');

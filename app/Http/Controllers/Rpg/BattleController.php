@@ -7,7 +7,7 @@ use App\Models\Character;
 use App\Models\Monster;
 use Illuminate\Http\Request;
 
-class GameController extends Controller
+class BattleController extends Controller
 {
     protected $characters;
     protected $monsters;
