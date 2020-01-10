@@ -28,11 +28,11 @@ Route::get('/user', function() {
   return Auth::user();
 })->name('user');
 //キャラクターセレクト
-Route::get('/character-list', 'Rpg\GameController@getCharacterList')->name('characterList');
+Route::get('/character-list', 'Rpg\CharacterSelectController@getCharacterList')->name('characterList');
 //バトルエリア
 Route::get('/battle-character', 'Rpg\GameController@getBattleCharacter')->name('battleCharacter');
 Route::get('/battle-monster', 'Rpg\GameController@getBattleMonsterList')->name('battleMonsterList');
-Route::post('/save-battle-data', 'Rpg\GameController@saveBattleData')->name('saveBattleData');
 //ランキング
-Route::get('/ranking', 'Rpg\GameController@getRankingData')->name('getRankingData');
+Route::post('/save-battle-data', 'Rpg\RankingController@saveBattleData')->name('saveBattleData');
+Route::get('/ranking', 'Rpg\RankingController@getRankingData')->name('getRankingData');
 

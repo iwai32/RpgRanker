@@ -5,25 +5,17 @@ namespace App\Http\Controllers\Rpg;
 use App\Http\Controllers\Controller;
 use App\Models\Character;
 use App\Models\Monster;
-use App\Models\BattleData;
 use Illuminate\Http\Request;
 
 class GameController extends Controller
 {
     protected $characters;
     protected $monsters;
-    protected $battleDataLists;
 
-    public function __construct(Character $character, Monster $monster, BattleData $battleData)
+    public function __construct(Character $character, Monster $monster)
     {
         $this->characters = $character;
         $this->monsters = $monster;
-        $this->battleDataLists = $battleData;
-    }
-
-    public function getCharacterList()
-    {
-        return $this->characters->getCharacterList();
     }
 
     public function getBattleCharacter(Request $request)
@@ -37,15 +29,4 @@ class GameController extends Controller
         return $this->monsters->getBattleMonsterList();
     }
 
-    public function saveBattleData(Request $request)
-    {
-        $inputs = $request->all();
-        $this->battleDataLists->fill($inputs)->save();
-    }
-
-    public function getRankingData()
-    {
-        return $this->battleDataLists
-            ->fetchPassAndNameForId()->sortForRanking()->paginate(10);
-    }
 }
