@@ -33,7 +33,7 @@ export default {
     return {
       globalNavListItems: [
         { id: 1, name: 'Top', link: '/'},
-        { id: 2, name: 'Bbs', link: '/game/bbs' },
+        // { id: 2, name: 'Bbs', link: '/game/bbs' },
         { id: 3, name: 'Ranking', link: '/game/ranking' }
       ]
     }
