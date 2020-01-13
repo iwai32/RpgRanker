@@ -27,7 +27,7 @@ class CharacterSkillsTableSeeder extends Seeder
             [
                 'character_id' => 1,
                 'name' => '剣舞',
-                'power' => 100,
+                'power' => 140,
                 'attribute' => 'slash',
                 'type' => 'normal',
                 'created_at' => $now,
@@ -36,7 +36,7 @@ class CharacterSkillsTableSeeder extends Seeder
             [
                 'character_id' => 1,
                 'name' => '雷鳴斬',
-                'power' => 100,
+                'power' => 140,
                 'attribute' => 'thunder',
                 'type' => 'normal',
                 'created_at' => $now,
@@ -45,7 +45,7 @@ class CharacterSkillsTableSeeder extends Seeder
             [
                 'character_id' => 1,
                 'name' => '地砕き',
-                'power' => 70,
+                'power' => 90,
                 'attribute' => 'blow',
                 'type' => 'normal',
                 'created_at' => $now,
@@ -63,7 +63,7 @@ class CharacterSkillsTableSeeder extends Seeder
             [
                 'character_id' => 2,
                 'name' => '正拳突き',
-                'power' => 100,
+                'power' => 140,
                 'attribute' => 'blow',
                 'type' => 'normal',
                 'created_at' => $now,
@@ -72,7 +72,7 @@ class CharacterSkillsTableSeeder extends Seeder
             [
                 'character_id' => 2,
                 'name' => '爆炎脚',
-                'power' => 100,
+                'power' => 140,
                 'attribute' => 'flame',
                 'type' => 'normal',
                 'created_at' => $now,
@@ -81,7 +81,7 @@ class CharacterSkillsTableSeeder extends Seeder
             [
                 'character_id' => 2,
                 'name' => '真空波',
-                'power' => 70,
+                'power' => 100,
                 'attribute' => 'slash',
                 'type' => 'normal',
                 'created_at' => $now,
@@ -99,7 +99,7 @@ class CharacterSkillsTableSeeder extends Seeder
             [
                 'character_id' => 3,
                 'name' => '氷撃',
-                'power' => 100,
+                'power' => 120,
                 'attribute' => 'ice',
                 'type' => 'normal',
                 'created_at' => $now,
@@ -108,7 +108,7 @@ class CharacterSkillsTableSeeder extends Seeder
             [
                 'character_id' => 3,
                 'name' => '乱風刃',
-                'power' => 100,
+                'power' => 120,
                 'attribute' => 'slash',
                 'type' => 'normal',
                 'created_at' => $now,
@@ -117,7 +117,7 @@ class CharacterSkillsTableSeeder extends Seeder
             [
                 'character_id' => 3,
                 'name' => '石の弾丸',
-                'power' => 100,
+                'power' => 120,
                 'attribute' => 'blow',
                 'type' => 'normal',
                 'created_at' => $now,
