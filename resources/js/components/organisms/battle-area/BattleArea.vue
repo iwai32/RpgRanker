@@ -29,19 +29,18 @@ export default {
   },
   created() {
     this.getBattleCharacterData()
-    this.getMonsterList()
+    this.getRandomMonster()
     this.resetData()
   },
   watch: {
-    monsterList() {
-      this.setRandomBattleMonster()
+    battleMonsterData() {
+      if (this.battleMonsterData === null) {
+        this.setRandomBattleMonster()
+      }
       this.setMonsterHp()
     }
   },
   computed: {
-    monsterList() {
-      return this.$store.state.battleArea.monsterList
-    },
     battleMonsterData() {
       return this.$store.state.battleArea.battleMonsterData
     },
@@ -53,8 +52,8 @@ export default {
     getBattleCharacterData() {
       this.$store.dispatch('battleArea/getBattleCharacterData')
     },
-    getMonsterList() {
-      this.$store.dispatch('battleArea/getMonsterList')
+    getRandomMonster() {
+      this.$store.dispatch('battleArea/getRandomMonster')
     },
     setRandomBattleMonster() {
       this.$store.commit('battleArea/setRandomBattleMonster')

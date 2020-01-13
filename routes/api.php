@@ -17,22 +17,31 @@ use Illuminate\Http\Request;
 //     return $request->user();
 // });
 
-//会員登録
-Route::post('/register', 'Auth\RegisterController@register')->name('register');
-//ログイン
-Route::post('/login', 'Auth\LoginController@login')->name('login');
-//ログアウト
-Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
-//ログインユーザー
-Route::get('/user', function() {
-  return Auth::user();
-})->name('user');
-//キャラクターセレクト
-Route::get('/character-list', 'Rpg\GameController@getCharacterList')->name('characterList');
-//バトルエリア
-Route::get('/battle-character', 'Rpg\GameController@getBattleCharacter')->name('battleCharacter');
-Route::get('/battle-monster', 'Rpg\GameController@getBattleMonsterList')->name('battleMonsterList');
-Route::post('/save-battle-data', 'Rpg\GameController@saveBattleData')->name('saveBattleData');
-//ランキング
-Route::get('/ranking', 'Rpg\GameController@getRankingData')->name('getRankingData');
+Route::namespace('Auth')->group(function() {
+  //会員登録
+  Route::post('/register', 'RegisterController@register')->name('register');
+  //ログイン
+  Route::post('/login', 'LoginController@login')->name('login');
+  //ログアウト
+  Route::post('/logout', 'LoginController@logout')->name('logout');
+  //ログインユーザー
+  Route::get('/user', function() {
+    return Auth::user();
+  })->name('user');
+});
+
+
+Route::namespace('Rpg')->group(function() {
+  //キャラクターセレクト
+  Route::get('/character-list', 'CharacterSelectController@getCharacterList')->name('characterList');
+  //バトルエリア
+  Route::get('/battle-character', 'BattleController@getBattleCharacter')->name('battleCharacter');
+  Route::get('/battle-monster', 'BattleController@getRandomMonster')->name('randomBattleMonster');
+  Route::get('/battle-satan', 'BattleController@getSatan')->name('battleSatan');
+  Route::post('/use-skill', 'BattleController@useSkill')->name('useSkill');
+  Route::post('/enemy-attack', 'BattleController@enemyAttack')->name('enemyAttack');
+  //ランキング
+  Route::post('/save-battle-data', 'RankingController@saveBattleData')->name('saveBattleData');
+  Route::get('/ranking', 'RankingController@getRankingData')->name('getRankingData');
+});
 

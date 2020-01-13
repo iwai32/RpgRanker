@@ -14,26 +14,10 @@ export default {
   },
   methods: {
     useSkill(skillName, damage, attribute) {
-      this.increaseGauge()
-      this.myAttack(skillName, damage, attribute)
-      this.showSkillEffect(attribute)
-    },
-    //ゲージ増加
-    increaseGauge() {
-      this.$store.dispatch('battleArea/increaseGauge')
-    },
-    //自分の攻撃
-    myAttack(skillName, damage, attribute) {
-      this.$store.dispatch('battleArea/myAttack', {
-        skillName: skillName,
-        damage: damage,
-        attribute: attribute
-        })
-    },
-    showSkillEffect(attribute) {
-      this.$store.dispatch('battleArea/showSkillEffect', attribute)
-    },
+      const skillData = { name: skillName, damage: damage, attribute: attribute }
 
+      this.$store.dispatch('battleArea/useSkill', skillData)
+    },
   }
 }
 </script>

@@ -1,6 +1,6 @@
 <template>
   <p class="battle-character-life">
-    {{ battleCharacterDataHp }}/{{ characterHp }}
+    {{ characterHp }}/{{ battleCharacterDataHp }}
   </p>
 </template>
 
