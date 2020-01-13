@@ -2,31 +2,46 @@
 
 namespace App\Http\Controllers\Rpg;
 
+
 use App\Http\Controllers\Controller;
-use App\Models\Character;
-use App\Models\Monster;
+use App\Services\BattleService;
 use Illuminate\Http\Request;
 
 class BattleController extends Controller
 {
-    protected $characters;
-    protected $monsters;
+    protected $battleService;
 
-    public function __construct(Character $character, Monster $monster)
+    public function __construct(BattleService $battleService)
     {
-        $this->characters = $character;
-        $this->monsters = $monster;
+        $this->battleService = $battleService;
     }
 
     public function getBattleCharacter(Request $request)
     {
-        $id = $request->input('id');
-        return $this->characters->battleCharacterForId($id);
+        return $this->battleService->searchCharacter($request->input('id'));
     }
 
-    public function getBattleMonsterList()
+    public function getRandomMonster()
     {
-        return $this->monsters->getBattleMonsterList();
+        return $this->battleService->searchRandomMonster();
+    }
+
+    public function getSatan()
+    {
+        return $this->battleService->searchSatan();
+    }
+
+    public function useSkill(Request $request)
+    {
+        $batttleData = $request->all();
+        $myAttackResult = $this->battleService->myAttack($batttleData);
+        return compact('myAttackResult');
+    }
+
+    public function enemyAttack(Request $request)
+    {
+        $monsterId = $request->input('monsterId');
+        return $this->battleService->attackDrawing($monsterId);
     }
 
 }
