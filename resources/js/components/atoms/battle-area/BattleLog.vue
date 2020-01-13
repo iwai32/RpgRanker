@@ -11,7 +11,7 @@ export default {
     battleLog() {
       this.scrollNewBattleLog()
     },
-    monsterHp() {
+    battleMonsterData() {
       if (this.monsterHp === this.battleMonsterData.hp) {
         this.monsterPopLog()
       }

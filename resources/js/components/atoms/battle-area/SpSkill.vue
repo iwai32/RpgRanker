@@ -26,20 +26,10 @@ export default {
   methods: {
     //SPスキル
     useSpSkill(skillName, damage, attribute) {
-      this.myAttack('必殺！' + skillName, damage, attribute)
-      this.showSkillEffect('sp-' + attribute)
-      this.detachSpSkill()
-    },
-    //自分の攻撃
-    myAttack(skillName, damage, attribute) {
-      this.$store.dispatch('battleArea/myAttack', { skillName: skillName, damage: damage, attribute: attribute})
-    },
-    showSkillEffect(attribute) {
-      this.$store.dispatch('battleArea/showSkillEffect', attribute)
-    },
-    detachSpSkill() {
-      this.$store.commit('battleArea/detachSpSkill')
-    },
+      const skillData = { name: skillName, damage: damage, attribute: attribute }
+
+      this.$store.dispatch('battleArea/useSpSkill', skillData)
+    }
   }
 }
 </script>
